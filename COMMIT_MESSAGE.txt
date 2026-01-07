@@ -1,0 +1,11 @@
+Fix hydration errors and finalize site design
+
+- Fixed SectionTracker to use useState/useEffect instead of typeof window check
+- Fixed ScrollProgress to always render same DOM structure
+- Updated ThemeProvider with proper default props
+- Fixed Services Card dark mode visibility (text colors and contrast)
+- Updated Blog page with architectural magazine style
+- Restyled Contact forms to blueprint/structural design with underline inputs
+- All components now render consistently on server and client
+- Production-ready build with no linter errors
+

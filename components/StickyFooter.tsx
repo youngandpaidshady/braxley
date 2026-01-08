@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Mail, Copy, Check, Facebook, Instagram, Linkedin } from "lucide-react";
-import { Button } from "./ui/button";
 import { ModeToggle } from "./ui/mode-toggle";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +11,7 @@ export const StickyFooter: React.FC = () => {
   const emailRef = useRef<HTMLDivElement>(null);
 
   const handleCopyEmail = async () => {
-    const email = "info@ivanremodeling.com";
+    const email = "Braxleynevimllc@outlook.com";
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
@@ -23,11 +22,11 @@ export const StickyFooter: React.FC = () => {
   };
 
   return (
-    <footer className="relative md:fixed bottom-0 left-0 right-0 z-0 md:z-0 bg-background border-t border-border w-full">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <footer className="relative z-20 bg-black dark:bg-black w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 max-w-7xl relative z-10">
         {/* Massive Typography */}
         <div className="mb-8 md:mb-12">
-          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-foreground leading-none">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold text-foreground leading-tight">
             LET&apos;S BUILD.
           </h2>
         </div>
@@ -41,17 +40,26 @@ export const StickyFooter: React.FC = () => {
             </p>
             <div
               ref={emailRef}
-              className="group relative inline-block"
+              className="group relative inline-block touch-manipulation cursor-pointer"
               onClick={handleCopyEmail}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleCopyEmail();
+                }
+              }}
+              aria-label="Copy email address"
             >
               <motion.div
                 className="flex items-center gap-3 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Mail className="h-5 w-5 text-accent" />
-                <span className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-accent transition-colors">
-                  info@ivanremodeling.com
+                <Mail className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                <span className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Braxleynevimllc@outlook.com
                 </span>
                 <motion.div
                   initial={false}
@@ -62,9 +70,9 @@ export const StickyFooter: React.FC = () => {
                   transition={{ duration: 0.4 }}
                 >
                   {copied ? (
-                    <Check className="h-5 w-5 text-accent" />
+                    <Check className="h-5 w-5 text-primary" strokeWidth={1.5} />
                   ) : (
-                    <Copy className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors" />
+                    <Copy className="h-5 w-5 text-primary" strokeWidth={1.5} />
                   )}
                 </motion.div>
               </motion.div>
@@ -73,7 +81,7 @@ export const StickyFooter: React.FC = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute -top-8 left-0 text-sm text-accent font-medium"
+                  className="absolute -top-8 left-0 text-sm text-primary font-medium"
                 >
                   Copied!
                 </motion.div>
@@ -88,17 +96,17 @@ export const StickyFooter: React.FC = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <MagneticButton
-                href="https://facebook.com/ivanremodeling"
+                href="https://facebook.com/braxleynevim"
                 icon={Facebook}
                 label="Facebook"
               />
               <MagneticButton
-                href="https://instagram.com/ivanremodeling"
+                href="https://instagram.com/braxleynevim"
                 icon={Instagram}
                 label="Instagram"
               />
               <MagneticButton
-                href="https://linkedin.com/company/ivanremodeling"
+                href="https://linkedin.com/company/braxleynevim"
                 icon={Linkedin}
                 label="LinkedIn"
               />
@@ -107,13 +115,13 @@ export const StickyFooter: React.FC = () => {
         </div>
 
         {/* Bottom: Copyright and Theme Toggle */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
+        <div className="mt-12 pt-8 border-t border-primary/20">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap">
             <p className="text-sm text-muted-foreground text-center">
-              © {new Date().getFullYear()} Ivan Remodeling LLC. All rights
+              © {new Date().getFullYear()} Braxley Nevim Elite Remodeling LLC. All rights
               reserved.
             </p>
-            <div className="relative z-50 flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="text-xs text-muted-foreground">Theme:</span>
               <ModeToggle />
             </div>
@@ -179,15 +187,14 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
       }}
       className={cn(
         "relative inline-flex items-center justify-center w-12 h-12 rounded-full",
-        "bg-secondary hover:bg-accent/10 border border-border hover:border-accent/50",
+        "bg-secondary hover:bg-primary/10 border border-border hover:border-primary/50",
         "transition-colors duration-300 cursor-pointer"
       )}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       aria-label={label}
     >
-      <Icon className="h-5 w-5 text-foreground group-hover:text-accent transition-colors" />
+      <Icon className="h-5 w-5 text-primary" />
     </motion.a>
   );
 };
-

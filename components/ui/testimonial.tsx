@@ -18,44 +18,76 @@ type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "The attention to detail was completely unlike our past experiences. Ivan noticed things we didn't even think of.",
-    name: "Sarah Chen",
-    designation: "Kitchen Renovation",
-    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    reply: "Ivan: Precision is everything in a kitchen, Sarah. Glad you love the new layout!",
+      "Braxley Nevim Elite Remodeling LLC expertly managed our outpatient wing renovation in a fully operational hospital setting—zero compromises to patient safety, delivered ahead of schedule.",
+    name: "Dr. Elena Marquez",
+    designation: "Hospital Administrator",
+    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop",
+    reply:
+      "Braxley: Healthcare work demands regulatory precision and respect for patient well-being—thank you for trusting us."
   },
   {
     quote:
-      "Implementation was flawless. They navigated the city permits faster than anyone told us was possible.",
-    name: "Michael Rodriguez",
-    designation: "Whole Home Add-On",
-    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    reply: "Ivan: Managing the city is part of the job, Michael. Enjoy the extra space!",
+      "Braxley and his team reimagined our oceanfront villas and spa with exquisite harmony—delivered stress-free, even during peak season.",
+    name: "James Harrington",
+    designation: "Resort Owner",
+    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop",
+    reply:
+      "Braxley: Crafting serene, indulgent spaces without disrupting guests is core to our work—honored to partner with you."
   },
   {
     quote:
-      "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-    name: "Emily Watson",
-    designation: "Commercial Build",
-    src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    reply: "Ivan: Commercial timelines are strict. Happy we hit the target for you, Emily.",
+      "Handling a premium suite upgrade in a 65,000-seat venue during live events required flawless timing. Braxley delivered without interrupting a single game.",
+    name: "Michael Torres",
+    designation: "Stadium Operations Director",
+    src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop",
+    reply:
+      "Braxley: Live-event constraints demand rigorous planning—we’re grateful for your confidence and partnership."
   },
   {
     quote:
-      "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-    name: "James Kim",
-    designation: "Master Bath",
-    src: "https://images.unsplash.com/photo-1636041293178-808a676cda48?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    reply: "Ivan: Your vision for the marble work was inspiring, James. A pleasure to build.",
+      "Braxley provided genuine white-glove service throughout our lobby, restaurant, and guest-room refresh—absolutely no guest disturbance.",
+    name: "Sophia Laurent",
+    designation: "Luxury Hotel Manager",
+    src: "https://images.unsplash.com/photo-1636041293178-808a676cda48?q=80&w=3540&auto=format&fit=crop",
+    reply:
+      "Braxley: Discreet execution and daily coordination are non-negotiable in hospitality—thank you for the trust."
   },
   {
     quote:
-      "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-    name: "Lisa Thompson",
-    designation: "Exterior Remodel",
-    src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    reply: "Ivan: Curb appeal adds real value. Thanks for trusting us with the exterior!",
+      "Braxley served as our strategic partner on a flagship office tower repositioning—superior craftsmanship under budget and weeks early.",
+    name: "Victoria Langford",
+    designation: "High-End Commercial Developer",
+    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=3540&auto=format&fit=crop",
+    reply:
+      "Braxley: Value engineering and transparent communication protect both the schedule and the ROI—thank you for your partnership."
   },
+  {
+    quote:
+      "Braxley’s mastery of compliance and safety made our emergency department expansion exceptionally smooth in an active facility.",
+    name: "Robert Kline",
+    designation: "Hospital Administrator",
+    src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3000&auto=format&fit=crop",
+    reply:
+      "Braxley: Protecting clinical operations and patient safety during transformation is non-negotiable—thank you."
+  },
+  {
+    quote:
+      "Braxley’s white-glove precision refreshed our executive suites while maintaining full occupancy—meticulous standards, zero stress.",
+    name: "Alexander Pierce",
+    designation: "Luxury Hotel Manager",
+    src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=3000&auto=format&fit=crop",
+    reply:
+      "Braxley: Upholding a property’s legacy with discreet excellence is our commitment—thank you for the gracious testimonial."
+  },
+  {
+    quote:
+      "Braxley drove outstanding ROI on our trophy property through strategic budgeting and superior finishes—complexity felt effortless.",
+    name: "Nathaniel Cole",
+    designation: "High-End Commercial Developer",
+    src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop",
+    reply:
+      "Braxley: Long-term value creation and trusted collaboration define our approach—thank you for the partnership."
+  }
 ];
 
 export const AnimatedTestimonials: React.FC = () => {
@@ -87,18 +119,23 @@ export const AnimatedTestimonials: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-card rounded-2xl p-8 md:p-12 shadow-xl border border-border"
+            className="bg-card rounded-2xl p-8 md:p-12 shadow-xl border border-border relative overflow-hidden"
           >
+            {/* Gold accent border on top */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+            
             {/* Quote */}
             <div className="mb-6">
               <p className="text-xl md:text-2xl font-serif text-foreground leading-relaxed">
-                &quot;{currentTestimonial.quote}&quot;
+                <span className="text-primary text-3xl md:text-4xl font-bold leading-none mr-1">&quot;</span>
+                {currentTestimonial.quote}
+                <span className="text-primary text-3xl md:text-4xl font-bold leading-none ml-1">&quot;</span>
               </p>
             </div>
 
             {/* Author Info */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary/30">
                 <Image
                   src={currentTestimonial.src}
                   alt={currentTestimonial.name}
@@ -109,7 +146,7 @@ export const AnimatedTestimonials: React.FC = () => {
               </div>
               <div>
                 <h4 className="font-bold text-foreground">{currentTestimonial.name}</h4>
-                <p className="text-sm text-muted-foreground">{currentTestimonial.designation}</p>
+                <p className="text-sm text-primary/70 font-medium">{currentTestimonial.designation}</p>
               </div>
             </div>
 
@@ -117,19 +154,20 @@ export const AnimatedTestimonials: React.FC = () => {
             {currentTestimonial.reply && (
               <div className="bg-primary/10 border-l-2 border-primary p-4 mt-6 rounded-r-lg">
                 <p className="text-sm italic text-muted-foreground">
-                  <span className="font-bold text-foreground not-italic">Ivan:</span>{" "}
+                  <span className="font-bold text-foreground not-italic">Braxley:</span>{" "}
                   {currentTestimonial.reply}
                 </p>
               </div>
             )}
 
             {/* Navigation */}
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-primary/20">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={goToPrevious}
                 aria-label="Previous testimonial"
+                className="hover:text-primary hover:bg-primary/10"
               >
                 <ChevronLeft className="h-5 w-5" />
               </Button>
@@ -156,6 +194,7 @@ export const AnimatedTestimonials: React.FC = () => {
                 size="icon"
                 onClick={goToNext}
                 aria-label="Next testimonial"
+                className="hover:text-primary hover:bg-primary/10"
               >
                 <ChevronRight className="h-5 w-5" />
               </Button>

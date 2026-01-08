@@ -24,7 +24,7 @@ const faqData: FAQItem[] = [
   {
     question: "Are you licensed and insured?",
     answer:
-      "Yes, we are fully licensed and insured. Ivan Remodeling LLC holds all required state and local contractor licenses, and we carry comprehensive general liability insurance and workers' compensation coverage. We're happy to provide proof of insurance and licensing credentials upon request. Your peace of mind is our priority.",
+      "Yes, we are fully licensed and insured. Braxley Nevim Elite Remodeling LLC holds all required state and local contractor licenses, and we carry comprehensive general liability insurance and workers' compensation coverage. We're happy to provide proof of insurance and licensing credentials upon request. Your peace of mind is our priority.",
   },
   {
     question: "Do you handle the permits?",
@@ -64,8 +64,8 @@ export const FaqSection: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
             Common Questions
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Everything you need to know about working with Ivan Remodeling
+          <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary font-bold max-w-xl mx-auto">
+            Everything you need to know about working with Braxley Nevim Elite Remodeling LLC
           </p>
         </motion.div>
 

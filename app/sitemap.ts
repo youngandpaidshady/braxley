@@ -1,7 +1,9 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://ivanremodeling.com"; // Update with your actual domain
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://braxleynevim.com";
 
   // Static pages
   const staticPages = [
@@ -12,16 +14,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/projects`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
-      priority: 0.7,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -31,76 +33,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Service pages - Structure ready for database integration
-  const services = [
-    {
-      slug: "luxury-kitchens",
-      title: "Luxury Kitchens",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      slug: "bathroom-renovation",
-      title: "Bathroom Renovation",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      slug: "commercial-build",
-      title: "Commercial Build",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      slug: "full-gut-reno",
-      title: "Full Gut Renovation",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      slug: "interior-remodeling",
-      title: "Interior Remodeling",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      slug: "general-contracting",
-      title: "General Contracting",
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-  ];
-
-  const servicePages = services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: service.changeFrequency,
-    priority: service.priority,
-  }));
-
-  // Project pages - Structure ready for database integration
-  // In production, fetch from database/API
+  // Project pages - Using actual project slugs
   const projects = [
     {
-      slug: "modern-kitchen-transformation",
-      title: "Modern Kitchen Transformation",
+      slug: "manhattan-skyline-penthouse",
       lastModified: new Date("2024-01-15"),
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: 0.8,
     },
     {
-      slug: "luxury-master-bathroom",
-      title: "Luxury Master Bathroom",
+      slug: "jw-marriott-bonnet-creek",
       lastModified: new Date("2024-01-10"),
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: 0.8,
     },
     {
-      slug: "open-concept-living-space",
-      title: "Open Concept Living Space",
+      slug: "lax-consolidated-rental-car-facility",
       lastModified: new Date("2024-01-05"),
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: 0.8,
+    },
+    {
+      slug: "beverly-hills-elite-residence",
+      lastModified: new Date("2024-01-12"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
   ];
 
@@ -111,6 +68,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: project.priority,
   }));
 
-  return [...staticPages, ...servicePages, ...projectPages];
+  return [...staticPages, ...projectPages];
 }
-

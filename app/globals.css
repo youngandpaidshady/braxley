@@ -4,225 +4,719 @@
 
 @layer base {
   :root {
-    /* Light Mode - "Day" Look: White/Navy/Gold */
-    /* Background: Pure White */
-    --background: 0 0% 100%; /* #FFFFFF */
-    
-    /* Foreground: Deep Navy - All main text */
-    --foreground: 222 47% 11%; /* #0F172A - Slate 900 */
-    
-    /* Muted: Slate 50 - For secondary backgrounds */
-    --muted: 210 40% 98%; /* #F8FAFC */
-    --muted-foreground: 222 47% 11%; /* Dark navy for text on muted */
-    
-    /* Primary: Champagne Gold - The "Get a Quote" button color */
-    --primary: 42 45% 56%; /* #BFA15F */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF - White text on gold */
-    
-    /* Secondary: Light grey for backgrounds */
-    --secondary: 214 32% 91%; /* #E2E8F0 - Light Slate */
-    --secondary-foreground: 222 47% 11%; /* Dark navy text */
-    
-    /* Accent: Same as primary (Gold) */
-    --accent: 42 45% 56%; /* #BFA15F - Champagne Gold */
-    --accent-foreground: 0 0% 100%; /* White text on gold */
-    
-    /* UI elements */
-    --border: 214 32% 91%; /* #E2E8F0 - Light Slate */
-    --input: 214 32% 91%; /* Same as border */
-    --ring: 42 45% 56%; /* Gold focus ring */
+    --background: 35 25% 98%; /* Warm Vellum White */
+    --foreground: 20 10% 10%;
+    --primary: 35 65% 40%; /* Deep Bronze */
+    --primary-foreground: 35 100% 98%;
 
-    /* Border radius */
-    --radius: 9999px; /* Pill shape (rounded-full) */
+    --secondary: 220 16% 92%;
+    --secondary-foreground: 221 20% 12%;
+
+    --accent: 28 67% 52%;
+    --accent-foreground: 30 20% 98%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 217 12% 25%;
+
+    --border: 220 14% 75%;
+    --input: 220 14% 70%;
+    --ring: 35 65% 40%;
+
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark Mode - "Night" Look: Deep Navy/Gold */
-    /* Background: Very Deep Navy - almost black but richer */
-    --background: 222 47% 7%; /* #0B1120 */
-    
-    /* Foreground: Off-White */
-    --foreground: 210 40% 98%; /* #F8FAFC */
-    
-    /* Muted: Slate 800 */
-    --muted: 217 33% 17%; /* #1E293B */
-    --muted-foreground: 210 40% 98%; /* Off-white text on muted */
-    
-    /* Primary: Slightly brighter Gold to pop against dark bg */
-    --primary: 42 45% 58%; /* #C1A16B */
-    --primary-foreground: 222 47% 11%; /* #0F172A - Dark text on gold for contrast */
-    
-    /* Secondary: Darker slate */
-    --secondary: 217 33% 17%; /* #1E293B */
-    --secondary-foreground: 210 40% 98%; /* Off-white text */
-    
-    /* Accent: Same as primary (Gold) */
-    --accent: 42 45% 58%; /* #C1A16B */
-    --accent-foreground: 222 47% 11%; /* Dark text on gold */
-    
-    /* UI elements */
-    --border: 217 33% 20%; /* Dark border */
-    --input: 217 33% 20%; /* Same as border */
-    --ring: 42 45% 58%; /* Gold focus ring */
-  }
-}
+    --background: 240 10% 4%; /* Pure Obsidian Black */
+    --foreground: 0 0% 98%;
+    --primary: 38 75% 58%; /* Radiant Gold */
+    --primary-foreground: 35 10% 5%;
 
-@layer base {
+    --secondary: 220 14% 18%;
+    --secondary-foreground: 210 36% 96%;
+
+    --accent: 28 74% 56%;
+    --accent-foreground: 220 40% 10%;
+
+    --muted: 220 14% 20%;
+    --muted-foreground: 217 11% 70%;
+
+    --border: 220 14% 25%;
+    --input: 220 14% 25%;
+    --ring: 38 75% 58%;
+  }
+
   * {
     @apply border-border;
   }
-  
+
   html {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
-    /* Disable smooth scroll on mobile for better performance */
-    scroll-behavior: smooth;
-  }
-  
-  /* Disable smooth scroll on touch devices */
-  @media (hover: none) and (pointer: coarse) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-  
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
-    font-family: var(--font-geist-sans), system-ui, sans-serif;
-    /* Ensure body has solid background to hide footer behind content */
     background-color: hsl(var(--background));
-    /* Prevent horizontal scroll on mobile */
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    /* Optimize font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Smooth scroll only on desktop */
+  @media (min-width: 769px) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
-  }
-  
-  /* Light mode: Pure white background */
-  body:not(.dark) {
-    background-color: #FFFFFF; /* Pure white */
-  }
-  
-  /* Dark mode body background */
-  .dark body,
-  body.dark {
-    background-color: #0B1120; /* Very Deep Navy */
-  }
-  
-  /* Ensure all headings use Playfair Display (Serif) */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair-display), "Playfair Display", serif;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-  
-  /* Typography consistency */
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-  }
-  
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-  
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
-}
-
-/* Custom Cursor Styles - Only apply when custom cursor is active */
-@layer utilities {
-  .custom-cursor-active * {
-    cursor: none !important;
-  }
-  
-  /* Restore cursor for inputs and textareas */
-  .custom-cursor-active input,
-  .custom-cursor-active textarea,
-  .custom-cursor-active select {
-    cursor: text !important;
-  }
-  
-  /* Ensure buttons and links use custom cursor */
-  .custom-cursor-active button,
-  .custom-cursor-active a {
-    cursor: none !important;
-  }
-}
-
-/* Glassmorphism utility */
-@layer utilities {
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-overflow-scrolling: touch;
+    /* Optimize font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  .glass-dark {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-/* Film Grain & Ambient Light Effects */
-@layer utilities {
-  /* Film Grain Noise Overlay */
-  .film-grain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    opacity: 0.12;
-    mix-blend-mode: overlay;
-    will-change: opacity;
-  }
-  
-  /* Reduce grain intensity on mobile for performance */
+  /* Mobile-specific optimizations */
   @media (max-width: 768px) {
-    .film-grain {
-      opacity: 0.08;
+    html {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 16px; /* Prevent iOS zoom on input focus */
+      height: 100%;
+      position: relative;
+      scroll-behavior: auto !important;
+      /* Prevent scroll glitches */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Fix viewport height issues */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      min-height: -webkit-fill-available; /* iOS fix */
+      width: 100%;
+      max-width: 100vw;
+      /* Prevent scroll glitches */
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
+      /* Disable will-change on mobile */
+      will-change: auto;
+      /* Prevent momentum scrolling issues */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Fix iOS bounce */
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ensure main doesn't block scroll - fix blanking */
+    main {
+      overflow: visible;
+      position: relative;
+      height: auto;
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
+      /* Prevent blanking - ensure content is visible */
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      /* Prevent scroll glitches */
+      -webkit-transform: none;
+      transform: none;
+    }
+
+    /* Fix blanking - ensure all content is visible */
+    main > * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+
+    /* Prevent pseudo-elements from causing blanking */
+    main::after,
+    main::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Optimize images on mobile */
+    img {
+      content-visibility: unset;
+      will-change: auto;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Disable heavy animations on mobile */
+    [data-framer-component] {
+      will-change: auto;
+      contain: none;
+    }
+
+    /* Fix section spacing on mobile */
+    section {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+
+    /* Optimize typography for mobile */
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 3rem) !important;
+      line-height: 1.2 !important;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+      line-height: 1.3 !important;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 3vw, 2rem) !important;
+      line-height: 1.4 !important;
+    }
+
+    /* Better container padding */
+    .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    /* Fix touch targets */
+    button, a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Better spacing for mobile */
+    .space-y-8 > * + * {
+      margin-top: 1.5rem !important;
+    }
+
+    .space-y-12 > * + * {
+      margin-top: 2rem !important;
+    }
+
+    /* Prevent horizontal scroll */
+    * {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Optimize images */
+    img {
+      height: auto;
+      max-width: 100%;
+      display: block;
     }
   }
 
-  /* Ambient Glow Background */
-  .ambient-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    background: 
-      radial-gradient(circle at 20% 30%, hsl(215 28% 17% / 0.35) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, hsl(25 95% 53% / 0.25) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, hsl(215 28% 17% / 0.2) 0%, transparent 60%);
-    animation: ambient-drift 25s ease-in-out infinite alternate;
-    will-change: transform, background-position;
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    html {
+      overflow-y: auto;
+    }
+    
+    body {
+      overflow-y: auto;
+      will-change: scroll-position;
+    }
   }
 
-  @keyframes ambient-drift {
-    0% {
-      background-position: 0% 0%, 100% 100%, 50% 50%;
-      transform: scale(1) translate(0, 0);
+  /* Desktop optimizations */
+  @media (min-width: 1025px) {
+    html {
+      overflow-y: auto;
     }
-    50% {
-      background-position: 5% 5%, 95% 95%, 55% 45%;
-      transform: scale(1.05) translate(10px, -10px);
+    
+    body {
+      overflow-y: auto;
+      will-change: scroll-position;
     }
-    100% {
-      background-position: 10% 10%, 90% 90%, 60% 40%;
-      transform: scale(1.1) translate(-10px, 10px);
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.16);
+    color: hsl(var(--foreground));
+  }
+
+  /* Prevent layout shifts - reserve space for images */
+  img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+    content-visibility: auto;
+    will-change: auto;
+  }
+
+  /* Optimize sections for scroll performance - disable on mobile */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      content-visibility: unset;
+      contain-intrinsic-size: unset;
+    }
+  }
+
+  /* Smooth content loading */
+  [data-loading] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  [data-loading="loaded"] {
+    opacity: 1;
+  }
+
+  /* Dark mode: ensure black background extends on scroll */
+  .dark body {
+    background-color: hsl(240 10% 4%);
+  }
+
+  .dark html {
+    background-color: hsl(240 10% 4%);
+  }
+
+  /* Touch target optimization - minimum 44x44px for accessibility */
+  button,
+  a,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  @media (min-width: 769px) {
+    /* Allow smaller touch targets on desktop */
+    button,
+    a,
+    [role="button"] {
+      min-height: auto;
+      min-width: auto;
     }
   }
 }
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent scroll blocking - optimize animations */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-framer-component] {
+      transform: translateZ(0);
+    }
+  }
+
+  /* GPU acceleration for smooth scrolling */
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Prevent scroll blocking during animations */
+  [data-framer-component] {
+    contain: layout style paint;
+  }
+
+  @media (max-width: 768px) {
+    [data-framer-component] {
+      contain: none;
+    }
+  }
+
+  /* Optimize motion components */
+  [data-framer-name] {
+    will-change: transform, opacity;
+  }
+
+  @media (max-width: 768px) {
+    [data-framer-name] {
+      will-change: auto;
+    }
+  }
+
+  /* Smooth scroll without blocking - only on desktop */
+  @media (prefers-reduced-motion: no-preference) {
+    @media (min-width: 769px) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+  }
+
+  /* Mobile touch scroll fixes */
+  @media (max-width: 768px) {
+    /* Fix for iOS Safari bounce */
+    body {
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
+    }
+
+    /* Prevent pull-to-refresh on mobile */
+    html {
+      overscroll-behavior-y: none;
+      overscroll-behavior-x: none;
+    }
+
+    /* Optimize touch interactions */
+    button,
+    a,
+    [role="button"] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent scroll glitches - minimal GPU acceleration */
+    body {
+      -webkit-transform: none;
+      transform: none;
+    }
+
+    /* Reduce animation complexity on mobile */
+    * {
+      transition-duration: 0.2s !important;
+      animation-duration: 0.2s !important;
+    }
+
+    /* Ensure no element blocks scroll */
+    * {
+      max-width: 100vw;
+    }
+
+    /* Disable smooth scroll on mobile to prevent glitches */
+    html {
+      scroll-behavior: auto !important;
+    }
+    
+    /* Prevent blanking - ensure body content is visible */
+    body {
+      -webkit-transform: none;
+      transform: none;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Fix blanking - ensure all sections are visible */
+    section {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      -webkit-transform: none !important;
+      transform: none !important;
+    }
+
+    /* Fix blurring during scroll - disable backdrop-blur on mobile */
+    [class*="backdrop-blur"] {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Use solid backgrounds instead of blur on mobile */
+    [class*="bg-background/95"],
+    [class*="bg-background/90"],
+    [class*="bg-background/80"] {
+      background-color: hsl(var(--background)) !important;
+    }
+
+    /* SectionDivider - very subtle on mobile (like in image) */
+    [class*="SectionDivider"],
+    [class*="section-divider"] {
+      height: 0.5rem !important;
+      max-height: 0.5rem !important;
+    }
+
+    /* Fix scroll glitches - prevent momentum and smooth scrolling conflicts */
+    * {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    /* Force pagination dots to stay horizontal on mobile */
+    [class*="Dots"],
+    [class*="pagination"],
+    [class*="dots"] {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 6px !important;
+    }
+
+    /* Force delicate capsule sizing for pagination dots on mobile */
+    [class*="Dots"] button,
+    [class*="pagination"] button,
+    [class*="dots"] button,
+    [class*="Dots"] > button,
+    [class*="pagination"] > button,
+    [class*="dots"] > button {
+      width: 6px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsla(35, 65%, 40%, 0.3) !important;
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Active dot - delicate capsule */
+    [class*="Dots"] button[aria-current="true"],
+    [class*="pagination"] button[aria-current="true"],
+    [class*="dots"] button[aria-current="true"],
+    [class*="Dots"] button:active,
+    [class*="pagination"] button:active,
+    [class*="dots"] button:active {
+      width: 20px !important;
+      height: 3px !important;
+      background-color: hsla(38, 75%, 58%, 1) !important;
+      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
+    }
+
+    /* Alternative selector for active state (using class or data attribute) */
+    [class*="bg-primary"][class*="w-6"],
+    [class*="bg-primary"][class*="w-24"],
+    [class*="bg-primary"][style*="width: 24px"],
+    [class*="bg-primary"][style*="width: 20px"] {
+      width: 20px !important;
+      height: 3px !important;
+      background-color: hsla(38, 75%, 58%, 1) !important;
+      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
+    }
+
+    /* Override inline styles for active dots - force delicate size */
+    button[style*="width: 24px"],
+    button[style*="width: 20px"] {
+      width: 20px !important;
+      height: 3px !important;
+      background-color: hsla(38, 75%, 58%, 1) !important;
+      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
+    }
+
+    /* Override inline styles for inactive dots - force delicate size */
+    button[style*="width: 8px"],
+    button[style*="width: 6px"],
+    button[style*="width: 2"] {
+      width: 6px !important;
+      height: 3px !important;
+      background-color: hsla(35, 65%, 40%, 0.3) !important;
+    }
+
+    /* Override height in inline styles */
+    button[style*="height: 4px"],
+    button[style*="height: 8px"] {
+      height: 3px !important;
+    }
+
+    /* Force all pagination dot containers to use 6px gap */
+    [class*="Dots"],
+    [class*="pagination"],
+    [class*="dots"] {
+      gap: 6px !important;
+    }
+
+    /* Force all dots to be small capsules */
+    [class*="Dots"] *,
+    [class*="pagination"] *,
+    [class*="dots"] * {
+      max-width: 20px !important;
+      max-height: 3px !important;
+    }
+
+    /* Fix carousel scroll glitches on mobile */
+    [class*="embla"],
+    [class*="embla__viewport"] {
+      touch-action: pan-x !important;
+      overscroll-behavior-x: contain !important;
+      overscroll-behavior-y: none !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    [class*="embla__container"] {
+      display: flex !important;
+      touch-action: pan-x !important;
+    }
+
+    /* Prevent scroll glitches - disable smooth scroll on mobile */
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    /* Fix body scroll on mobile */
+    body {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      position: relative !important;
+      overscroll-behavior-y: contain !important;
+    }
+
+    /* Prevent scroll conflicts with carousels */
+    main {
+      overflow-x: hidden !important;
+      overflow-y: visible !important;
+    }
+
+    /* Reduce border sizes on mobile - extremely tiny */
+    .border-t:not(.border-t-2):not(.border-t-4),
+    .border-b:not(.border-b-2):not(.border-b-4) {
+      border-width: 0.25px !important;
+    }
+
+    /* Visual separator lines - very subtle like in image */
+    [class*="h-px"]:not([class*="h-2"]):not([class*="h-4"]):not([class*="h-8"]):not([class*="h-\["]) {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* All lines very subtle */
+    [class*="h-\[1px\]"],
+    [class*="h-\[0.5px\]"] {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* Gradient separators - subtle */
+    [class*="bg-gradient"][class*="h-"],
+    [class*="via-primary"][class*="h-"] {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* Divider lines - subtle */
+    hr,
+    [role="separator"] {
+      border-width: 0.5px !important;
+      height: 0.5px !important;
+    }
+
+    /* Optimize sticky elements - prevent blur during scroll */
+    [class*="sticky"] {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Ensure sticky filters stay in place */
+    nav[aria-label*="categories"],
+    nav[aria-label*="Project"] {
+      position: sticky !important;
+      top: 4rem !important;
+      z-index: 40 !important;
+    }
+
+    /* Fix blanking - ensure all sections are visible */
+    section {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      -webkit-transform: none !important;
+      transform: none !important;
+    }
+
+    /* CRITICAL: Show content by default - only hide if JS loads and preloader should show */
+    /* This ensures content is visible even if JavaScript fails completely */
+    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Only allow hiding if JavaScript is enabled AND preloader is active */
+    html.js-enabled body > div > div[style*="opacity: 0"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Fallback: Show content after 2 seconds if preloader is stuck */
+    @keyframes showContent {
+      to {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+    
+    /* Apply fallback animation after 2 seconds - ensures content shows even if JS fails */
+    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      animation: showContent 0.1s 2s forwards;
+    }
+
+    /* Immediate fallback for static export - show content if JS doesn't load */
+    html:not(.js-enabled) [style*="opacity: 0"],
+    html:not(.js-enabled) [class*="opacity-0"] {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Prevent any element from causing blanking */
+    *:not([class*="preloader"]) {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Exception for preloader only */
+    [class*="preloader"],
+    [class*="Preloader"] {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    button,
+    a,
+    [role="button"] {
+      touch-action: manipulation;
+    }
+  }
+
+  /* Touch-friendly hover states */
+  @media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .hover\:scale-105:hover {
+      transform: scale(1);
+    }
+    
+    .group:hover .group-hover\:opacity-100 {
+      opacity: 1;
+    }
+  }
+
+  /* Performance optimizations for low-end devices */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

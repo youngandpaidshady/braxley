@@ -46,9 +46,9 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
     );
   }
 
-  // Architectural curve (default)
+  // Architectural curve (default) - Very subtle on mobile like in image
   return (
-    <div className={cn("relative w-full h-20 md:h-32 overflow-hidden", className)}>
+    <div className={cn("relative w-full h-2 sm:h-4 md:h-8 lg:h-16 xl:h-24 overflow-hidden", className)}>
       <svg
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"

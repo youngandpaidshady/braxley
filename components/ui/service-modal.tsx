@@ -2,13 +2,14 @@
 
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./button";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface Service {
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
   title: string;
   description: string;
   detailedDescription?: string;
@@ -103,7 +104,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
             </div>
 
             {/* Scrollable Content (Mobile) */}
-            <div className="overflow-y-auto h-full pb-20">
+            <div className="overflow-y-auto h-full pb-32">
               {/* Hero Image Section */}
               <div className="relative h-[250px] w-full overflow-hidden">
                 <Image
@@ -120,7 +121,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-12 h-12 bg-primary/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-primary/30">
-                      <Icon className="h-6 w-6 text-primary" />
+                      <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                   <h2 className="text-3xl font-serif font-bold text-foreground">
@@ -155,24 +156,24 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                     )}
                   </ul>
                 </div>
+              </div>
 
-                {/* CTA Button */}
+              {/* Sticky CTA Button (Mobile) - Fixed at bottom */}
+              <div className="sticky bottom-0 left-0 right-0 p-6 bg-background/95 backdrop-blur-md border-t border-border z-10">
                 <Button
                   variant="default"
                   size="lg"
                   className="w-full rounded-full py-6 text-base font-semibold"
-                  onClick={() => {
-                    onClose();
-                    // Scroll to contact section
-                    setTimeout(() => {
-                      const contactSection = document.getElementById("contact");
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }, 300);
-                  }}
+                  asChild
                 >
-                  Get a Quote
+                  <Link
+                    href="/#contact"
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    Get a Quote
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -211,7 +212,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-primary/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-primary/30">
-                      <Icon className="h-8 w-8 text-primary" />
+                      <Icon className="h-8 w-8 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                   <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
@@ -272,16 +273,16 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                     variant="default"
                     size="lg"
                     className="w-full rounded-full py-6 text-lg font-semibold"
-                    onClick={() => {
-                      onClose();
-                      // Scroll to contact section
-                      const contactSection = document.getElementById("contact");
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
+                    asChild
                   >
-                    Get a Quote
+                    <Link
+                      href="/#contact"
+                      onClick={() => {
+                        onClose();
+                      }}
+                    >
+                      Get a Quote
+                    </Link>
                   </Button>
                 </div>
               </div>

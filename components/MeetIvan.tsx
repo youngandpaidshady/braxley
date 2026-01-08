@@ -3,9 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle, Award, Users, Clock } from "lucide-react";
 
-export const MeetIvan: React.FC = () => {
+export const MeetBraxley: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,156 +27,70 @@ export const MeetIvan: React.FC = () => {
     },
   };
 
-  // Signature SVG Animation
-  const SignatureSVG = () => (
-    <motion.svg
-      width="200"
-      height="80"
-      viewBox="0 0 200 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="text-accent"
-      initial={{ pathLength: 0, opacity: 0 }}
-      whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 2, ease: "easeInOut" }}
-    >
-      <motion.path
-        d="M10 50 Q30 30, 50 40 T90 35 T130 40 T170 45"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
-      />
-      <motion.text
-        x="10"
-        y="70"
-        fontSize="12"
-        fill="currentColor"
-        className="font-serif"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 2.5 }}
-      >
-        Ivan, Owner & Master Craftsman
-      </motion.text>
-    </motion.svg>
-  );
-
-  const stats = [
-    { icon: Clock, value: "15+", label: "Years Experience" },
-    { icon: Users, value: "500+", label: "Happy Clients" },
-    { icon: Award, value: "100%", label: "Satisfaction Rate" },
-    { icon: CheckCircle, value: "A+", label: "BBB Rating" },
-  ];
-
   return (
-    <section id="about" className="py-20 md:py-32 bg-secondary/30">
+    <section id="ceo" className="py-12 md:py-20 lg:py-32 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="max-w-6xl mx-auto"
+          viewport={{ once: true, amount: 0.1 }}
+          className="max-w-4xl mx-auto block"
         >
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Image Section */}
-            <motion.div variants={itemVariants} className="relative">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="block overflow-hidden">
+            {/* Heading */}
+            <motion.div variants={itemVariants} className="mb-12">
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary font-bold mb-2">
+                Meet Our CEO
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+                The Vision Behind Excellence.
+              </h2>
+            </motion.div>
+
+            {/* CEO Image with Caption */}
+            <motion.div
+              variants={itemVariants}
+              className="float-left w-[150px] mr-6 mb-4 md:w-[320px] md:mr-12 md:mb-8 border border-border p-1 bg-card"
+            >
+              <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src="/img/ceo.jpg"
-                  alt="Ivan - Owner & Master Craftsman"
+                  alt="Braxley Nevim - Founder & CEO"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
+                  sizes="(max-width: 768px) 150px, 320px"
                 />
+              </div>
+              {/* Signature Area */}
+              <div className="mt-3 pt-2 border-t border-primary/40 flex flex-col gap-0.5">
+                <p className="font-serif italic text-sm text-foreground">Braxley Nevim</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-primary font-bold">
+                  Founder & CEO
+                </p>
               </div>
             </motion.div>
 
-            {/* Content Section */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <div>
-                <motion.h2
-                  variants={itemVariants}
-                  className="text-4xl md:text-5xl font-extrabold text-foreground mb-4"
-                >
-                  Meet Ivan
-                </motion.h2>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-xl text-accent font-semibold mb-6"
-                >
-                  Owner & Master Craftsman
-                </motion.p>
-              </div>
-
-              <motion.div
-                variants={itemVariants}
-                className="prose prose-lg max-w-none text-foreground/80 space-y-4"
-              >
-                <p>
-                  With over 15 years of hands-on experience in residential
-                  remodeling, I&apos;ve built Ivan Remodeling LLC on a foundation
-                  of integrity, precision, and an unwavering commitment to
-                  excellence.
-                </p>
-                <p>
-                  Every project is personal to me. I don&apos;t just manage
-                  crews—I&apos;m on-site, ensuring every detail meets our exacting
-                  standards. From the initial consultation to the final walkthrough,
-                  you&apos;ll work directly with me, not a sales team or project
-                  coordinator.
-                </p>
-                <p>
-                  My philosophy is simple: treat every home as if it were my own.
-                  That means using premium materials, employing skilled artisans,
-                  and never cutting corners. Your trust is earned through
-                  craftsmanship, not promises.
-                </p>
-              </motion.div>
-
-              {/* Signature */}
-              <motion.div
-                variants={itemVariants}
-                className="pt-6 border-t border-border"
-              >
-                <SignatureSVG />
-              </motion.div>
-
-              {/* Stats Grid */}
-              <motion.div
-                variants={itemVariants}
-                className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
-              >
-                {stats.map((stat, index) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1, duration: 0.4 }}
-                      className="text-center p-4 bg-background rounded-lg shadow-md"
-                    >
-                      <Icon className="h-8 w-8 text-accent mx-auto mb-2" />
-                      <div className="text-2xl font-bold text-foreground mb-1">
-                        {stat.value}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+            {/* Text Content */}
+            <motion.div variants={itemVariants} className="text-foreground">
+              <p className="text-lg leading-relaxed mb-6 first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-primary">
+                With over two decades of experience in luxury residential construction,
+                Braxley Nevim has built a reputation for uncompromising quality and
+                attention to detail. His journey began as an apprentice carpenter,
+                where he developed a deep appreciation for the craft of building.
+              </p>
+              <p className="text-lg leading-relaxed mb-6">
+                Today, Braxley leads a team of elite craftsmen who share his passion
+                for transforming spaces into works of art. Every project undertaken
+                by Braxley Nevim Elite Remodeling reflects his commitment to
+                excellence and his belief that a home should be both beautiful and
+                functional.
+              </p>
+              <p className="text-lg leading-relaxed">
+                &ldquo;We don&apos;t just build homes,&rdquo; Braxley often says.
+                &ldquo;We create legacies that families will cherish for
+                generations.&rdquo;
+              </p>
             </motion.div>
           </div>
         </motion.div>
@@ -185,4 +98,3 @@ export const MeetIvan: React.FC = () => {
     </section>
   );
 };
-

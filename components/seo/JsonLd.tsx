@@ -88,7 +88,7 @@ export const LocalBusinessJsonLd: React.FC<{ data: LocalBusinessData }> = ({
         closes,
       }));
     }).flat(),
-    url: data.url || "https://ivanremodeling.com",
+    url: data.url || "https://braxleynevim.com",
     description: data.description,
     ...(data.aggregateRating && {
       aggregateRating: {

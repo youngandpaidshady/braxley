@@ -37,8 +37,11 @@ const formSchema = z.object({
       /^[\d\s\-\(\)]+$/,
       "Please enter a valid phone number"
     ),
-  projectType: z.enum(["Kitchen", "Bath", "Whole Home", "Commercial"], {
+  projectType: z.enum(["Residential", "Commercial", "Engineering"], {
     required_error: "Please select a project type",
+  }),
+  budgetRange: z.enum(["Under $50k", "$50k - $100k", "$100k - $250k", "$250k - $500k", "$500k+"], {
+    required_error: "Please select a budget range",
   }),
   message: z
     .string()
@@ -54,33 +57,45 @@ export const ContactForm: React.FC = () => {
       name: "",
       email: "",
       phone: "",
-      projectType: undefined as "Kitchen" | "Bath" | "Whole Home" | "Commercial" | undefined,
+      projectType: undefined as "Residential" | "Commercial" | "Engineering" | undefined,
+      budgetRange: undefined as "Under $50k" | "$50k - $100k" | "$100k - $250k" | "$250k - $500k" | "$500k+" | undefined,
       message: "",
     },
   });
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // Simulate server delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Create mailto link with form data
+      const subject = encodeURIComponent(`New Project Inquiry from ${data.name}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name}\n` +
+        `Email: ${data.email}\n` +
+        `Phone: ${data.phone}\n` +
+        `Project Type: ${data.projectType}\n` +
+        `Budget Range: ${data.budgetRange}\n\n` +
+        `Project Details:\n${data.message}`
+      );
 
-      console.log("Form submitted:", data);
-
+      const mailtoLink = `mailto:Braxleynevimllc@outlook.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
       // Show success toast
-      toast.success("Message Sent", {
-        description: "Ivan will be in touch within 24 hours.",
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo"),
-        },
+      toast.success("Email Client Opened", {
+        description: "Please send the email to complete your submission. We'll respond within 24 hours.",
+        duration: 5000,
       });
 
-      // Reset form after successful submission
-      form.reset();
+      // Reset form after a delay
+      setTimeout(() => {
+        form.reset();
+      }, 1000);
     } catch (error) {
       // Show error toast
-      toast.error("Failed to send message", {
-        description: "Please try again or contact us directly.",
+      toast.error("Failed to open email client", {
+        description: "Please contact us directly at Braxleynevimllc@outlook.com",
+        duration: 5000,
       });
     }
   };
@@ -166,10 +181,38 @@ export const ContactForm: React.FC = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Kitchen">Kitchen</SelectItem>
-                  <SelectItem value="Bath">Bath</SelectItem>
-                  <SelectItem value="Whole Home">Whole Home</SelectItem>
+                  <SelectItem value="Residential">Residential</SelectItem>
                   <SelectItem value="Commercial">Commercial</SelectItem>
+                  <SelectItem value="Engineering">Engineering</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Budget Range Field */}
+        <FormField
+          control={form.control}
+          name="budgetRange"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-foreground">Budget Range</FormLabel>
+              <Select
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <FormControl>
+                  <SelectTrigger className="bg-transparent border-0 border-b border-slate-300 dark:border-slate-700 rounded-none px-0 focus:ring-0 focus:ring-offset-0 focus:border-primary transition-colors">
+                    <SelectValue placeholder="Select budget range" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="Under $50k">Under $50k</SelectItem>
+                  <SelectItem value="$50k - $100k">$50k - $100k</SelectItem>
+                  <SelectItem value="$100k - $250k">$100k - $250k</SelectItem>
+                  <SelectItem value="$250k - $500k">$250k - $500k</SelectItem>
+                  <SelectItem value="$500k+">$500k+</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

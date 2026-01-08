@@ -2,141 +2,76 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Home,
-  Wrench,
-  Paintbrush,
-  Hammer,
-  Bath,
-  Square,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "./ui/button";
+import { Building2, Zap, Ruler, ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const services = [
   {
-    icon: Home,
-    title: "Kitchen Remodeling",
-    description:
-      "Complete kitchen transformations with custom cabinetry, premium appliances, and modern design.",
+    title: "Structural Engineering",
+    desc: "Precision-led seismic analysis and heavy-load structural retrofitting for commercial sectors.",
+    icon: Building2,
+    className: "md:col-span-4 md:row-span-2",
+    code: "STR-26"
   },
   {
-    icon: Bath,
-    title: "Bathroom Renovation",
-    description:
-      "Luxury bathroom upgrades including walk-in showers, custom vanities, and spa-like features.",
+    title: "Eco-Compliance",
+    desc: "LEED pathing and carbon-neutral building strategies.",
+    icon: Zap,
+    className: "md:col-span-2 md:row-span-1",
+    code: "ECO-04"
   },
   {
-    icon: Square,
-    title: "Room Additions",
-    description:
-      "Expand your living space with seamless room additions that match your home's existing style.",
-  },
-  {
-    icon: Hammer,
-    title: "Basement Finishing",
-    description:
-      "Transform unused basement space into functional living areas, home theaters, or guest suites.",
-  },
-  {
-    icon: Paintbrush,
-    title: "Interior Remodeling",
-    description:
-      "Comprehensive interior updates including flooring, painting, trim work, and architectural details.",
-  },
-  {
-    icon: Wrench,
-    title: "General Contracting",
-    description:
-      "Full-service project management for complex renovations requiring multiple trades.",
-  },
+    title: "BIM Modeling",
+    desc: "Full-scale 3D digital twins for clash detection.",
+    icon: Ruler,
+    className: "md:col-span-2 md:row-span-1",
+    code: "BIM-09"
+  }
 ];
 
 export const ServicesSection: React.FC = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
-    <section id="services" className="py-20 md:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
-            Our Services
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive remodeling solutions tailored to your vision and
-            budget.
-          </p>
-        </motion.div>
+    <section id="services" className="py-24 bg-background overflow-hidden">
+      <div className="container px-4">
+        <div className="mb-12 border-l-2 border-primary pl-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-primary font-bold">Capabilities</p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">Our Mandates.</h2>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="group bg-background rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-border hover:border-accent/50"
-              >
-                <div className="mb-4">
-                  <div className="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <Icon className="h-7 w-7 text-accent" />
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[220px]">
+          {services.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              whileHover={{ y: -5 }}
+              className={cn(
+                "group relative p-8 border border-primary/40 bg-card hover:border-primary transition-all duration-500",
+                i === 0 && "border-l-4 border-primary", // Featured card gets left border
+                s.className
+              )}
+            >
+              <div className="flex flex-col h-full justify-between">
+                <div>
+                  <div className="flex justify-between items-start mb-6">
+                    <s.icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                    <span className="font-mono text-[10px] text-primary font-bold">{s.code}</span>
                   </div>
+                  <h3 className="font-serif text-3xl mb-4 group-hover:text-primary transition-colors text-foreground">
+                    {s.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed max-w-xs">{s.desc}</p>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  {service.description}
-                </p>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="group-hover:text-accent"
-                  asChild
-                >
-                  <a href="#contact">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                <div className="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowUpRight className="text-primary w-6 h-6" strokeWidth={1.5} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
-

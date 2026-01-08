@@ -28,6 +28,7 @@ const config: Config = {
         // Dark Mode: Deep Charcoal backgrounds
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "hero-text": "hsl(var(--hero-text))",
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",

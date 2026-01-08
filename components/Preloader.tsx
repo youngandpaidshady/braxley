@@ -148,7 +148,7 @@ const LogoAnimation: React.FC = () => {
         className="mt-6 text-xl md:text-2xl font-bold text-primary-foreground"
         style={{ fontFamily: "var(--font-geist-sans)" }}
       >
-        Ivan Remodeling
+        Braxley Nevim
       </motion.p>
     </div>
   );

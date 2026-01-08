@@ -10,7 +10,7 @@ export function ThemeProvider({
   defaultTheme = "dark",
   enableSystem = false,
   disableTransitionOnChange = false,
-  storageKey = "ivan-remodeling-theme",
+  storageKey = "braxley-nevim-theme",
   ...props 
 }: ThemeProviderProps) {
   return (

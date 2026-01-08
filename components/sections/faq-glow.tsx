@@ -41,7 +41,7 @@ export const FaqGlow: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-background">
+    <section className="pt-24 pb-12 md:pb-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           {/* Header */}

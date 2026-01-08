@@ -3,8 +3,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, CheckCircle2, Star, MessageSquare } from "lucide-react";
-import { Button } from "./ui/button";
+import { CheckCircle2, Star, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Review {
@@ -20,43 +19,224 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    id: "2",
-    name: "Michael Chen",
-    location: "Riverside",
+    id: "1",
+    name: "Dr. Elena Marquez",
+    location: "St. Augustine Medical Center",
     rating: 5,
-    text: "Professional, punctual, and perfectionist. Ivan and his team exceeded our expectations. The bathroom renovation was completed on time and within budget.",
+    text: "Braxley Nevim Elite Remodeling LLC expertly managed our outpatient wing renovation in a fully operational hospital setting. Their deep understanding of infection-control measures, phased construction, and strict adherence to Joint Commission and HIPAA standards ensured zero compromises to patient safety. Braxley’s personal involvement and calm, proactive communication alleviated every potential stress point, allowing our team to focus on care while delivering a modern, compliant facility ahead of schedule.",
     verified: true,
-    project: "Bathroom Renovation",
-    ceoReply: "Michael, your trust in our process made all the difference. We're thrilled the bathroom renovation met your expectations. Thank you for choosing Ivan Remodeling!",
+    project: "Hospital Administrator",
+    ceoReply:
+      "Dr. Marquez, thank you sincerely for your trust in us. Healthcare projects demand the highest respect for patient well-being and regulatory precision—principles that guide every decision we make. It was our privilege to shoulder the complexities, ensuring a seamless transformation for your exceptional team at St. Augustine.",
+  },
+  {
+    id: "2",
+    name: "James Harrington",
+    location: "Azure Bay Luxury Resort & Spa",
+    rating: 5,
+    text: "Braxley and his team reimagined our oceanfront villas and spa with exquisite attention to aesthetic harmony—custom stonework, fluid indoor-outdoor transitions, and ambient lighting that enhances every moment. Amid peak season, Braxley’s steady leadership and meticulous planning shielded us from disruption, turning a visionary overhaul into a completely stress-free experience that has elevated guest satisfaction to new heights.",
+    verified: true,
+    project: "Resort Owner",
+    ceoReply:
+      "Mr. Harrington, your generous feedback is truly appreciated. Crafting serene, indulgent spaces that prioritize guest tranquility is at the core of our expertise. We are honored to have partnered with you at Azure Bay, absorbing the intricacies so you could focus on hospitality excellence.",
   },
   {
     id: "3",
-    name: "Emily Rodriguez",
-    location: "Hillside",
+    name: "Michael Torres",
+    location: "Riverside Stadium",
     rating: 5,
-    text: "From design to completion, Ivan was hands-on every step of the way. The quality of work is outstanding, and he truly cares about delivering excellence.",
+    text: "Handling a multi-million-dollar premium suite and club-level upgrade in a 65,000-seat venue during live events required flawless scale and timing. Braxley Nevim Elite Remodeling LLC delivered on aggressive deadlines without interrupting a single game, minimizing noise and dust through expert coordination. Braxley’s composed oversight and transparent updates removed all high-stakes pressure, resulting in revenue-boosting spaces.",
     verified: true,
-    project: "Whole Home Remodel",
-    ceoReply: "Emily, transforming your entire home was an honor. Your attention to detail matched ours, and the results speak for themselves. Thank you for the kind words!",
+    project: "Stadium Operations Director",
+    ceoReply:
+      "Michael, thank you for this thoughtful endorsement. Large-scale projects under live operational constraints demand rigorous planning and respect for your schedule—standards we uphold relentlessly. We are grateful for Riverside Stadium’s confidence and proud to contribute to enhanced fan experiences.",
   },
   {
     id: "4",
-    name: "David Thompson",
-    location: "Westside",
+    name: "Sophia Laurent",
+    location: "The Ellington Grand Hotel",
     rating: 5,
-    text: "Best contractor we've ever worked with. Ivan's craftsmanship is top-tier, and his team is respectful, clean, and efficient. Highly recommend!",
+    text: "Braxley provided genuine white-glove service throughout our comprehensive lobby, restaurant, and guest-room refresh. His team’s discreet execution, daily coordination, and selection of premium finishes ensured absolutely no guest disturbance while achieving timeless five-star elegance. Braxley’s attentive, reassuring presence dissolved every layer of complexity and stress.",
     verified: true,
-    project: "Basement Finishing",
+    project: "Luxury Hotel Manager",
+    ceoReply:
+      "Sophia, we are deeply grateful for your words and partnership. Aligning our precision and discretion with the unparalleled hospitality standards of The Ellington Grand is always a privilege. Thank you for allowing us to elevate your iconic property seamlessly.",
   },
   {
     id: "5",
-    name: "Lisa Martinez",
-    location: "North End",
+    name: "Victoria Langford",
+    location: "Langford & Associates",
     rating: 5,
-    text: "Ivan remodeled our entire first floor, and the results are stunning. He listened to our vision and brought it to life with incredible attention to detail.",
+    text: "Braxley served as our strategic partner on a flagship office tower repositioning, delivering superior craftsmanship 8% under budget and weeks early—directly accelerating leasing and maximizing ROI. His transparent communication, value engineering, and calm leadership transformed a sophisticated, high-value project into a collaborative, low-stress success.",
     verified: true,
-    project: "First Floor Remodel",
-    ceoReply: "Lisa, your first floor transformation was one of my favorite projects this year. The open concept design really opened up the space beautifully. Enjoy your new home!",
+    project: "High-End Commercial Developer",
+    ceoReply:
+      "Victoria, your recognition means a great deal. Building enduring partnerships while driving measurable financial and aesthetic value is the foundation of our approach. We sincerely appreciate Langford & Associates’ trust and look forward to future landmark collaborations.",
+  },
+  {
+    id: "6",
+    name: "Robert Kline",
+    location: "Mercy Regional Hospital",
+    rating: 5,
+    text: "Braxley’s mastery of compliance protocols and safety measures made our emergency department expansion exceptionally smooth in an active facility. His proactive risk mitigation and serene oversight eliminated all anxiety, delivering a state-of-the-art space that supports lifesaving care without compromise.",
+    verified: true,
+    project: "Hospital Administrator",
+    ceoReply:
+      "Robert, thank you for placing your confidence in us. Protecting clinical operations and patient safety during transformation is non-negotiable for our team. We are honored to have eased the process for Mercy Regional.",
+  },
+  {
+    id: "7",
+    name: "Isabella Voss",
+    location: "Coral Reef Retreat",
+    rating: 5,
+    text: "Braxley elevated our spa and private cabanas to breathtaking luxury with refined materials and seamless design flow. Throughout the project, his composed guidance and flawless logistics absorbed every potential burden, creating tranquil retreats that delight guests daily.",
+    verified: true,
+    project: "Resort Owner",
+    ceoReply:
+      "Isabella, your praise is sincerely valued. Designing spaces that nurture relaxation and escape aligns perfectly with our passion. Thank you for the opportunity to enhance Coral Reef Retreat without disruption.",
+  },
+  {
+    id: "8",
+    name: "David Reyes",
+    location: "Apex Arena",
+    rating: 5,
+    text: "Braxley tackled our premium lounge renovation at immense scale on compressed timelines, ensuring zero impact on events. His expert crew management and steady reassurance turned intense deadlines into a calm, successful delivery.",
+    verified: true,
+    project: "Stadium Operations Director",
+    ceoReply:
+      "David, we appreciate your trust immensely. Precision execution in high-pressure venues is our hallmark. Grateful to have supported Apex Arena’s vision.",
+  },
+  {
+    id: "9",
+    name: "Alexander Pierce",
+    location: "The Sovereign Plaza",
+    rating: 5,
+    text: "Braxley’s white-glove precision refreshed our executive suites impeccably while maintaining full occupancy. His thoughtful daily presence and meticulous standards removed all stress, yielding spaces of understated grandeur.",
+    verified: true,
+    project: "Luxury Hotel Manager",
+    ceoReply:
+      "Alexander, thank you for this gracious testimonial. Upholding the distinguished legacy of The Sovereign Plaza with discreet excellence is our commitment.",
+  },
+  {
+    id: "10",
+    name: "Nathaniel Cole",
+    location: "Cole Ventures",
+    rating: 5,
+    text: "Braxley drove outstanding ROI on our trophy property through strategic budgeting and superior finishes. His collaborative calm and transparent partnership made a complex repositioning feel effortlessly rewarding.",
+    verified: true,
+    project: "High-End Commercial Developer",
+    ceoReply:
+      "Nathaniel, your feedback honors us. Long-term value creation and trusted collaboration define our shared successes. Thank you.",
+  },
+  {
+    id: "11",
+    name: "Dr. Sarah Lin",
+    location: "Horizon Medical Center",
+    rating: 5,
+    text: "Braxley ensured flawless regulatory compliance and patient safety during our advanced imaging suite upgrade. His reassuring leadership and anticipatory planning dissolved every concern in a live environment.",
+    verified: true,
+    project: "Hospital Administrator",
+    ceoReply:
+      "Dr. Lin, we are thankful for your partnership. Prioritizing uninterrupted care delivery remains our guiding principle.",
+  },
+  {
+    id: "12",
+    name: "Marcus Hale",
+    location: "Serenity Cove Resort",
+    rating: 5,
+    text: "Braxley’s visionary enhancements to our beachfront amenities created stunning guest experiences with impeccable detail. He shielded us completely from renovation complexities, delivering serenity on every level.",
+    verified: true,
+    project: "Resort Owner",
+    ceoReply:
+      "Marcus, your words are deeply appreciated. Crafting peaceful luxury escapes is our privilege at Serenity Cove.",
+  },
+  {
+    id: "13",
+    name: "Laura Bennett",
+    location: "Unity Field",
+    rating: 5,
+    text: "Braxley managed our expansive concourse upgrades at scale without missing critical deadlines. His composed expertise and proactive coordination kept operations seamless and stress-free.",
+    verified: true,
+    project: "Stadium Operations Director",
+    ceoReply:
+      "Laura, thank you sincerely. Delivering under live-event pressure with minimal impact is our standard at Unity Field.",
+  },
+  {
+    id: "14",
+    name: "Camille Dubois",
+    location: "The Regent Palace",
+    rating: 5,
+    text: "Braxley delivered exquisite white-glove service for our ballroom and atrium restoration. His steady guidance ensured flawless results with zero guest awareness of the work.",
+    verified: true,
+    project: "Luxury Hotel Manager",
+    ceoReply:
+      "Camille, we are honored by your trust. Elevating timeless venues discreetly aligns with The Regent Palace’s legacy.",
+  },
+  {
+    id: "15",
+    name: "Oliver Grant",
+    location: "Grant Properties",
+    rating: 5,
+    text: "Braxley maximized ROI on our mixed-use landmark through innovative solutions and budget mastery. His calm partnership transformed ambition into confident, low-stress execution.",
+    verified: true,
+    project: "High-End Commercial Developer",
+    ceoReply:
+      "Oliver, thank you deeply. Strategic collaboration and enduring value are the heart of our work together.",
+  },
+  {
+    id: "16",
+    name: "Thomas Reed",
+    location: "Pinnacle Health",
+    rating: 5,
+    text: "Braxley’s rigorous safety protocols and compliance expertise made our surgical wing renovation serene and successful in a high-acuity setting.",
+    verified: true,
+    project: "Hospital Administrator",
+    ceoReply:
+      "Thomas, your confidence is valued. Safeguarding clinical excellence during change is our sacred duty.",
+  },
+  {
+    id: "17",
+    name: "Elena Moreau",
+    location: "Vista Mar Luxury Resort",
+    rating: 5,
+    text: "Braxley created captivating guest spaces through refined aesthetics and thoughtful design. He absorbed all project stress, leaving only beauty and calm.",
+    verified: true,
+    project: "Resort Owner",
+    ceoReply:
+      "Elena, thank you. Guest delight through luxurious tranquility is always our aim at Vista Mar.",
+  },
+  {
+    id: "18",
+    name: "Gregory Stone",
+    location: "Victory Stadium",
+    rating: 5,
+    text: "Braxley executed luxury box enhancements at massive scale with unyielding professionalism. His calm leadership ensured flawless timing and zero disruptions.",
+    verified: true,
+    project: "Stadium Operations Director",
+    ceoReply:
+      "Gregory, grateful for the partnership. Precision under pressure defines unforgettable venues.",
+  },
+  {
+    id: "19",
+    name: "Julian Hart",
+    location: "The Imperial Suites",
+    rating: 5,
+    text: "Braxley’s impeccable white-glove approach elevated our penthouse collection seamlessly. His steady expertise eliminated every worry.",
+    verified: true,
+    project: "Luxury Hotel Manager",
+    ceoReply:
+      "Julian, your praise honors us. Discreet excellence supports The Imperial Suites’ distinguished standard.",
+  },
+  {
+    id: "20",
+    name: "Rebecca Holt",
+    location: "Holt & Sterling Development",
+    rating: 5,
+    text: "Braxley delivered exceptional ROI and enduring partnership on our premier building. His calm mastery turned complexity into seamless success.",
+    verified: true,
+    project: "High-End Commercial Developer",
+    ceoReply:
+      "Rebecca, thank you profoundly. Building lasting relationships and superior value remains our highest priority.",
   },
 ];
 
@@ -66,24 +246,14 @@ const ReviewsCarousel: React.FC = () => {
     loop: true,
     skipSnaps: false,
     dragFree: false,
+    watchDrag: true,
+    containScroll: "trimSnaps",
   });
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
-    setPrevBtnDisabled(!emblaApi.canScrollPrev());
-    setNextBtnDisabled(!emblaApi.canScrollNext());
   }, [emblaApi]);
 
   useEffect(() => {
@@ -94,59 +264,61 @@ const ReviewsCarousel: React.FC = () => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section className="py-12 md:py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-foreground mb-4 tracking-tight">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary font-bold max-w-2xl mx-auto">
             Don&apos;t just take our word for it—hear from homeowners who&apos;ve
-            experienced the Ivan Remodeling difference.
+            experienced the Braxley Nevim Elite Remodeling LLC difference.
           </p>
         </motion.div>
 
-        <div className="relative max-w-5xl mx-auto">
+        <div className="relative max-w-5xl mx-auto pb-24 md:pb-16">
           {/* Carousel */}
           <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
+            <div className="flex items-start gap-4 md:gap-6">
               {reviews.map((review) => (
                 <div
                   key={review.id}
-                  className="flex-[0_0_100%] sm:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0"
+                  className="flex-[0_0_100%] md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                    className="h-full bg-secondary/50 rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-shadow"
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-secondary/50 rounded-xl p-6 md:p-5 shadow-lg border border-border hover:shadow-xl transition-shadow flex flex-col min-h-full"
+                    style={{ 
+                      WebkitTransform: 'translateZ(0)',
+                      transform: 'translateZ(0)'
+                    }}
                   >
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-bold text-foreground">
-                            {review.name}
-                          </h3>
-                          {review.verified && (
-                            <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0" />
-                          )}
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          {review.location}
+                    {/* Header - Match image layout */}
+                    <div className="mb-4">
+                      <h3 className="font-bold text-foreground text-lg mb-1">
+                        {review.location}
+                      </h3>
+                      {review.project && (
+                        <p className="text-sm text-primary font-medium mb-3">
+                          {review.project}
                         </p>
-                        {review.project && (
-                          <p className="text-xs text-accent font-medium mt-1">
-                            {review.project}
-                          </p>
+                      )}
+                      <div className="flex items-center gap-2 mb-3">
+                        {review.verified && (
+                          <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" strokeWidth={1.5} />
                         )}
+                        <span className="text-sm text-muted-foreground">
+                          {review.name}
+                        </span>
                       </div>
                     </div>
 
@@ -158,33 +330,34 @@ const ReviewsCarousel: React.FC = () => {
                           className={cn(
                             "h-4 w-4",
                             i < review.rating
-                              ? "fill-accent text-accent"
+                              ? "fill-yellow-400 text-yellow-400"
                               : "fill-muted text-muted"
                           )}
+                          strokeWidth={0}
                         />
                       ))}
                     </div>
 
                     {/* Review Text */}
-                    <p className="text-foreground/80 leading-relaxed mb-4">
-                      &quot;{review.text}&quot;
+                    <p className="text-foreground leading-relaxed text-sm mb-4">
+                      {review.text}
                     </p>
 
-                    {/* CEO Reply */}
+                    {/* CEO Reply - Match image style */}
                     {review.ceoReply && (
-                      <div className="mt-4 pt-4 border-t border-border">
-                        <div className="flex items-start gap-2 mb-2">
-                          <MessageSquare className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                      <div className="mt-auto pt-4 border-t border-border/50" style={{ borderWidth: '0.5px' }}>
+                        <div className="flex items-start gap-3">
+                          <MessageSquare className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
                           <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
+                            <div className="flex items-center gap-2 mb-2">
                               <span className="text-sm font-semibold text-foreground">
-                                Ivan Remodeling LLC
+                                Braxley Nevim
                               </span>
-                              <span className="text-xs text-muted-foreground">
-                                Owner
+                              <span className="text-sm text-muted-foreground">
+                                CEO
                               </span>
                             </div>
-                            <p className="text-sm text-foreground/70 leading-relaxed">
+                            <p className="text-sm text-foreground/80 leading-relaxed">
                               {review.ceoReply}
                             </p>
                           </div>
@@ -197,46 +370,26 @@ const ReviewsCarousel: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={scrollPrev}
-              disabled={prevBtnDisabled}
-              className="rounded-full"
-              aria-label="Previous review"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-
-            {/* Dots Indicator */}
-            <div className="flex gap-2">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => emblaApi?.scrollTo(index)}
-                  className={cn(
-                    "w-2 h-2 rounded-full transition-all",
-                    index === selectedIndex
-                      ? "bg-accent w-8"
-                      : "bg-muted hover:bg-muted-foreground/50"
-                  )}
-                  aria-label={`Go to review ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={scrollNext}
-              disabled={nextBtnDisabled}
-              className="rounded-full"
-              aria-label="Next review"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+          {/* Dots Indicator - Force horizontal capsules (PC-style on mobile) */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-row items-center justify-center" style={{ flexWrap: 'nowrap', gap: '6px' }}>
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={cn(
+                  "rounded-full transition-all duration-300 ease-in-out flex-shrink-0",
+                  index === selectedIndex
+                    ? "bg-primary shadow-[0_0_10px_hsla(38,75%,58%,0.5)]"
+                    : "bg-primary/30 hover:bg-primary/40"
+                )}
+                style={{
+                  width: index === selectedIndex ? '20px' : '6px',
+                  height: '3px',
+                  borderRadius: '99px'
+                }}
+                aria-label={`Go to review ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

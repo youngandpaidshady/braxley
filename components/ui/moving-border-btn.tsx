@@ -42,7 +42,7 @@ export const MovingBorderBtn: React.FC<MovingBorderBtnProps> = ({
       <motion.div
         className="absolute inset-0 rounded-full"
         style={{
-          background: "conic-gradient(from 0deg, transparent, #fbbf24, transparent)",
+          background: "conic-gradient(from 0deg, transparent, hsl(var(--primary)), transparent)",
         }}
         animate={{
           rotate: 360,

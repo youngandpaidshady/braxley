@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -27,6 +29,7 @@
     "react-compare-slider": "^3.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.70.0",
+    "react-icons": "^5.5.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^2.2.0",
     "zod": "^3.25.76"

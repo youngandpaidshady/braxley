@@ -19,11 +19,10 @@ export const Logo: React.FC<LogoProps> = ({ className, size = "md" }) => {
     <div className={cn("flex items-center gap-2", className)}>
       <svg
         viewBox="0 0 64 64"
-        className={cn(sizeClasses[size], "text-accent")}
+        className={cn(sizeClasses[size], "text-primary")}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Stylized 'I' and 'R' interlocking with house peak contour */}
         {/* House peak contour (subtle roof shape) */}
         <path
           d="M32 8 L56 24 L56 56 L8 56 L8 24 Z"
@@ -35,9 +34,9 @@ export const Logo: React.FC<LogoProps> = ({ className, size = "md" }) => {
           opacity="0.2"
         />
         
-        {/* Letter 'I' - Vertical bar with top and bottom serifs */}
+        {/* Letter 'B' - Left side */}
         <path
-          d="M20 16 L20 48 M16 16 L24 16 M16 48 L24 48"
+          d="M12 16 L12 48 M12 16 L24 16 Q32 16 32 24 Q32 32 24 32 L12 32 M24 32 Q32 32 32 40 Q32 48 24 48 L12 48"
           stroke="currentColor"
           strokeWidth="3"
           strokeLinecap="round"
@@ -45,9 +44,9 @@ export const Logo: React.FC<LogoProps> = ({ className, size = "md" }) => {
           fill="none"
         />
         
-        {/* Letter 'R' - Interlocking with 'I' */}
+        {/* Letter 'N' - Right side */}
         <path
-          d="M28 16 L28 48 M28 16 L40 16 Q48 16 48 24 Q48 32 40 32 L28 32 M40 32 L48 48"
+          d="M36 16 L36 48 M36 16 L52 48 M52 16 L52 48"
           stroke="currentColor"
           strokeWidth="3"
           strokeLinecap="round"
@@ -56,7 +55,7 @@ export const Logo: React.FC<LogoProps> = ({ className, size = "md" }) => {
         />
       </svg>
       <span className="font-bold text-xl tracking-tight hidden sm:inline-block">
-        Ivan Remodeling
+        Braxley Nevim
       </span>
     </div>
   );

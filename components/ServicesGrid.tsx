@@ -2,205 +2,92 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Home,
-  Wrench,
-  Paintbrush,
-  Hammer,
-  Bath,
+  ChefHat,
+  BedDouble,
+  Scaling,
+  Landmark,
+  Trees,
   Building2,
-  ArrowRight,
+  LucideIcon,
 } from "lucide-react";
-import { Button } from "./ui/button";
 import { TextReveal } from "./ui/TextReveal";
 import { ServiceModal } from "./ui/service-modal";
-import { SeoFaq } from "./sections/seo-faq";
+import { ServiceCard } from "./ui/service-card";
 import { cn } from "@/lib/utils";
 
 interface Service {
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
   title: string;
   description: string;
+  imageUrl: string;
   span?: "col-span-1" | "col-span-2";
 }
 
 const services: Service[] = [
   {
-    icon: Home,
-    title: "Luxury Kitchens",
+    icon: ChefHat,
+    title: "Culinary Environments",
     description:
-      "Complete kitchen transformations with custom cabinetry, premium appliances, and modern design that elevates your home.",
-    span: "col-span-2",
+      "Beyond simple kitchens. We engineer chef-grade workspaces with integrated smart technology, custom walnut cabinetry, and quartzite surfacing.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=3270&auto=format&fit=crop",
   },
   {
-    icon: Bath,
-    title: "Bathroom Renovation",
+    icon: BedDouble,
+    title: "Master Suite Sanctuaries",
     description:
-      "Luxury bathroom upgrades including walk-in showers, custom vanities, and spa-like features.",
+      "Hotel-inspired living. Heated flooring, steam room integration, and acoustic isolation for the ultimate private retreat.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&h=700&fit=crop&q=80",
+  },
+  {
+    icon: Scaling,
+    title: "Structural Additions",
+    description:
+      "Seamless expansion. We handle complex zoning, architectural matching, and structural reinforcement to add value without compromising integrity.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&h=700&fit=crop&q=80",
+  },
+  {
+    icon: Landmark,
+    title: "Historic Restoration",
+    description:
+      "Preservation meets performance. We restore period details while retrofitting modern electrical, HVAC, and insulation systems behind the walls.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=700&h=700&fit=crop&q=80",
+  },
+  {
+    icon: Trees,
+    title: "Exterior Architecture",
+    description:
+      "Curb appeal engineering. Hardscaping, sustainable decking, and impact-rated fenestration that redefines your home's facade.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=700&h=700&fit=crop&q=80",
   },
   {
     icon: Building2,
-    title: "Commercial Build",
+    title: "Commercial Build-Outs",
     description:
-      "Full-service commercial construction and remodeling for businesses seeking premium finishes.",
-    span: "col-span-2",
-  },
-  {
-    icon: Hammer,
-    title: "Full Gut Reno",
-    description:
-      "Complete home transformations from the ground up, ensuring every detail meets our exacting standards.",
-  },
-  {
-    icon: Paintbrush,
-    title: "Interior Remodeling",
-    description:
-      "Comprehensive interior updates including flooring, painting, trim work, and architectural details.",
-  },
-  {
-    icon: Wrench,
-    title: "General Contracting",
-    description:
-      "Full-service project management for complex renovations requiring multiple trades and coordination.",
+      "Brand-aligned construction. From boutique retail to executive offices, we deliver timelines that respect your business goals.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700&h=700&fit=crop&q=80",
   },
 ];
 
-interface ServiceCardProps {
-  service: Service;
-  index: number;
-  onSelect?: () => void;
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onSelect }) => {
-  const cardRef = useRef<HTMLElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Mouse position tracking (desktop only)
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Smooth spring animations for tilt (desktop only)
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [7.5, -7.5]), {
-    stiffness: 300,
-    damping: 30,
-  });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-7.5, 7.5]), {
-    stiffness: 300,
-    damping: 30,
-  });
-
-  // Glow position
-  const glowX = useTransform(x, [-0.5, 0.5], ["0%", "100%"]);
-  const glowY = useTransform(y, [-0.5, 0.5], ["0%", "100%"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!cardRef.current) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    // Normalize to -0.5 to 0.5
-    x.set((e.clientX - centerX) / rect.width);
-    y.set((e.clientY - centerY) / rect.height);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    x.set(0);
-    y.set(0);
-  };
-
-  const Icon = service.icon;
-
-  return (
-    <motion.article
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className={cn(
-        "group relative bg-white dark:bg-[#0f172a] rounded-2xl p-6 lg:p-8 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50 hover:shadow-xl hover:shadow-slate-300/50 dark:hover:shadow-slate-900/50 transition-all duration-300 border border-border/50 dark:border dark:border-slate-800 overflow-hidden",
-        "cursor-pointer h-[500px] flex flex-col",
-        // Mobile: full width within carousel slide
-        "w-full",
-        // Desktop: grid span
-        "md:col-span-1"
-      )}
-      onClick={onSelect}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      {/* Glow Effect (Desktop only) */}
-      <motion.div
-        className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${glowX} ${glowY}, rgba(251, 146, 60, 0.15) 0%, transparent 70%)`,
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col flex-1">
-        <div className="mb-4">
-          <div className="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-            <Icon className="h-7 w-7 text-accent" />
-          </div>
-        </div>
-
-        <h3 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-slate-50 mb-3">
-          {service.title}
-        </h3>
-
-        <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4 flex-1">
-          {service.description}
-        </p>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          className="group-hover:text-accent transition-colors mt-auto"
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect?.();
-          }}
-        >
-          View Details
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Button>
-      </div>
-
-      {/* Subtle border glow on hover (Desktop only) */}
-      <motion.div
-        className="hidden md:block absolute inset-0 rounded-2xl border-2 border-accent/0 group-hover:border-accent/30 transition-colors duration-300 pointer-events-none"
-        style={{
-          transform: "translateZ(0)",
-        }}
-      />
-    </motion.article>
-  );
-};
 
 export const ServicesGrid: React.FC = () => {
   // Modal state
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
-  // Embla Carousel for mobile
+  // Embla Carousel for mobile - optimized to prevent glitches
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     align: "start",
     containScroll: "trimSnaps",
+    watchDrag: true,
+    skipSnaps: false,
     breakpoints: {
       "(min-width: 768px)": { active: false }, // Disable on desktop
     },
@@ -239,14 +126,14 @@ export const ServicesGrid: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <TextReveal
             text="Our Services"
             as="h2"
-            className="text-4xl md:text-5xl font-extrabold text-foreground mb-4"
+            className="text-4xl md:text-5xl font-serif font-extrabold text-foreground mb-4 tracking-tight"
             splitBy="words"
             stagger={0.1}
           />
@@ -265,28 +152,52 @@ export const ServicesGrid: React.FC = () => {
                   key={index}
                   className="flex-[0_0_85%] min-w-0 mr-4"
                 >
-                  <ServiceCard
-                    service={service}
-                    index={index}
-                    onSelect={() => setSelectedService(service)}
-                  />
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{
+                      duration: 0.3,
+                      delay: index * 0.05,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    onClick={() => setSelectedService(service)}
+                    className="cursor-pointer"
+                    style={{ 
+                      WebkitTransform: 'translateZ(0)',
+                      transform: 'translateZ(0)'
+                    }}
+                  >
+                    <ServiceCard
+                      title={service.title}
+                      description={service.description}
+                      icon={service.icon}
+                      imageUrl={service.imageUrl}
+                      onClick={() => setSelectedService(service)}
+                    />
+                  </motion.div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Pagination Dots (Mobile only) */}
-          <div className="flex justify-center gap-2 mt-8">
+          {/* Pagination Dots (Mobile only) - Force horizontal capsules (PC-style) */}
+          <div className="flex flex-row items-center justify-center mt-8 pb-2 z-30" style={{ flexWrap: 'nowrap', gap: '6px' }}>
             {scrollSnaps.map((_, index) => (
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
+                  "rounded-full transition-all duration-300 ease-in-out flex-shrink-0",
                   index === selectedIndex
-                    ? "bg-accent w-8"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    ? "bg-primary shadow-[0_0_10px_hsla(38,75%,58%,0.5)]"
+                    : "bg-primary/30 hover:bg-primary/40"
                 )}
+                style={{
+                  width: index === selectedIndex ? '20px' : '6px',
+                  height: '3px',
+                  borderRadius: '99px'
+                }}
                 aria-label={`Go to service ${index + 1}`}
               />
             ))}
@@ -296,12 +207,27 @@ export const ServicesGrid: React.FC = () => {
         {/* Desktop: Grid Layout */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
-            <ServiceCard
+            <motion.div
               key={index}
-              service={service}
-              index={index}
-              onSelect={() => setSelectedService(service)}
-            />
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              onClick={() => setSelectedService(service)}
+              className="cursor-pointer"
+            >
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                imageUrl={service.imageUrl}
+                onClick={() => setSelectedService(service)}
+              />
+            </motion.div>
           ))}
         </div>
       </div>
@@ -319,4 +245,3 @@ export const ServicesGrid: React.FC = () => {
 export const ServicesSection: React.FC = () => {
   return <ServicesGrid />;
 };
-

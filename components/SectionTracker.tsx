@@ -90,7 +90,7 @@ export const SectionTracker: React.FC = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: isVisible ? 0.5 : 0, x: isVisible ? 0 : 20 }}
       transition={{ duration: 0.3 }}
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
+      className="fixed right-8 top-1/2 -translate-y-1/2 z-[200] pointer-events-auto hidden lg:block"
     >
       <div className="flex flex-col items-center gap-3">
         {/* Vertical Line */}

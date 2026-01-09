@@ -6,7 +6,7 @@ import Image from "next/image";
 import { BlogSchema } from "@/components/seo/blog-schema";
 
 // Import blog posts data (in production, fetch from CMS)
-import { getAllPosts, getPostBySlug } from "@/lib/blog-data.tsx";
+import { getAllPosts, getPostBySlug } from "@/lib/blog-data";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;

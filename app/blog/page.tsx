@@ -36,6 +36,9 @@ const POSTS = [
     slug: "seismic-2026",
     datePublished: "2026-01-15",
     timeline: ["Planning", "Survey", "Demo", "Reinforcement", "Final"],
+    tags: ["Engineering", "Compliance", "Retrofitting", "Safety"],
+    views: 1247,
+    featured: true,
   },
   {
     id: 2,
@@ -50,6 +53,9 @@ const POSTS = [
     slug: "smart-glass-roi",
     datePublished: "2025-12-10",
     timeline: ["Design", "Installation", "Calibration", "Final"],
+    tags: ["Sustainability", "Technology", "Energy Efficiency", "LEED"],
+    views: 892,
+    featured: true,
   },
   {
     id: 3,
@@ -64,6 +70,9 @@ const POSTS = [
     slug: "oshpd-3-requirements",
     datePublished: "2025-11-28",
     timeline: ["Planning", "Inspection", "Compliance", "Final"],
+    tags: ["Healthcare", "Compliance", "OSHPD", "Regulations"],
+    views: 1563,
+    featured: false,
   },
   {
     id: 4,
@@ -78,6 +87,77 @@ const POSTS = [
     slug: "2026-material-trends",
     datePublished: "2025-10-15",
     timeline: ["Research", "Selection", "Installation", "Final"],
+    tags: ["Materials", "Trends", "Luxury", "Design"],
+    views: 743,
+    featured: false,
+  },
+  {
+    id: 5,
+    title: "Prefabricated Modular Construction: Speed vs. Quality in 2026",
+    excerpt:
+      "Exploring the rise of off-site construction methods and their impact on project timelines. Case study analysis from our recent multi-family development projects.",
+    category: "Commercial",
+    date: "Sep 2025",
+    readTime: "10 min read",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=3270&auto=format&fit=crop",
+    slug: "prefabricated-modular-construction",
+    datePublished: "2025-09-20",
+    timeline: ["Design", "Fabrication", "Transport", "Assembly", "Final"],
+    tags: ["Modular", "Efficiency", "Innovation", "Construction"],
+    views: 1024,
+    featured: false,
+  },
+  {
+    id: 6,
+    title: "Zero-Waste Construction: Achieving 95% Diverted Materials",
+    excerpt:
+      "How we achieved near-zero waste on a $2.5M commercial renovation. Detailed breakdown of material sorting, recycling partnerships, and cost savings.",
+    category: "Sustainable",
+    date: "Aug 2025",
+    readTime: "9 min read",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=3269&auto=format&fit=crop",
+    slug: "zero-waste-construction",
+    datePublished: "2025-08-12",
+    timeline: ["Planning", "Sorting", "Recycling", "Documentation", "Final"],
+    tags: ["Sustainability", "Waste Management", "Green Building", "LEED"],
+    views: 1156,
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "Acoustic Design in Open-Plan Offices: Beyond Sound Masking",
+    excerpt:
+      "Advanced acoustic solutions for modern workspaces. Case study of a 50,000 sq ft tech headquarters with STC 60+ partitions and active noise cancellation.",
+    category: "Commercial",
+    date: "Jul 2025",
+    readTime: "11 min read",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=3269&auto=format&fit=crop",
+    slug: "acoustic-design-open-plan",
+    datePublished: "2025-07-08",
+    timeline: ["Analysis", "Design", "Installation", "Testing", "Final"],
+    tags: ["Acoustics", "Office Design", "Wellness", "Technology"],
+    views: 678,
+    featured: false,
+  },
+  {
+    id: 8,
+    title: "Historic Preservation: Restoring 1920s Art Deco Facades",
+    excerpt:
+      "Technical challenges and solutions in restoring original terracotta and cast stone elements. Documentation process for landmark designation compliance.",
+    category: "Structural",
+    date: "Jun 2025",
+    readTime: "14 min read",
+    image:
+      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=3270&auto=format&fit=crop",
+    slug: "historic-preservation-art-deco",
+    datePublished: "2025-06-25",
+    timeline: ["Assessment", "Documentation", "Restoration", "Inspection", "Final"],
+    tags: ["Historic", "Preservation", "Restoration", "Heritage"],
+    views: 934,
+    featured: false,
   },
 ];
 

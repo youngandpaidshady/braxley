@@ -231,23 +231,16 @@ const ProjectSlider: React.FC = () => {
               <ChevronLeft className="h-5 w-5 text-primary" strokeWidth={1.5} />
             </Button>
 
-            {/* Dots Indicator - Force horizontal capsules (PC-style on mobile) */}
-            <div className="flex flex-row items-center justify-center z-30" style={{ flexWrap: 'nowrap', gap: '6px' }}>
+            {/* Dots Indicator */}
+            <div className="flex items-center justify-center gap-2">
               {projects.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => emblaApi?.scrollTo(index)}
                   className={cn(
-                    "rounded-full transition-all duration-300 ease-in-out flex-shrink-0",
-                    index === selectedIndex
-                      ? "bg-primary shadow-[0_0_10px_hsla(38,75%,58%,0.5)]"
-                      : "bg-primary/30 hover:bg-primary/40"
+                    "size-1.5 rounded-full transition-all",
+                    index === selectedIndex ? "bg-primary" : "bg-primary/35"
                   )}
-                  style={{
-                    width: index === selectedIndex ? '20px' : '6px',
-                    height: '3px',
-                    borderRadius: '99px'
-                  }}
+                  onClick={() => emblaApi?.scrollTo(index)}
                   aria-label={`Go to project ${index + 1}`}
                 />
               ))}

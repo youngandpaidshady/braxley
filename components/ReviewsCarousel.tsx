@@ -282,7 +282,7 @@ const ReviewsCarousel: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="relative max-w-5xl mx-auto pb-24 md:pb-16">
+        <div className="relative max-w-5xl mx-auto">
           {/* Carousel */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex items-start gap-4 md:gap-6">
@@ -370,26 +370,21 @@ const ReviewsCarousel: React.FC = () => {
             </div>
           </div>
 
-          {/* Dots Indicator - Force horizontal capsules (PC-style on mobile) */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-row items-center justify-center" style={{ flexWrap: 'nowrap', gap: '6px' }}>
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => emblaApi?.scrollTo(index)}
-                className={cn(
-                  "rounded-full transition-all duration-300 ease-in-out flex-shrink-0",
-                  index === selectedIndex
-                    ? "bg-primary shadow-[0_0_10px_hsla(38,75%,58%,0.5)]"
-                    : "bg-primary/30 hover:bg-primary/40"
-                )}
-                style={{
-                  width: index === selectedIndex ? '20px' : '6px',
-                  height: '3px',
-                  borderRadius: '99px'
-                }}
-                aria-label={`Go to review ${index + 1}`}
-              />
-            ))}
+          {/* Dots Indicator */}
+          <div className="mt-6 text-center">
+            <div className="flex items-center justify-center gap-2">
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  className={cn(
+                    "size-1.5 rounded-full transition-all",
+                    index === selectedIndex ? "bg-primary" : "bg-primary/35"
+                  )}
+                  onClick={() => emblaApi?.scrollTo(index)}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

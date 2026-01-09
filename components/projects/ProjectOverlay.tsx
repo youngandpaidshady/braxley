@@ -194,13 +194,13 @@ export const ProjectOverlay: React.FC<ProjectOverlayProps> = ({
               e.stopPropagation();
               onClose();
             }}
-            className="fixed top-8 right-8 z-[210] w-12 h-12 min-w-[48px] min-h-[48px] rounded-full border-2 border-primary flex items-center justify-center bg-background/80 backdrop-blur-sm hover:bg-primary hover:text-background transition-colors group"
+            className="fixed top-4 right-4 md:top-8 md:right-8 z-[210] w-11 h-11 md:w-12 md:h-12 min-w-[44px] min-h-[44px] rounded-full border-2 border-primary flex items-center justify-center bg-background/80 backdrop-blur-sm hover:bg-primary hover:text-background transition-colors group"
             whileHover={{ rotate: 90, scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
             aria-label="Close gallery"
           >
-            <X className="w-6 h-6 text-primary group-hover:text-background transition-colors" strokeWidth={1.5} />
+            <X className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:text-background transition-colors" strokeWidth={1.5} />
           </motion.button>
 
           {/* Horizontal Snap-Scroll Carousel with Drag-to-Dismiss */}

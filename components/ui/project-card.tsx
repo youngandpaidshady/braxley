@@ -191,31 +191,48 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             </p>
           </div>
 
-          {/* View Details Link */}
+          {/* View Details Link - Enhanced to Stand Out */}
           <Link
             href={`/projects/${projectSlug}`}
-            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-primary hover:text-primary/80 active:text-primary/70 transition-colors group/link mt-auto touch-manipulation min-h-[44px] min-w-[120px] justify-start"
+            className={cn(
+              "inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] font-bold",
+              "px-6 py-3 mt-6 md:mt-8",
+              "border-2 border-primary bg-primary/10 hover:bg-primary hover:text-primary-foreground",
+              "text-primary transition-all duration-300",
+              "group/link touch-manipulation min-h-[44px]",
+              "shadow-sm hover:shadow-lg hover:shadow-primary/20",
+              "rounded-none",
+              "relative overflow-hidden"
+            )}
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
-            <span>View Details</span>
+            <span className="relative z-10">View Details</span>
             <motion.svg
-              width="12"
-              height="12"
+              width="14"
+              height="14"
               viewBox="0 0 12 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="group-hover/link:translate-x-1 transition-transform"
+              className="relative z-10 group-hover/link:translate-x-1 transition-transform"
             >
               <path
                 d="M1 11L11 1M11 1H1M11 1V11"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </motion.svg>
+            {/* Hover effect background */}
+            <motion.div
+              className="absolute inset-0 bg-primary"
+              initial={{ scaleX: 0 }}
+              whileHover={{ scaleX: 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              style={{ transformOrigin: "left" }}
+            />
           </Link>
         </div>
       </motion.div>

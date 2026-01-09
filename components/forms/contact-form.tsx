@@ -65,36 +65,42 @@ export const ContactForm: React.FC = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(`New Project Inquiry from ${data.name}`);
-      const body = encodeURIComponent(
-        `Name: ${data.name}\n` +
-        `Email: ${data.email}\n` +
-        `Phone: ${data.phone}\n` +
-        `Project Type: ${data.projectType}\n` +
-        `Budget Range: ${data.budgetRange}\n\n` +
-        `Project Details:\n${data.message}`
-      );
+      // Send form data to server API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          projectType: data.projectType,
+          budgetRange: data.budgetRange,
+          message: data.message,
+        }),
+      });
 
-      const mailtoLink = `mailto:Braxleynevimllc@outlook.com?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
       // Show success toast
-      toast.success("Email Client Opened", {
-        description: "Please send the email to complete your submission. We'll respond within 24 hours.",
+      toast.success("Message Sent Successfully!", {
+        description: "We've received your inquiry and will respond within 24 hours.",
         duration: 5000,
       });
 
-      // Reset form after a delay
-      setTimeout(() => {
-        form.reset();
-      }, 1000);
+      // Reset form
+      form.reset();
     } catch (error) {
       // Show error toast
-      toast.error("Failed to open email client", {
-        description: "Please contact us directly at Braxleynevimllc@outlook.com",
+      toast.error("Failed to send message", {
+        description: error instanceof Error 
+          ? error.message 
+          : "Please try again or contact us directly at Braxleynevimllc@outlook.com",
         duration: 5000,
       });
     }

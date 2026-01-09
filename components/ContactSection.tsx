@@ -24,22 +24,28 @@ export const ContactSection: React.FC = () => {
     setSubmitStatus("idle");
 
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(`New Project Inquiry from ${formData.name}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `Phone: ${formData.phone}\n` +
-        `Project Type: ${formData.projectType || "Not specified"}\n` +
-        `Budget Range: ${formData.budgetRange || "Not specified"}\n\n` +
-        `Project Details:\n${formData.message || "No details provided"}`
-      );
+      // Send form data to server API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          projectType: formData.projectType || undefined,
+          budgetRange: formData.budgetRange || undefined,
+          message: formData.message,
+        }),
+      });
 
-      const mailtoLink = `mailto:Braxleynevimllc@outlook.com?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
       // Show success message
       setSubmitStatus("success");
       

@@ -123,7 +123,9 @@ export const StickyFooter: React.FC = () => {
             </p>
             <div className="flex items-center gap-1.5 shrink-0">
               <span className="text-xs text-muted-foreground">Theme:</span>
-              <ModeToggle />
+              <div className="relative z-10">
+                <ModeToggle className="text-primary hover:text-primary" />
+              </div>
             </div>
           </div>
         </div>

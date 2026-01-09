@@ -224,8 +224,8 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                 <button
                   onClick={onClose}
                   className={cn(
-                    "absolute top-4 right-4 z-10",
-                    "w-10 h-10 rounded-full",
+                    "absolute top-4 right-4 md:top-6 md:right-6 z-10",
+                    "w-10 h-10 md:w-11 md:h-11 min-w-[44px] min-h-[44px] rounded-full",
                     "bg-background/90 backdrop-blur-sm",
                     "border border-border",
                     "flex items-center justify-center",
@@ -236,7 +236,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) 
                   )}
                   aria-label="Close modal"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-5 w-5 md:h-6 md:w-6" />
                 </button>
               </div>
 

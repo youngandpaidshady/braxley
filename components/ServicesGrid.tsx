@@ -181,26 +181,21 @@ export const ServicesGrid: React.FC = () => {
             </div>
           </div>
 
-          {/* Pagination Dots (Mobile only) - Force horizontal capsules (PC-style) */}
-          <div className="flex flex-row items-center justify-center mt-8 pb-2 z-30" style={{ flexWrap: 'nowrap', gap: '6px' }}>
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={cn(
-                  "rounded-full transition-all duration-300 ease-in-out flex-shrink-0",
-                  index === selectedIndex
-                    ? "bg-primary shadow-[0_0_10px_hsla(38,75%,58%,0.5)]"
-                    : "bg-primary/30 hover:bg-primary/40"
-                )}
-                style={{
-                  width: index === selectedIndex ? '20px' : '6px',
-                  height: '3px',
-                  borderRadius: '99px'
-                }}
-                aria-label={`Go to service ${index + 1}`}
-              />
-            ))}
+          {/* Pagination Dots (Mobile only) */}
+          <div className="mt-6 text-center">
+            <div className="flex items-center justify-center gap-2">
+              {scrollSnaps.map((_, index) => (
+                <button
+                  key={index}
+                  className={cn(
+                    "size-1.5 rounded-full transition-all",
+                    index === selectedIndex ? "bg-primary" : "bg-primary/35"
+                  )}
+                  onClick={() => scrollTo(index)}
+                  aria-label={`Go to service ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

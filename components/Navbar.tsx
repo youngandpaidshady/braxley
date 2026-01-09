@@ -238,7 +238,7 @@ export const Navbar: React.FC = () => {
     <>
       {/* NAVBAR CONTAINER */}
       <nav className={cn(
-        "absolute top-0 left-0 w-full h-20 z-50 transition-all duration-300",
+        "absolute top-0 left-0 w-full h-20 z-[300] transition-all duration-300",
         isProjectDetailPage
           ? "bg-transparent hover:bg-background/40 backdrop-blur-xl border-b border-transparent hover:border-primary/10"
           : "bg-background/80 backdrop-blur-xl border-b border-primary/10"
@@ -310,15 +310,15 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Controls - Always Visible Above Menu */}
-          <div className="flex lg:hidden items-center gap-3 relative z-[310]">
+          <div className="flex lg:hidden items-center gap-3 relative z-[350] pointer-events-auto">
             {/* Theme Toggle - Always Visible */}
-            <div className="relative z-[310] pointer-events-auto">
-              <ModeToggle className="z-[310]" />
+            <div className="relative z-[350] pointer-events-auto">
+              <ModeToggle className="z-[350] pointer-events-auto [&>button]:text-primary [&>button]:hover:text-primary [&>button]:hover:bg-primary/10" />
             </div>
             {/* Hamburger/X Toggle Button - Prevent Collision */}
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="relative z-[310] min-w-[44px] min-h-[44px] flex items-center justify-center text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm touch-manipulation bg-transparent pointer-events-auto"
+              className="relative z-[350] min-w-[44px] min-h-[44px] flex items-center justify-center text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm touch-manipulation bg-transparent pointer-events-auto"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
             >
@@ -331,7 +331,7 @@ export const Navbar: React.FC = () => {
                     animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0, rotate: 90 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 flex items-center justify-center z-[350] pointer-events-none"
                   >
                     <X 
                       className="w-6 h-6 text-primary" 
@@ -345,7 +345,7 @@ export const Navbar: React.FC = () => {
                     animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0, rotate: -90 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 flex items-center justify-center z-[350] pointer-events-none"
                   >
                     <Menu 
                       className="w-6 h-6 text-primary" 

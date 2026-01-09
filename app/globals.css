@@ -459,7 +459,90 @@
       overscroll-behavior: contain;
     }
 
-    /* Force pagination dots to stay horizontal on mobile */
+    /* ========================================
+       CAROUSEL PAGINATION DOTS - GLOBAL OVERRIDE
+       Force small, delicate capsules on all devices
+       ======================================== */
+    
+    /* Target all carousel pagination dot containers */
+    .flex.items-center.justify-center.gap-2,
+    [class*="flex"][class*="items-center"][class*="justify-center"][class*="gap"] {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 6px !important; /* gap-1.5 = 6px */
+    }
+
+    /* Universal selector for all carousel pagination buttons */
+    /* Target buttons with size-1.5 class (Tailwind compiles this) */
+    button[class*="size-1.5"],
+    button.size-1\.5 {
+      /* Clear all defaults */
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
+      margin: 0 !important;
+      outline: none !important;
+      
+      /* Force inactive dot size - delicate capsule */
+      width: 6px !important;
+      height: 3px !important;
+      min-width: 6px !important;
+      min-height: 3px !important;
+      max-width: 6px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      
+      /* Force inactive color (bg-primary/35) */
+      background-color: hsl(var(--primary) / 0.35) !important;
+      
+      /* Smooth transition */
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+    }
+
+    /* Active dot - longer capsule (has bg-primary class) */
+    button[class*="size-1.5"][class*="bg-primary"]:not([class*="bg-primary/"]),
+    button.size-1\.5.bg-primary:not(.bg-primary\/35) {
+      /* Force active dot size - longer capsule */
+      width: 20px !important;
+      height: 3px !important;
+      min-width: 20px !important;
+      min-height: 3px !important;
+      max-width: 20px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      
+      /* Force active color */
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Override any inline styles for inactive dots */
+    button[class*="size-1.5"][style*="width"]:not([class*="bg-primary"]),
+    button[class*="size-1.5"][class*="bg-primary/35"] {
+      width: 6px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
+    }
+
+    /* Override any inline styles for active dots */
+    button[class*="size-1.5"][class*="bg-primary"][style*="width"]:not([class*="bg-primary/"]),
+    button[class*="size-1.5"].bg-primary:not(.bg-primary\/35) {
+      width: 20px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Force gap-1.5 (6px) spacing between dots */
+    .flex.items-center.justify-center.gap-2 {
+      gap: 6px !important;
+    }
+
+    /* Additional fallback for any pagination container */
     [class*="Dots"],
     [class*="pagination"],
     [class*="dots"] {
@@ -469,82 +552,63 @@
       gap: 6px !important;
     }
 
-    /* Force delicate capsule sizing for pagination dots on mobile */
+    /* Fallback for any pagination button */
     [class*="Dots"] button,
     [class*="pagination"] button,
-    [class*="dots"] button,
-    [class*="Dots"] > button,
-    [class*="pagination"] > button,
-    [class*="dots"] > button {
+    [class*="dots"] button {
+      appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
       width: 6px !important;
       height: 3px !important;
       border-radius: 99px !important;
-      background-color: hsla(35, 65%, 40%, 0.3) !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
       transition: all 0.3s ease-in-out !important;
       flex-shrink: 0 !important;
     }
 
-    /* Active dot - delicate capsule */
-    [class*="Dots"] button[aria-current="true"],
-    [class*="pagination"] button[aria-current="true"],
-    [class*="dots"] button[aria-current="true"],
-    [class*="Dots"] button:active,
-    [class*="pagination"] button:active,
-    [class*="dots"] button:active {
+    /* Fallback for active state */
+    [class*="Dots"] button.bg-primary,
+    [class*="pagination"] button.bg-primary,
+    [class*="dots"] button.bg-primary {
       width: 20px !important;
       height: 3px !important;
-      background-color: hsla(38, 75%, 58%, 1) !important;
-      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
+      background-color: hsl(var(--primary)) !important;
     }
 
-    /* Alternative selector for active state (using class or data attribute) */
-    [class*="bg-primary"][class*="w-6"],
-    [class*="bg-primary"][class*="w-24"],
-    [class*="bg-primary"][style*="width: 24px"],
-    [class*="bg-primary"][style*="width: 20px"] {
-      width: 20px !important;
-      height: 3px !important;
-      background-color: hsla(38, 75%, 58%, 1) !important;
-      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
-    }
-
-    /* Override inline styles for active dots - force delicate size */
-    button[style*="width: 24px"],
-    button[style*="width: 20px"] {
-      width: 20px !important;
-      height: 3px !important;
-      background-color: hsla(38, 75%, 58%, 1) !important;
-      box-shadow: 0 0 10px hsla(38, 75%, 58%, 0.5) !important;
-    }
-
-    /* Override inline styles for inactive dots - force delicate size */
-    button[style*="width: 8px"],
-    button[style*="width: 6px"],
-    button[style*="width: 2"] {
+    /* Universal fallback: Target any button in flex container with gap-2 that has rounded-full */
+    .flex.items-center.justify-center.gap-2 button.rounded-full,
+    .flex.items-center.justify-center button[class*="rounded-full"] {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
+      margin: 0 !important;
+      outline: none !important;
       width: 6px !important;
       height: 3px !important;
-      background-color: hsla(35, 65%, 40%, 0.3) !important;
+      min-width: 6px !important;
+      min-height: 3px !important;
+      max-width: 6px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
     }
 
-    /* Override height in inline styles */
-    button[style*="height: 4px"],
-    button[style*="height: 8px"] {
+    /* Universal active state */
+    .flex.items-center.justify-center.gap-2 button.rounded-full.bg-primary:not([class*="bg-primary/"]),
+    .flex.items-center.justify-center button[class*="rounded-full"][class*="bg-primary"]:not([class*="bg-primary/"]) {
+      width: 20px !important;
       height: 3px !important;
-    }
-
-    /* Force all pagination dot containers to use 6px gap */
-    [class*="Dots"],
-    [class*="pagination"],
-    [class*="dots"] {
-      gap: 6px !important;
-    }
-
-    /* Force all dots to be small capsules */
-    [class*="Dots"] *,
-    [class*="pagination"] *,
-    [class*="dots"] * {
+      min-width: 20px !important;
+      min-height: 3px !important;
       max-width: 20px !important;
       max-height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary)) !important;
     }
 
     /* Fix carousel scroll glitches on mobile */

@@ -1,17 +1,16 @@
-# Quick Push to GitHub
 $env:Path += ";C:\Program Files\Git\bin"
+cd C:\Users\HP\Desktop\novak
 
-Write-Host "Quick Push to GitHub" -ForegroundColor Green
-Write-Host "===================" -ForegroundColor Green
-
-# Check remote
 $remote = git remote get-url origin 2>&1
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "Remote: $remote" -ForegroundColor Cyan
-    Write-Host "Pushing..." -ForegroundColor Yellow
+    Write-Host "Pushing to: $remote" -ForegroundColor Green
     git push -u origin main
 } else {
-    Write-Host "No remote. Create repo at https://github.com/new" -ForegroundColor Yellow
-    Write-Host "Then run: git remote add origin https://github.com/USERNAME/REPO.git" -ForegroundColor Gray
+    Write-Host "No remote configured. Enter repository URL:" -ForegroundColor Yellow
+    Write-Host "Example: https://github.com/username/repo-name.git" -ForegroundColor Gray
+    $repoUrl = Read-Host "Repository URL"
+    if ($repoUrl) {
+        git remote add origin $repoUrl
+        git push -u origin main
+    }
 }
-

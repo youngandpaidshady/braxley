@@ -24,6 +24,14 @@ import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
 import { StructuredData } from "@/components/seo/structured-data";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover" as const,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://braxleynevim.com"),
   title: {
@@ -32,13 +40,6 @@ export const metadata: Metadata = {
   },
   description:
     "Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: "cover",
-  },
   keywords: [
     "General Contractor",
     "Healthcare Construction",
@@ -55,6 +56,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Braxley Nevim Elite Remodeling LLC" }],
   creator: "Braxley Nevim Elite Remodeling LLC",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

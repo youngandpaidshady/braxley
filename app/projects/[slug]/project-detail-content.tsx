@@ -127,10 +127,10 @@ export function ProjectDetailContent({ params }: ProjectDetailContentProps) {
                 </h2>
                 <button
                   onClick={() => setShowGallery(false)}
-                  className="bg-background/80 backdrop-blur-sm hover:bg-background border border-primary/20 p-2 rounded-full transition-all"
+                  className="bg-background/80 backdrop-blur-sm hover:bg-background border border-primary/20 p-2 md:p-2.5 rounded-full transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Close gallery"
                 >
-                  <X className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <X className="w-5 h-5 md:w-6 md:h-6 text-primary" strokeWidth={1.5} />
                 </button>
               </header>
 

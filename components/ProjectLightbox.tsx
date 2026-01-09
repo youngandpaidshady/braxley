@@ -44,10 +44,10 @@ export const ProjectLightbox: React.FC<ProjectLightboxProps> = ({
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors"
+            className="absolute top-4 right-4 md:top-6 md:right-6 z-10 p-2 md:p-3 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Close lightbox"
           >
-            <X className="w-6 h-6 text-primary" strokeWidth={1.5} />
+            <X className="w-5 h-5 md:w-6 md:h-6 text-primary" strokeWidth={1.5} />
           </button>
 
           {/* Image */}

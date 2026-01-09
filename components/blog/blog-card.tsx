@@ -46,7 +46,10 @@ export const BlogCard: React.FC<BlogCardProps> = ({
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 33vw"
             />
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div 
+              className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              suppressHydrationWarning
+            />
             
             {/* Category Badge */}
             <div className="absolute top-4 left-4">

@@ -197,31 +197,25 @@ export default function RootLayout({
                   
                   // Show content immediately if preloader is blocking
                   function showContent() {
-                    var contentDivs = document.querySelectorAll('[class*="opacity-0"], [style*="opacity: 0"]');
-                    contentDivs.forEach(function(div) {
-                      if (!div.closest('[class*="preloader"], [class*="Preloader"]')) {
-                        div.style.opacity = '1';
-                        div.style.visibility = 'visible';
-                      }
-                    });
-                    
-                    // Also hide preloader if it's stuck
-                    var preloader = document.querySelector('[class*="z-[10000]"][class*="bg-primary"]');
+                    // Only hide preloader specifically - don't modify other opacity-0 elements
+                    var preloader = document.querySelector('[class*="z-[10000]"][class*="bg-primary"], [class*="Preloader"]');
                     if (preloader) {
                       setTimeout(function() {
                         preloader.style.display = 'none';
+                        preloader.style.opacity = '0';
+                        preloader.style.visibility = 'hidden';
                       }, 2000);
                     }
                   }
                   
-                  // Run immediately
-                  showContent();
-                  
-                  // Also run after 2 seconds as backup
-                  setTimeout(showContent, 2000);
-                  
-                  // Final backup after 3 seconds
-                  setTimeout(showContent, 3000);
+                  // Run after DOM is fully loaded to avoid hydration issues
+                  if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function() {
+                      setTimeout(showContent, 100);
+                    });
+                  } else {
+                    setTimeout(showContent, 100);
+                  }
                 })();
               `,
             }}

@@ -64,7 +64,10 @@ export const ServicesSection: React.FC = () => {
                   </h3>
                   <p className="text-muted-foreground leading-relaxed max-w-xs">{s.desc}</p>
                 </div>
-                <div className="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                <div 
+                  className="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity"
+                  suppressHydrationWarning
+                >
                   <ArrowUpRight className="text-primary w-6 h-6" strokeWidth={1.5} />
                 </div>
               </div>

@@ -1,6 +1,7 @@
 // Blog posts data and content
 // In production, this would fetch from a CMS
 import React from "react";
+import { ReactNode } from "react";
 
 export interface BlogPost {
   id: number;
@@ -16,11 +17,11 @@ export interface BlogPost {
   tags?: string[];
   views?: number;
   featured?: boolean;
-  content: JSX.Element;
+  content: ReactNode;
 }
 
 // Full article content for each post
-const articleContent: Record<string, JSX.Element> = {
+const articleContent: Record<string, ReactNode> = {
   "seismic-2026": (
     <>
       <p>

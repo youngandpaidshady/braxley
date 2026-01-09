@@ -60,6 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           image: post.image,
           datePublished: post.datePublished,
           slug: post.slug,
+          author: "Braxley Nevim Elite Remodeling LLC",
         }}
         siteUrl="https://braxleynevim.com"
       />

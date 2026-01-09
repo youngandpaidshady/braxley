@@ -80,68 +80,7 @@ export const SectionTracker: React.FC = () => {
     }
   };
 
-  // Don't render on mobile (prevent hydration mismatch)
-  if (!isDesktop) {
-    return null;
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: isVisible ? 0.5 : 0, x: isVisible ? 0 : 20 }}
-      transition={{ duration: 0.3 }}
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-[200] pointer-events-auto hidden lg:block"
-    >
-      <div className="flex flex-col items-center gap-3">
-        {/* Vertical Line */}
-        <div className="absolute top-0 bottom-0 w-px bg-border" />
-
-        {/* Section Dots */}
-        {sections.map((section) => {
-          const isActive = activeSection === section.id;
-
-          return (
-            <motion.button
-              key={section.id}
-              onClick={() => scrollToSection(section.id)}
-              className="relative group"
-              aria-label={`Scroll to ${section.label}`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {/* Dot */}
-              <motion.div
-                className={cn(
-                  "w-3 h-3 rounded-full border-2 transition-colors",
-                  isActive
-                    ? "bg-accent border-accent"
-                    : "bg-transparent border-border hover:border-accent/50"
-                )}
-                animate={{
-                  scale: isActive ? 1.5 : 1,
-                  boxShadow: isActive
-                    ? "0 0 12px hsl(var(--accent) / 0.5)"
-                    : "0 0 0px transparent",
-                }}
-                transition={{ duration: 0.3 }}
-              />
-
-              {/* Tooltip */}
-              <span
-                className={cn(
-                  "absolute right-6 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md",
-                  "text-xs font-medium whitespace-nowrap",
-                  "bg-background border border-border shadow-lg",
-                  "opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                )}
-              >
-                {section.label}
-              </span>
-            </motion.button>
-          );
-        })}
-      </div>
-    </motion.div>
-  );
+  // Hidden on all devices (removed per user request)
+  return null;
 };
 

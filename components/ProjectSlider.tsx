@@ -114,10 +114,10 @@ const ProjectSlider: React.FC = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3, margin: "0px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
           <TextReveal
@@ -142,11 +142,15 @@ const ProjectSlider: React.FC = () => {
                   className="flex-[0_0_100%] sm:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(50%-12px)] min-w-0"
                 >
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.3 }}
+                    viewport={{ once: true, amount: 0.3, margin: "0px" }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="group cursor-pointer"
+                    style={{ 
+                      willChange: 'opacity, transform',
+                      touchAction: 'pan-y pinch-zoom'
+                    }}
                     onPointerDown={(e) => {
                       setDragStart({ x: e.clientX, y: e.clientY });
                       setIsDragging(false);
@@ -177,11 +181,6 @@ const ProjectSlider: React.FC = () => {
                         e.stopPropagation();
                         setSelectedProject(project);
                       }
-                    }}
-                    style={{ 
-                      WebkitTransform: 'translateZ(0)',
-                      transform: 'translateZ(0)',
-                      touchAction: 'pan-y pinch-zoom'
                     }}
                   >
                     <div className="relative overflow-hidden rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300">
@@ -263,10 +262,10 @@ const ProjectSlider: React.FC = () => {
 
           {/* View Full Portfolio Link */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.3, margin: "0px" }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-12 text-center"
           >
             <Button

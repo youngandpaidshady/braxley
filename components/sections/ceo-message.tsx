@@ -25,7 +25,7 @@ export function CeoMessage() {
           <div className="max-w-4xl mx-auto block">
             <div className="border-b border-primary/40 mb-8 pb-2 flex justify-between font-mono text-[10px] uppercase tracking-widest">
               <span className="text-primary font-bold">Principal&apos;s Correspondence</span>
-              <span className="text-primary font-bold">Vol. 2026.01</span>
+              <span className="text-primary font-bold">Vol. 2022.01</span>
             </div>
 
             <div className="block overflow-hidden">

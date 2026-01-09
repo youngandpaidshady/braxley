@@ -159,7 +159,7 @@ export const CEOCard: React.FC<CEOCardProps> = ({
             </svg>
           </motion.div>
 
-          {/* Play Intro Button - 2026 Feature */}
+          {/* Play Intro Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -5,8 +5,8 @@
 @layer base {
   :root {
     --background: 35 25% 98%; /* Warm Vellum White */
-    --foreground: 20 10% 10%;
-    --primary: 35 65% 40%; /* Deep Bronze */
+    --foreground: 20 10% 12%; /* Deep charcoal for better readability */
+    --primary: 35 65% 35%; /* Darker bronze for better contrast on light backgrounds */
     --primary-foreground: 35 100% 98%;
 
     --secondary: 220 16% 92%;
@@ -16,11 +16,11 @@
     --accent-foreground: 30 20% 98%;
 
     --muted: 220 15% 92%;
-    --muted-foreground: 217 12% 25%;
+    --muted-foreground: 25 5% 35%; /* Deep grey for subheaders/captions */
 
     --border: 220 14% 75%;
     --input: 220 14% 70%;
-    --ring: 35 65% 40%;
+    --ring: 35 65% 35%;
 
     --radius: 0.75rem;
   }

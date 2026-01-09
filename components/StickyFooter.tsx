@@ -116,16 +116,13 @@ export const StickyFooter: React.FC = () => {
 
         {/* Bottom: Copyright and Theme Toggle */}
         <div className="mt-12 pt-8 border-t border-primary/20">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap">
-            <p className="text-sm text-muted-foreground text-center">
-              © {new Date().getFullYear()} Braxley Nevim Elite Remodeling LLC. All rights
-              reserved.
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <p className="text-sm text-muted-foreground text-center sm:text-left flex-1">
+              © 2022 Braxley Nevim Elite Remodeling LLC. All rights reserved.
             </p>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-xs text-muted-foreground">Theme:</span>
-              <div className="relative z-10">
-                <ModeToggle className="text-primary hover:text-primary" />
-              </div>
+            <div className="flex items-center gap-2 shrink-0 justify-center sm:justify-end">
+              <span className="text-xs text-muted-foreground whitespace-nowrap">Theme:</span>
+              <ModeToggle />
             </div>
           </div>
         </div>

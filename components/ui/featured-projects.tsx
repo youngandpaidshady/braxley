@@ -28,7 +28,7 @@ const projects: Project[] = [
     location: "Downtown Metro",
     description: "A complete structural retrofit and interior renovation of a historic 1920s hotel. Project included seismic upgrades, installation of a commercial-grade VRF HVAC system, and soundproofing 120 guest suites to STC 60 standards.",
     image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=3542&auto=format&fit=crop",
-    year: "2025",
+    year: "2021",
     galleryUrl: "/projects/meridian-hotel",
   },
   {
@@ -130,16 +130,20 @@ export const FeaturedProjects: React.FC = () => {
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                layout="position"
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                exit={{ opacity: 0, scale: 0.95, y: -15 }}
                 transition={{
-                  duration: 0.4,
-                  delay: index * 0.1,
+                  duration: 0.35,
+                  delay: index * 0.05,
                   ease: [0.22, 1, 0.36, 1],
+                  layout: { duration: 0.3 }
                 }}
                 className="group relative bg-background border border-border/60 rounded-lg overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-300"
+                style={{ 
+                  willChange: 'opacity, transform'
+                }}
               >
                 {/* Project Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">

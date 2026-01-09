@@ -42,7 +42,7 @@ export function ProjectDetailContent({ params }: ProjectDetailContentProps) {
   };
 
   return (
-    <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-black -mt-20 z-[1]">
+    <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-black z-[100]">
       {/* Full-Screen Image Stage */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -71,35 +71,35 @@ export function ProjectDetailContent({ params }: ProjectDetailContentProps) {
         </AnimatePresence>
         
         {/* Dark Vignette Overlay - Bottom 30% for text readability */}
-        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 via-black/40 to-transparent z-[101]" />
 
         {/* Image Navigation Controls - Only show if multiple images */}
         {hasMultipleImages && (
           <>
             <button
               onClick={handlePreviousImage}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 md:p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-[105] bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 md:p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:scale-110 transition-transform" strokeWidth={1.5} />
             </button>
             <button
               onClick={handleNextImage}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 md:p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-[105] bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 md:p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-primary group-hover:scale-110 transition-transform" strokeWidth={1.5} />
             </button>
             
             {/* Image Counter */}
-            <div className="absolute top-2 md:top-4 right-2 md:right-4 z-20 bg-background/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold border border-primary/20">
+            <div className="absolute top-2 md:top-4 right-2 md:right-4 z-[105] bg-background/80 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold border border-primary/20">
               {currentImageIndex + 1} / {galleryImages.length}
             </div>
 
             {/* Gallery Grid Toggle Button */}
             <button
               onClick={() => setShowGallery(!showGallery)}
-              className="absolute top-2 md:top-4 left-2 md:left-4 z-20 bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="absolute top-2 md:top-4 left-2 md:left-4 z-[105] bg-background/80 backdrop-blur-sm hover:bg-background/90 active:bg-background border border-primary/20 p-3 rounded-full transition-all group touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="View gallery"
             >
               <Grid3x3 className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" strokeWidth={1.5} />
@@ -116,7 +116,7 @@ export function ProjectDetailContent({ params }: ProjectDetailContentProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md p-4 md:p-8 overflow-y-auto"
+            className="fixed inset-0 z-[120] bg-black/95 backdrop-blur-md p-4 md:p-8 overflow-y-auto"
             onClick={() => setShowGallery(false)}
           >
             <div className="max-w-7xl mx-auto">
@@ -179,7 +179,7 @@ export function ProjectDetailContent({ params }: ProjectDetailContentProps) {
       {/* Floating Technical Detail Tray - Minimal when collapsed */}
       <motion.div
         initial={false}
-        className="fixed bottom-0 left-0 right-0 z-30"
+        className="fixed bottom-0 left-0 right-0 z-[110]"
       >
         <motion.div 
           className="bg-background/80 backdrop-blur-2xl border-t border-primary/20 flex flex-col overflow-hidden"

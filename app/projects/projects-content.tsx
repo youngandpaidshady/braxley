@@ -47,7 +47,7 @@ export function ProjectsPageContent() {
             Portfolio of Mandates
           </h1>
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-            EST. 2026 • ARCHITECTURAL FORENSICS
+            EST. 2022 • ARCHITECTURAL FORENSICS
           </p>
         </header>
 

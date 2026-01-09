@@ -25,7 +25,7 @@ const articleContent: Record<string, ReactNode> = {
   "seismic-2026": (
     <>
       <p>
-        The 2026 building codes have introduced significant changes to seismic retrofitting requirements,
+        Recent building codes have introduced significant changes to seismic retrofitting requirements,
         particularly for historic masonry structures in high-risk seismic zones. As a general contractor
         specializing in compliance and structural integrity, we&apos;ve analyzed the new regulations and their
         practical implications.
@@ -70,7 +70,7 @@ const articleContent: Record<string, ReactNode> = {
       
       <h2>Conclusion</h2>
       <p>
-        The 2026 codes represent a significant step forward in urban seismic safety. While compliance requires
+        Modern building codes represent a significant step forward in urban seismic safety. While compliance requires
         substantial investment, the long-term benefits to building owners and occupants justify the costs.
         Early engagement with qualified contractors and engineers is essential for navigating these requirements
         efficiently.
@@ -130,12 +130,12 @@ const articleContent: Record<string, ReactNode> = {
   "oshpd-3-requirements": (
     <>
       <p>
-        The 2026 building codes have introduced significant updates to OSHPD 3 requirements for outpatient
+        Recent building codes have introduced significant updates to OSHPD 3 requirements for outpatient
         healthcare facilities. These changes affect electrical systems, HVAC design, and overall facility
         compliance standards.
       </p>
       
-      <h2>Key Changes in 2026 Codes</h2>
+      <h2>Key Changes in Building Codes</h2>
       <p>
         The most significant updates include enhanced requirements for emergency power systems, stricter
         ventilation standards for procedure rooms, and new requirements for medical gas system redundancy.
@@ -165,13 +165,13 @@ const articleContent: Record<string, ReactNode> = {
       <h2>Compliance Timeline</h2>
       <p>
         Facilities planning construction or major renovations should begin compliance planning immediately.
-        The new requirements apply to all projects with building permits issued after January 1, 2026.
+        These requirements apply to all new construction and major renovation projects.
       </p>
       
       <h2>Conclusion</h2>
       <p>
         Navigating OSHPD 3 requirements requires early engagement with experienced healthcare construction
-        specialists. The 2026 updates represent a significant shift toward enhanced safety and reliability
+        specialists. Recent updates represent a significant shift toward enhanced safety and reliability
         standards that will benefit patients and facility operators alike.
       </p>
     </>
@@ -180,7 +180,7 @@ const articleContent: Record<string, ReactNode> = {
   "2026-material-trends": (
     <>
       <p>
-        The luxury residential market is experiencing a material revolution, with sintered stone and porcelain
+        The luxury residential market has experienced a material revolution, with sintered stone and porcelain
         slabs emerging as the preferred alternatives to traditional quartz and marble. Performance data and
         installation best practices reveal why these materials are gaining market dominance.
       </p>
@@ -208,8 +208,8 @@ const articleContent: Record<string, ReactNode> = {
       
       <h2>Market Trends</h2>
       <p>
-        Our analysis of 2025 project data shows a 340% increase in sintered stone installations compared to
-        2024. This trend is expected to continue as manufacturers expand color and texture options.
+        Recent project data shows significant growth in sintered stone installations. This trend continues
+        as manufacturers expand color and texture options.
       </p>
       
       <h2>Conclusion</h2>
@@ -224,8 +224,8 @@ const articleContent: Record<string, ReactNode> = {
   "prefabricated-modular-construction": (
     <>
       <p>
-        Prefabricated modular construction is transforming the multi-family development landscape, offering
-        unprecedented speed-to-market advantages while maintaining quality standards. Our recent projects
+        Prefabricated modular construction has transformed the multi-family development landscape, offering
+        unprecedented speed-to-market advantages while maintaining quality standards. Our projects
         demonstrate the potential and limitations of this approach.
       </p>
       
@@ -255,10 +255,10 @@ const articleContent: Record<string, ReactNode> = {
         through early planning and close coordination with manufacturers.
       </p>
       
-      <h2>Future Outlook</h2>
+      <h2>Industry Outlook</h2>
       <p>
-        As modular construction technology advances, we expect to see expanded applications in commercial
-        and hospitality sectors. The 2026 construction landscape will likely feature increased adoption of
+        As modular construction technology advances, we continue to see expanded applications in commercial
+        and hospitality sectors. The construction industry features increasing adoption of
         hybrid approaches combining modular and traditional construction methods.
       </p>
       
@@ -444,16 +444,16 @@ const articleContent: Record<string, ReactNode> = {
 const POSTS_DATA = [
   {
     id: 1,
-    title: "Seismic Retrofitting: Navigating New 2026 Urban Compliance Codes",
+    title: "Seismic Retrofitting: Navigating Urban Compliance Codes",
     excerpt:
       "A comprehensive breakdown of the structural requirements for historic masonry buildings in high-risk zones. We examine the cost-benefit of carbon-fiber reinforcement vs traditional steel.",
     category: "Structural",
-    date: "Jan 2026",
+    date: "Jan 2022",
     readTime: "12 min read",
     image:
       "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=3270&auto=format&fit=crop",
     slug: "seismic-2026",
-    datePublished: "2026-01-15",
+    datePublished: "2022-01-15",
     timeline: ["Planning", "Survey", "Demo", "Reinforcement", "Final"],
     tags: ["Engineering", "Compliance", "Retrofitting", "Safety"],
     views: 1247,
@@ -465,12 +465,12 @@ const POSTS_DATA = [
     excerpt:
       "Analyzing the energy cost savings of electrochromic glass in commercial office build-outs. Real-world case studies from our LEED Platinum projects.",
     category: "Sustainable",
-    date: "Dec 2025",
+    date: "Dec 2021",
     readTime: "8 min read",
     image:
       "https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?q=80&w=3464&auto=format&fit=crop",
     slug: "smart-glass-roi",
-    datePublished: "2025-12-10",
+    datePublished: "2021-12-10",
     timeline: ["Design", "Installation", "Calibration", "Final"],
     tags: ["Sustainability", "Technology", "Energy Efficiency", "LEED"],
     views: 892,
@@ -480,14 +480,14 @@ const POSTS_DATA = [
     id: 3,
     title: "Navigating OSHPD 3 Requirements for Medical Clinics",
     excerpt:
-      "A technical guide to electrical and HVAC compliance for outpatient healthcare facilities. What changed in the 2026 building codes.",
+      "A technical guide to electrical and HVAC compliance for outpatient healthcare facilities. Understanding building code requirements and compliance standards.",
     category: "Compliance",
-    date: "Nov 2025",
+    date: "Nov 2021",
     readTime: "15 min read",
     image:
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=3535&auto=format&fit=crop",
     slug: "oshpd-3-requirements",
-    datePublished: "2025-11-28",
+    datePublished: "2021-11-28",
     timeline: ["Planning", "Inspection", "Compliance", "Final"],
     tags: ["Healthcare", "Compliance", "OSHPD", "Regulations"],
     views: 1563,
@@ -495,16 +495,16 @@ const POSTS_DATA = [
   },
   {
     id: 4,
-    title: "2026 Material Trends: Beyond Quartz and Marble",
+    title: "Material Trends: Beyond Quartz and Marble",
     excerpt:
       "Why sintered stone and porcelain slabs are taking over the luxury residential market. Performance data and installation best practices.",
     category: "Commercial",
-    date: "Oct 2025",
+    date: "Oct 2021",
     readTime: "6 min read",
     image:
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=3200&auto=format&fit=crop",
     slug: "2026-material-trends",
-    datePublished: "2025-10-15",
+    datePublished: "2021-10-15",
     timeline: ["Research", "Selection", "Installation", "Final"],
     tags: ["Materials", "Trends", "Luxury", "Design"],
     views: 743,
@@ -512,16 +512,16 @@ const POSTS_DATA = [
   },
   {
     id: 5,
-    title: "Prefabricated Modular Construction: Speed vs. Quality in 2026",
+    title: "Prefabricated Modular Construction: Speed vs. Quality",
     excerpt:
       "Exploring the rise of off-site construction methods and their impact on project timelines. Case study analysis from our recent multi-family development projects.",
     category: "Commercial",
-    date: "Sep 2025",
+    date: "Sep 2021",
     readTime: "10 min read",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=3270&auto=format&fit=crop",
     slug: "prefabricated-modular-construction",
-    datePublished: "2025-09-20",
+    datePublished: "2021-09-20",
     timeline: ["Design", "Fabrication", "Transport", "Assembly", "Final"],
     tags: ["Modular", "Efficiency", "Innovation", "Construction"],
     views: 1024,
@@ -533,12 +533,12 @@ const POSTS_DATA = [
     excerpt:
       "How we achieved near-zero waste on a $2.5M commercial renovation. Detailed breakdown of material sorting, recycling partnerships, and cost savings.",
     category: "Sustainable",
-    date: "Aug 2025",
+    date: "Aug 2021",
     readTime: "9 min read",
     image:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=3269&auto=format&fit=crop",
     slug: "zero-waste-construction",
-    datePublished: "2025-08-12",
+    datePublished: "2021-08-12",
     timeline: ["Planning", "Sorting", "Recycling", "Documentation", "Final"],
     tags: ["Sustainability", "Waste Management", "Green Building", "LEED"],
     views: 1156,
@@ -550,12 +550,12 @@ const POSTS_DATA = [
     excerpt:
       "Advanced acoustic solutions for modern workspaces. Case study of a 50,000 sq ft tech headquarters with STC 60+ partitions and active noise cancellation.",
     category: "Commercial",
-    date: "Jul 2025",
+    date: "Jul 2021",
     readTime: "11 min read",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=3269&auto=format&fit=crop",
     slug: "acoustic-design-open-plan",
-    datePublished: "2025-07-08",
+    datePublished: "2021-07-08",
     timeline: ["Analysis", "Design", "Installation", "Testing", "Final"],
     tags: ["Acoustics", "Office Design", "Wellness", "Technology"],
     views: 678,
@@ -567,12 +567,12 @@ const POSTS_DATA = [
     excerpt:
       "Technical challenges and solutions in restoring original terracotta and cast stone elements. Documentation process for landmark designation compliance.",
     category: "Structural",
-    date: "Jun 2025",
+    date: "Jun 2021",
     readTime: "14 min read",
     image:
       "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=3270&auto=format&fit=crop",
     slug: "historic-preservation-art-deco",
-    datePublished: "2025-06-25",
+    datePublished: "2021-06-25",
     timeline: ["Assessment", "Documentation", "Restoration", "Inspection", "Final"],
     tags: ["Historic", "Preservation", "Restoration", "Heritage"],
     views: 934,

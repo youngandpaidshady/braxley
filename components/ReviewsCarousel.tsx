@@ -267,10 +267,10 @@ const ReviewsCarousel: React.FC = () => {
     <section className="py-12 md:py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3, margin: "0px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-foreground mb-4 tracking-tight">
@@ -292,14 +292,13 @@ const ReviewsCarousel: React.FC = () => {
                   className="flex-[0_0_100%] md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0"
                 >
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.3 }}
+                    viewport={{ once: true, amount: 0.3, margin: "0px" }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="bg-secondary/50 rounded-xl p-6 md:p-5 shadow-lg border border-border hover:shadow-xl transition-shadow flex flex-col min-h-full"
                     style={{ 
-                      WebkitTransform: 'translateZ(0)',
-                      transform: 'translateZ(0)'
+                      willChange: 'opacity, transform'
                     }}
                   >
                     {/* Header - Match image layout */}

@@ -124,10 +124,10 @@ export const ServicesGrid: React.FC = () => {
     <section id="services" className="py-20 md:py-32 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3, margin: "0px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
           <TextReveal
@@ -153,19 +153,18 @@ export const ServicesGrid: React.FC = () => {
                   className="flex-[0_0_85%] min-w-0 mr-4"
                 >
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.3, margin: "0px" }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.4,
                       delay: index * 0.05,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     onClick={() => setSelectedService(service)}
                     className="cursor-pointer"
                     style={{ 
-                      WebkitTransform: 'translateZ(0)',
-                      transform: 'translateZ(0)'
+                      willChange: 'opacity, transform'
                     }}
                   >
                     <ServiceCard
@@ -204,16 +203,19 @@ export const ServicesGrid: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.3, margin: "0px" }}
               transition={{
                 duration: 0.5,
-                delay: index * 0.1,
+                delay: index * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
               onClick={() => setSelectedService(service)}
               className="cursor-pointer"
+              style={{ 
+                willChange: 'opacity, transform'
+              }}
             >
               <ServiceCard
                 title={service.title}

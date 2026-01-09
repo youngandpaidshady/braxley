@@ -14,7 +14,7 @@ export default function ContactPage() {
         {/* Newspaper Editorial Style Header */}
           <div className="border-b border-foreground/20 mb-8 pb-2 flex justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
           <span>Project Submission</span>
-          <span>Vol. 2026.01</span>
+          <span>Vol. 2022.01</span>
         </div>
         <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-foreground mb-4 tracking-tight">
           Submit a Project <span className="italic">Mandate.</span>

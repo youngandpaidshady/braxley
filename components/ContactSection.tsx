@@ -90,7 +90,7 @@ export const ContactSection: React.FC = () => {
           {/* Newspaper Editorial Style Header */}
           <div className="border-b border-primary/40 mb-8 pb-2 flex justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
             <span>Project Submission</span>
-            <span>Vol. 2026.01</span>
+            <span>Vol. 2022.01</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-serif font-extrabold text-foreground mb-4 tracking-tight">
             Submit a Project <span className="italic">Mandate.</span>

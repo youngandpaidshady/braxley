@@ -49,7 +49,7 @@ export default function NotFound() {
 
       {/* 4. Footer Technical Details */}
       <div className="absolute bottom-8 text-[10px] font-mono text-muted-foreground/40 uppercase tracking-widest">
-        System ID: BRAXLEY-NEVIM-2026 // LOC: UNKNOWN
+        System ID: BRAXLEY-NEVIM-2022 // LOC: UNKNOWN
       </div>
     </div>
   );

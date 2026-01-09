@@ -42,16 +42,19 @@ export const ServicesSection: React.FC = () => {
           {services.map((s, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              viewport={{ once: true, amount: 0.3, margin: "0px" }}
+              transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -5 }}
               className={cn(
                 "group relative p-8 border border-primary/40 bg-card hover:border-primary transition-all duration-500",
                 i === 0 && "border-l-4 border-primary", // Featured card gets left border
                 s.className
               )}
+              style={{ 
+                willChange: 'opacity, transform'
+              }}
             >
               <div className="flex flex-col h-full justify-between">
                 <div>

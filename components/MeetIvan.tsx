@@ -16,19 +16,19 @@ const personStructuredData = {
     "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Founder of Braxley Nevim Elite Remodeling LLC, specializing in high-end home transformations.",
   image: {
     "@type": "ImageObject",
-    url: "https://braxleynevim.com/img/ceo.png",
+    url: "https://www.braxleynevimllc.com/img/ceo.png",
     caption: "Braxley Nevim - Founder & CEO of Braxley Nevim Elite Remodeling LLC",
   },
-  url: "https://braxleynevim.com",
+  url: "https://www.braxleynevimllc.com",
   // sameAs: Add social media profiles here when available
   // Example: sameAs: ["https://www.linkedin.com/in/braxleynevim", "https://www.instagram.com/braxleynevim"],
   worksFor: {
     "@type": "Organization",
     name: "Braxley Nevim Elite Remodeling LLC",
-    url: "https://braxleynevim.com",
+    url: "https://www.braxleynevimllc.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://braxleynevim.com/icon.png",
+      url: "https://www.braxleynevimllc.com/icon.png",
     },
   },
   knowsAbout: [

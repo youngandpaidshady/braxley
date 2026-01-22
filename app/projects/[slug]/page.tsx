@@ -72,7 +72,7 @@ interface ProjectDetailPageProps {
 
 // Breadcrumb structured data component
 function BreadcrumbSchema({ projectTitle, slug }: { projectTitle: string; slug: string }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://braxleynevim.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.braxleynevimllc.com";
 
   const breadcrumbData = {
     "@context": "https://schema.org",

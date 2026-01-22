@@ -56,7 +56,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://braxleynevim.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.braxleynevimllc.com"),
   applicationName: "Braxley Nevim LLC",
   title: {
     default: "Braxley Nevim Elite Remodeling | Commercial & Enterprise Construction",
@@ -95,14 +95,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com",
+    url: "https://www.braxleynevimllc.com",
     siteName: "Braxley Nevim LLC",
     title: "Braxley Nevim Elite Remodeling | Commercial & Enterprise Construction",
     description:
       "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Premier commercial remodeling for stadiums, hospitals, and luxury resorts.",
     images: [
       {
-        url: "https://braxleynevim.com/og-image.jpg", // Use full URL for better social sharing
+        url: "https://www.braxleynevimllc.com/og-image.jpg", // Use full URL for better social sharing
         width: 1200,
         height: 630,
         alt: "Braxley Nevim Elite Remodeling LLC - Architectural Excellence | Elite Craftsmanship & Design",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
 // Update these values with your actual business information
 const businessData = {
   name: "Braxley Nevim Elite Remodeling LLC",
-  image: "https://braxleynevim.com/logo.jpg", // Update with actual logo URL
+  image: "https://www.braxleynevimllc.com/logo.jpg", // Update with actual logo URL
   telephone: "+17743475579",
   address: {
     streetAddress: "123 Main Street", // Update with actual address
@@ -155,7 +155,7 @@ const businessData = {
     "Mo-Fr 08:00-18:00",
     "Sa 09:00-15:00",
   ],
-  url: "https://braxleynevim.com",
+  url: "https://www.braxleynevimllc.com",
   description: "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Premier general contractor specializing in high-end kitchen, bath, and whole-home remodeling.",
   aggregateRating: {
     ratingValue: "4.9", // Update with actual rating

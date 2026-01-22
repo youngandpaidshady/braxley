@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           slug: post.slug,
           author: "Braxley Nevim Elite Remodeling LLC",
         }}
-        siteUrl="https://braxleynevim.com"
+        siteUrl="https://www.braxleynevimllc.com"
       />
 
       <article className="min-h-screen bg-background">

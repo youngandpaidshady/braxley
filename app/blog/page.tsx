@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com/blog",
+    url: "https://www.braxleynevimllc.com/blog",
     siteName: "Braxley Nevim Elite Remodeling LLC",
     title: "Engineering Insights | Construction Intelligence & Industry Trends",
     description:
@@ -175,7 +175,7 @@ export default function BlogPage() {
   return (
     <>
       {/* JSON-LD Schema */}
-      <BlogSchema posts={schemaPosts} siteUrl="https://braxleynevim.com" />
+      <BlogSchema posts={schemaPosts} siteUrl="https://www.braxleynevimllc.com" />
 
       <main className="pt-32 pb-24 bg-background min-h-screen">
         {/* 1. SEO BREADCRUMBS */}

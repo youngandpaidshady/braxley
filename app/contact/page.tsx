@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com/contact",
+    url: "https://www.braxleynevimllc.com/contact",
     siteName: "Braxley Nevim Elite Remodeling LLC",
     title: "Contact Us | Get a Free Quote | Braxley Nevim",
     description:
       "Request a free consultation for your next luxury construction or remodeling project.",
     images: [
       {
-        url: "https://braxleynevim.com/og-image.jpg",
+        url: "https://www.braxleynevimllc.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Contact Braxley Nevim Elite Remodeling",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://braxleynevim.com/contact",
+    canonical: "https://www.braxleynevimllc.com/contact",
   },
 };
 

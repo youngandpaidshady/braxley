@@ -27,7 +27,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   },
   priceRange = "$$$$",
   areaServed = "Metro Area",
-  url = "https://braxleynevim.com",
+  url = "https://www.braxleynevimllc.com",
 }) => {
   const structuredData = {
     "@context": "https://schema.org",

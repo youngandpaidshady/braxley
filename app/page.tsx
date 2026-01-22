@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com",
+    url: "https://www.braxleynevimllc.com",
     siteName: "Braxley Nevim LLC",
     title: "Braxley Nevim | Elite Remodeling & Construction | Architectural Excellence",
     description:
       "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
     images: [
       {
-        url: "https://braxleynevim.com/og-image.jpg",
+        url: "https://www.braxleynevimllc.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Braxley Nevim Elite Remodeling LLC - Architectural Excellence",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://braxleynevim.com",
+    canonical: "https://www.braxleynevimllc.com",
   },
 };
 

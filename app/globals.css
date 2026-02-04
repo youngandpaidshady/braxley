@@ -1,0 +1,786 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 25% 98%; /* Warm Vellum White */
+    --foreground: 20 10% 12%; /* Deep charcoal for better readability */
+    --primary: 35 65% 35%; /* Darker bronze for better contrast on light backgrounds */
+    --primary-foreground: 35 100% 98%;
+
+    --secondary: 220 16% 92%;
+    --secondary-foreground: 221 20% 12%;
+
+    --accent: 28 67% 52%;
+    --accent-foreground: 30 20% 98%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 25 5% 35%; /* Deep grey for subheaders/captions */
+
+    --border: 220 14% 75%;
+    --input: 220 14% 70%;
+    --ring: 35 65% 35%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 4%; /* Pure Obsidian Black */
+    --foreground: 0 0% 98%;
+    --primary: 38 75% 58%; /* Radiant Gold */
+    --primary-foreground: 35 10% 5%;
+
+    --secondary: 220 14% 18%;
+    --secondary-foreground: 210 36% 96%;
+
+    --accent: 28 74% 56%;
+    --accent-foreground: 220 40% 10%;
+
+    --muted: 220 14% 20%;
+    --muted-foreground: 217 11% 70%;
+
+    --border: 220 14% 25%;
+    --input: 220 14% 25%;
+    --ring: 38 75% 58%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    background-color: hsl(var(--background));
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    /* Optimize font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Smooth scroll only on desktop */
+  @media (min-width: 769px) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    /* Optimize font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    html {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 16px; /* Prevent iOS zoom on input focus */
+      height: 100%;
+      position: relative;
+      scroll-behavior: auto !important;
+      /* Prevent scroll glitches */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Fix viewport height issues */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      min-height: -webkit-fill-available; /* iOS fix */
+      width: 100%;
+      max-width: 100vw;
+      /* Prevent scroll glitches */
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
+      /* Disable will-change on mobile */
+      will-change: auto;
+      /* Prevent momentum scrolling issues */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Fix iOS bounce */
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ensure main doesn't block scroll - fix blanking */
+    main {
+      overflow: visible;
+      position: relative;
+      height: auto;
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
+      /* Prevent blanking - ensure content is visible */
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      /* Prevent scroll glitches */
+      -webkit-transform: none;
+      transform: none;
+    }
+
+    /* Fix blanking - ensure all content is visible */
+    main > * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+
+    /* Prevent pseudo-elements from causing blanking */
+    main::after,
+    main::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Optimize images on mobile */
+    img {
+      content-visibility: unset;
+      will-change: auto;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Disable heavy animations on mobile */
+    [data-framer-component] {
+      will-change: auto;
+      contain: none;
+    }
+
+    /* Fix section spacing on mobile */
+    section {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+
+    /* Optimize typography for mobile */
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 3rem) !important;
+      line-height: 1.2 !important;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+      line-height: 1.3 !important;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 3vw, 2rem) !important;
+      line-height: 1.4 !important;
+    }
+
+    /* Better container padding */
+    .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    /* Fix touch targets */
+    button, a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Better spacing for mobile */
+    .space-y-8 > * + * {
+      margin-top: 1.5rem !important;
+    }
+
+    .space-y-12 > * + * {
+      margin-top: 2rem !important;
+    }
+
+    /* Prevent horizontal scroll */
+    * {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Optimize images */
+    img {
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    html {
+      overflow-y: auto;
+    }
+    
+    body {
+      overflow-y: auto;
+      will-change: scroll-position;
+    }
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 1025px) {
+    html {
+      overflow-y: auto;
+    }
+    
+    body {
+      overflow-y: auto;
+      will-change: scroll-position;
+    }
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.16);
+    color: hsl(var(--foreground));
+  }
+
+  /* Prevent layout shifts - reserve space for images */
+  img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+    content-visibility: auto;
+    will-change: auto;
+  }
+
+  /* Optimize sections for scroll performance - disable on mobile */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      content-visibility: unset;
+      contain-intrinsic-size: unset;
+    }
+  }
+
+  /* Smooth content loading */
+  [data-loading] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  [data-loading="loaded"] {
+    opacity: 1;
+  }
+
+  /* Dark mode: ensure black background extends on scroll */
+  .dark body {
+    background-color: hsl(240 10% 4%);
+  }
+
+  .dark html {
+    background-color: hsl(240 10% 4%);
+  }
+
+  /* Touch target optimization - minimum 44x44px for accessibility */
+  button,
+  a,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  @media (min-width: 769px) {
+    /* Allow smaller touch targets on desktop */
+    button,
+    a,
+    [role="button"] {
+      min-height: auto;
+      min-width: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent scroll blocking - optimize animations */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-framer-component] {
+      transform: translateZ(0);
+    }
+  }
+
+  /* GPU acceleration for smooth scrolling */
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Prevent scroll blocking during animations */
+  [data-framer-component] {
+    contain: layout style paint;
+  }
+
+  @media (max-width: 768px) {
+    [data-framer-component] {
+      contain: none;
+    }
+  }
+
+  /* Optimize motion components */
+  [data-framer-name] {
+    will-change: transform, opacity;
+  }
+
+  @media (max-width: 768px) {
+    [data-framer-name] {
+      will-change: auto;
+    }
+  }
+
+  /* Smooth scroll without blocking - only on desktop */
+  @media (prefers-reduced-motion: no-preference) {
+    @media (min-width: 769px) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+  }
+
+  /* Mobile touch scroll fixes */
+  @media (max-width: 768px) {
+    /* Fix for iOS Safari bounce */
+    body {
+      overscroll-behavior-y: contain;
+      overscroll-behavior-x: none;
+    }
+
+    /* Prevent pull-to-refresh on mobile */
+    html {
+      overscroll-behavior-y: none;
+      overscroll-behavior-x: none;
+    }
+
+    /* Optimize touch interactions */
+    button,
+    a,
+    [role="button"] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent scroll glitches - minimal GPU acceleration */
+    body {
+      -webkit-transform: none;
+      transform: none;
+    }
+
+    /* Reduce animation complexity on mobile */
+    * {
+      transition-duration: 0.2s !important;
+      animation-duration: 0.2s !important;
+    }
+
+    /* Ensure no element blocks scroll */
+    * {
+      max-width: 100vw;
+    }
+
+    /* Disable smooth scroll on mobile to prevent glitches */
+    html {
+      scroll-behavior: auto !important;
+    }
+    
+    /* Prevent blanking - ensure body content is visible */
+    body {
+      -webkit-transform: none;
+      transform: none;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Fix blanking - ensure all sections are visible */
+    section {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      -webkit-transform: none !important;
+      transform: none !important;
+    }
+
+    /* Fix blurring during scroll - disable backdrop-blur on mobile */
+    [class*="backdrop-blur"] {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Use solid backgrounds instead of blur on mobile */
+    [class*="bg-background/95"],
+    [class*="bg-background/90"],
+    [class*="bg-background/80"] {
+      background-color: hsl(var(--background)) !important;
+    }
+
+    /* SectionDivider - very subtle on mobile (like in image) */
+    [class*="SectionDivider"],
+    [class*="section-divider"] {
+      height: 0.5rem !important;
+      max-height: 0.5rem !important;
+    }
+
+    /* Fix scroll glitches - prevent momentum and smooth scrolling conflicts */
+    * {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    /* ========================================
+       CAROUSEL PAGINATION DOTS - GLOBAL OVERRIDE
+       Force small, delicate capsules on all devices
+       ======================================== */
+    
+    /* Target all carousel pagination dot containers */
+    .flex.items-center.justify-center.gap-2,
+    [class*="flex"][class*="items-center"][class*="justify-center"][class*="gap"] {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 6px !important; /* gap-1.5 = 6px */
+    }
+
+    /* Universal selector for all carousel pagination buttons */
+    /* Target buttons with size-1.5 class (Tailwind compiles this) */
+    button[class*="size-1.5"],
+    button.size-1\.5 {
+      /* Clear all defaults */
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
+      margin: 0 !important;
+      outline: none !important;
+      
+      /* Force inactive dot size - delicate capsule */
+      width: 6px !important;
+      height: 3px !important;
+      min-width: 6px !important;
+      min-height: 3px !important;
+      max-width: 6px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      
+      /* Force inactive color (bg-primary/35) */
+      background-color: hsl(var(--primary) / 0.35) !important;
+      
+      /* Smooth transition */
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+    }
+
+    /* Active dot - longer capsule (has bg-primary class) */
+    button[class*="size-1.5"][class*="bg-primary"]:not([class*="bg-primary/"]),
+    button.size-1\.5.bg-primary:not(.bg-primary\/35) {
+      /* Force active dot size - longer capsule */
+      width: 20px !important;
+      height: 3px !important;
+      min-width: 20px !important;
+      min-height: 3px !important;
+      max-width: 20px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      
+      /* Force active color */
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Override any inline styles for inactive dots */
+    button[class*="size-1.5"][style*="width"]:not([class*="bg-primary"]),
+    button[class*="size-1.5"][class*="bg-primary/35"] {
+      width: 6px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
+    }
+
+    /* Override any inline styles for active dots */
+    button[class*="size-1.5"][class*="bg-primary"][style*="width"]:not([class*="bg-primary/"]),
+    button[class*="size-1.5"].bg-primary:not(.bg-primary\/35) {
+      width: 20px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Force gap-1.5 (6px) spacing between dots */
+    .flex.items-center.justify-center.gap-2 {
+      gap: 6px !important;
+    }
+
+    /* Additional fallback for any pagination container */
+    [class*="Dots"],
+    [class*="pagination"],
+    [class*="dots"] {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 6px !important;
+    }
+
+    /* Fallback for any pagination button */
+    [class*="Dots"] button,
+    [class*="pagination"] button,
+    [class*="dots"] button {
+      appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
+      width: 6px !important;
+      height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Fallback for active state */
+    [class*="Dots"] button.bg-primary,
+    [class*="pagination"] button.bg-primary,
+    [class*="dots"] button.bg-primary {
+      width: 20px !important;
+      height: 3px !important;
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Universal fallback: Target any button in flex container with gap-2 that has rounded-full */
+    .flex.items-center.justify-center.gap-2 button.rounded-full,
+    .flex.items-center.justify-center button[class*="rounded-full"] {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      padding: 0 !important;
+      border: none !important;
+      margin: 0 !important;
+      outline: none !important;
+      width: 6px !important;
+      height: 3px !important;
+      min-width: 6px !important;
+      min-height: 3px !important;
+      max-width: 6px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary) / 0.35) !important;
+      transition: all 0.3s ease-in-out !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+    }
+
+    /* Universal active state */
+    .flex.items-center.justify-center.gap-2 button.rounded-full.bg-primary:not([class*="bg-primary/"]),
+    .flex.items-center.justify-center button[class*="rounded-full"][class*="bg-primary"]:not([class*="bg-primary/"]) {
+      width: 20px !important;
+      height: 3px !important;
+      min-width: 20px !important;
+      min-height: 3px !important;
+      max-width: 20px !important;
+      max-height: 3px !important;
+      border-radius: 99px !important;
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    /* Fix carousel scroll glitches on mobile */
+    [class*="embla"],
+    [class*="embla__viewport"] {
+      touch-action: pan-x !important;
+      overscroll-behavior-x: contain !important;
+      overscroll-behavior-y: none !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    [class*="embla__container"] {
+      display: flex !important;
+      touch-action: pan-x !important;
+    }
+
+    /* Prevent scroll glitches - disable smooth scroll on mobile */
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    /* Fix body scroll on mobile */
+    body {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      position: relative !important;
+      overscroll-behavior-y: contain !important;
+    }
+
+    /* Prevent scroll conflicts with carousels */
+    main {
+      overflow-x: hidden !important;
+      overflow-y: visible !important;
+    }
+
+    /* Reduce border sizes on mobile - extremely tiny */
+    .border-t:not(.border-t-2):not(.border-t-4),
+    .border-b:not(.border-b-2):not(.border-b-4) {
+      border-width: 0.25px !important;
+    }
+
+    /* Visual separator lines - very subtle like in image */
+    [class*="h-px"]:not([class*="h-2"]):not([class*="h-4"]):not([class*="h-8"]):not([class*="h-\["]) {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* All lines very subtle */
+    [class*="h-\[1px\]"],
+    [class*="h-\[0.5px\]"] {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* Gradient separators - subtle */
+    [class*="bg-gradient"][class*="h-"],
+    [class*="via-primary"][class*="h-"] {
+      height: 0.5px !important;
+      max-height: 0.5px !important;
+    }
+
+    /* Divider lines - subtle */
+    hr,
+    [role="separator"] {
+      border-width: 0.5px !important;
+      height: 0.5px !important;
+    }
+
+    /* Optimize sticky elements - prevent blur during scroll */
+    [class*="sticky"] {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Ensure sticky filters stay in place */
+    nav[aria-label*="categories"],
+    nav[aria-label*="Project"] {
+      position: sticky !important;
+      top: 4rem !important;
+      z-index: 40 !important;
+    }
+
+    /* Fix blanking - ensure all sections are visible */
+    section {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      -webkit-transform: none !important;
+      transform: none !important;
+    }
+
+    /* CRITICAL: Show content by default - only hide if JS loads and preloader should show */
+    /* This ensures content is visible even if JavaScript fails completely */
+    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Only allow hiding if JavaScript is enabled AND preloader is active */
+    html.js-enabled body > div > div[style*="opacity: 0"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Fallback: Show content after 2 seconds if preloader is stuck */
+    @keyframes showContent {
+      to {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+    
+    /* Apply fallback animation after 2 seconds - ensures content shows even if JS fails */
+    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+      animation: showContent 0.1s 2s forwards;
+    }
+
+    /* Immediate fallback for static export - show content if JS doesn't load */
+    html:not(.js-enabled) [style*="opacity: 0"],
+    html:not(.js-enabled) [class*="opacity-0"] {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Prevent any element from causing blanking */
+    *:not([class*="preloader"]) {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Exception for preloader only */
+    [class*="preloader"],
+    [class*="Preloader"] {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    button,
+    a,
+    [role="button"] {
+      touch-action: manipulation;
+    }
+  }
+
+  /* Touch-friendly hover states */
+  @media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .hover\:scale-105:hover {
+      transform: scale(1);
+    }
+    
+    .group:hover .group-hover\:opacity-100 {
+      opacity: 1;
+    }
+  }
+
+  /* Performance optimizations for low-end devices */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

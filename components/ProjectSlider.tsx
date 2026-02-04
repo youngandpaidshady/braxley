@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, X } from "lucide-react";
 
 interface Project {
@@ -254,13 +255,13 @@ const ProjectSlider: React.FC = () => {
 
       {/* View Full Portfolio Button - Sharp Corners */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-10 text-center">
-        <a
+        <Link
           href="/projects"
           className="inline-flex items-center gap-3 px-8 py-4 border border-foreground/30 text-foreground font-mono uppercase tracking-widest text-sm hover:border-gold hover:text-gold transition-all duration-300"
         >
           View Full Portfolio
           <ArrowUpRight className="h-4 w-4" />
-        </a>
+        </Link>
       </div>
 
       {/* Lightbox */}

@@ -188,7 +188,7 @@ export const TestimonialCardKinetic: React.FC<TestimonialCardKineticProps> = ({
 
             {/* Quote Text */}
             <p className="relative z-10 text-sm md:text-base text-muted-foreground body-text leading-relaxed mb-6 line-clamp-4">
-                "{quote}"
+                &ldquo;{quote}&rdquo;
             </p>
 
             {/* Author */}

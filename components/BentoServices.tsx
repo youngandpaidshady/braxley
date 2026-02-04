@@ -171,7 +171,7 @@ export const BentoServices: React.FC = () => {
                         Institutional <span className="text-gradient-gold">Scale</span>
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto body-text">
-                        Enterprise-grade construction for the world's most demanding environments.
+                        Enterprise-grade construction for the world&apos;s most demanding environments.
                     </p>
                 </motion.div>
 

@@ -48,7 +48,7 @@ export const ServicesSection: React.FC = () => {
               transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -5 }}
               className={cn(
-                "group relative p-8 border border-primary/40 bg-card hover:border-primary transition-all duration-500",
+                "group relative p-8 border border-primary/40 bg-white hover:border-primary transition-all duration-500 dark:shadow-md",
                 i === 0 && "border-l-4 border-primary", // Featured card gets left border
                 s.className
               )}

@@ -21,7 +21,7 @@ interface BlogSchemaProps {
 export const BlogSchema: React.FC<BlogSchemaProps> = ({
   posts = [],
   currentPost,
-  siteUrl = "https://braxleynevim.com",
+  siteUrl = "https://www.braxleynevimllc.com",
 }) => {
   // BreadcrumbList Schema
   const breadcrumbSchema = {

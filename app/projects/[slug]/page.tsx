@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://braxleynevim.com";
   const projectUrl = `${siteUrl}/projects/${slug}`;
-  const projectImage = project.image.startsWith("http") 
-    ? project.image 
+  const projectImage = project.image.startsWith("http")
+    ? project.image
     : `${siteUrl}${project.image}`;
 
   return {
@@ -70,6 +70,51 @@ interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  return <ProjectDetailContent params={params} />;
+// Breadcrumb structured data component
+function BreadcrumbSchema({ projectTitle, slug }: { projectTitle: string; slug: string }) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.braxleynevimllc.com";
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${siteUrl}/projects`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: projectTitle,
+        item: `${siteUrl}/projects/${slug}`,
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+    />
+  );
+}
+
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const { slug } = await params;
+  const project = PROJECTS[slug];
+
+  return (
+    <>
+      {project && <BreadcrumbSchema projectTitle={project.title} slug={slug} />}
+      <ProjectDetailContent params={params} />
+    </>
+  );
 }

@@ -128,10 +128,10 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+17743475579"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    (123) 456-7890
+                    +1 (774) 347-5579
                   </a>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export const ContactSection: React.FC = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full bg-transparent border-0 border-b border-slate-300 dark:border-slate-700 rounded-none px-0 py-3 text-foreground focus:outline-none focus:ring-0 focus:border-primary transition-colors"
-                  placeholder="(123) 456-7890"
+                  placeholder="(774) 347-5579"
                 />
               </div>
 

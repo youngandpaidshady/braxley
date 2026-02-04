@@ -160,7 +160,7 @@ export const ContactForm: React.FC = () => {
               <FormControl>
                 <Input
                   type="tel"
-                  placeholder="(123) 456-7890"
+                  placeholder="+1 (774) 347-5579"
                   className="bg-transparent border-0 border-b border-slate-300 dark:border-slate-700 rounded-none px-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-primary transition-colors"
                   {...field}
                 />

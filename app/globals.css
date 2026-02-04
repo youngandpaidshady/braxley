@@ -4,45 +4,57 @@
 
 @layer base {
   :root {
-    --background: 35 25% 98%; /* Warm Vellum White */
-    --foreground: 20 10% 12%; /* Deep charcoal for better readability */
-    --primary: 35 65% 35%; /* Darker bronze for better contrast on light backgrounds */
-    --primary-foreground: 35 100% 98%;
+    /* Antigravity Design System - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
-    --secondary: 220 16% 92%;
-    --secondary-foreground: 221 20% 12%;
+    /* Metallic Gold Primary - #C5A059 converted to HSL */
+    --primary: 40 47% 55%;
+    --primary-foreground: 222 47% 11%;
 
-    --accent: 28 67% 52%;
-    --accent-foreground: 30 20% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 15% 92%;
-    --muted-foreground: 25 5% 35%; /* Deep grey for subheaders/captions */
+    /* Accent matches primary gold */
+    --accent: 40 47% 55%;
+    --accent-foreground: 222 47% 11%;
 
-    --border: 220 14% 75%;
-    --input: 220 14% 70%;
-    --ring: 35 65% 35%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 14% 40%;
+
+    --border: 220 13% 82%;
+    --input: 220 13% 78%;
+    --ring: 40 47% 55%;
 
     --radius: 0.75rem;
+
+    /* Antigravity Gold - Direct hex reference */
+    --gold: 40 47% 55%;
+    --charcoal: 222 47% 11%;
   }
 
   .dark {
-    --background: 240 10% 4%; /* Pure Obsidian Black */
-    --foreground: 0 0% 98%;
-    --primary: 38 75% 58%; /* Radiant Gold */
-    --primary-foreground: 35 10% 5%;
+    /* Antigravity Design System - Dark Mode (matches braxleynevimllc.com) */
+    --background: 0 0% 4%;
+    /* Near-black #0a0a0a equivalent */
+    --foreground: 210 36% 96%;
 
-    --secondary: 220 14% 18%;
+    /* Metallic Gold Primary */
+    --primary: 40 50% 56%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 8%;
     --secondary-foreground: 210 36% 96%;
 
-    --accent: 28 74% 56%;
-    --accent-foreground: 220 40% 10%;
+    --accent: 40 50% 56%;
+    --accent-foreground: 0 0% 4%;
 
-    --muted: 220 14% 20%;
-    --muted-foreground: 217 11% 70%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 215 20% 65%;
 
-    --border: 220 14% 25%;
-    --input: 220 14% 25%;
-    --ring: 38 75% 58%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 40 50% 56%;
   }
 
   * {
@@ -84,7 +96,8 @@
     html {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      font-size: 16px; /* Prevent iOS zoom on input focus */
+      font-size: 16px;
+      /* Prevent iOS zoom on input focus */
       height: 100%;
       position: relative;
       scroll-behavior: auto !important;
@@ -102,7 +115,8 @@
       position: relative;
       height: 100%;
       min-height: 100vh;
-      min-height: -webkit-fill-available; /* iOS fix */
+      min-height: -webkit-fill-available;
+      /* iOS fix */
       width: 100%;
       max-width: 100vw;
       /* Prevent scroll glitches */
@@ -136,7 +150,7 @@
     }
 
     /* Fix blanking - ensure all content is visible */
-    main > * {
+    main>* {
       opacity: 1 !important;
       visibility: visible !important;
       display: block !important;
@@ -192,18 +206,19 @@
     }
 
     /* Fix touch targets */
-    button, a[role="button"] {
+    button,
+    a[role="button"] {
       min-height: 44px;
       min-width: 44px;
       padding: 0.75rem 1rem;
     }
 
     /* Better spacing for mobile */
-    .space-y-8 > * + * {
+    .space-y-8>*+* {
       margin-top: 1.5rem !important;
     }
 
-    .space-y-12 > * + * {
+    .space-y-12>*+* {
       margin-top: 2rem !important;
     }
 
@@ -226,7 +241,7 @@
     html {
       overflow-y: auto;
     }
-    
+
     body {
       overflow-y: auto;
       will-change: scroll-position;
@@ -238,7 +253,7 @@
     html {
       overflow-y: auto;
     }
-    
+
     body {
       overflow-y: auto;
       will-change: scroll-position;
@@ -302,6 +317,7 @@
   }
 
   @media (min-width: 769px) {
+
     /* Allow smaller touch targets on desktop */
     button,
     a,
@@ -317,7 +333,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -374,6 +390,7 @@
 
   /* Mobile touch scroll fixes */
   @media (max-width: 768px) {
+
     /* Fix for iOS Safari bounce */
     body {
       overscroll-behavior-y: contain;
@@ -415,7 +432,7 @@
     html {
       scroll-behavior: auto !important;
     }
-    
+
     /* Prevent blanking - ensure body content is visible */
     body {
       -webkit-transform: none;
@@ -463,14 +480,15 @@
        CAROUSEL PAGINATION DOTS - GLOBAL OVERRIDE
        Force small, delicate capsules on all devices
        ======================================== */
-    
+
     /* Target all carousel pagination dot containers */
     .flex.items-center.justify-center.gap-2,
     [class*="flex"][class*="items-center"][class*="justify-center"][class*="gap"] {
       display: flex !important;
       flex-direction: row !important;
       flex-wrap: nowrap !important;
-      gap: 6px !important; /* gap-1.5 = 6px */
+      gap: 6px !important;
+      /* gap-1.5 = 6px */
     }
 
     /* Universal selector for all carousel pagination buttons */
@@ -484,7 +502,7 @@
       border: none !important;
       margin: 0 !important;
       outline: none !important;
-      
+
       /* Force inactive dot size - delicate capsule */
       width: 6px !important;
       height: 3px !important;
@@ -493,10 +511,10 @@
       max-width: 6px !important;
       max-height: 3px !important;
       border-radius: 99px !important;
-      
+
       /* Force inactive color (bg-primary/35) */
       background-color: hsl(var(--primary) / 0.35) !important;
-      
+
       /* Smooth transition */
       transition: all 0.3s ease-in-out !important;
       flex-shrink: 0 !important;
@@ -514,7 +532,7 @@
       max-width: 20px !important;
       max-height: 3px !important;
       border-radius: 99px !important;
-      
+
       /* Force active color */
       background-color: hsl(var(--primary)) !important;
     }
@@ -611,18 +629,14 @@
       background-color: hsl(var(--primary)) !important;
     }
 
-    /* Fix carousel scroll glitches on mobile */
-    [class*="embla"],
-    [class*="embla__viewport"] {
-      touch-action: pan-x !important;
-      overscroll-behavior-x: contain !important;
-      overscroll-behavior-y: none !important;
-      -webkit-overflow-scrolling: touch;
+    /* Carousel containers - minimal interference, let components handle their own scroll */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
-    [class*="embla__container"] {
-      display: flex !important;
-      touch-action: pan-x !important;
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
     }
 
     /* Prevent scroll glitches - disable smooth scroll on mobile */
@@ -706,13 +720,13 @@
 
     /* CRITICAL: Show content by default - only hide if JS loads and preloader should show */
     /* This ensures content is visible even if JavaScript fails completely */
-    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+    body>div>div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
       opacity: 1 !important;
       visibility: visible !important;
     }
 
     /* Only allow hiding if JavaScript is enabled AND preloader is active */
-    html.js-enabled body > div > div[style*="opacity: 0"]:not([class*="preloader"]):not([class*="Preloader"]) {
+    html.js-enabled body>div>div[style*="opacity: 0"]:not([class*="preloader"]):not([class*="Preloader"]) {
       opacity: 0;
       visibility: hidden;
     }
@@ -724,9 +738,9 @@
         visibility: visible !important;
       }
     }
-    
+
     /* Apply fallback animation after 2 seconds - ensures content shows even if JS fails */
-    body > div > div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
+    body>div>div[style*="opacity"]:not([class*="preloader"]):not([class*="Preloader"]) {
       animation: showContent 0.1s 2s forwards;
     }
 
@@ -737,11 +751,7 @@
       visibility: visible !important;
     }
 
-    /* Prevent any element from causing blanking */
-    *:not([class*="preloader"]) {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
+    /* NOTE: Removed aggressive opacity override that was breaking framer-motion animations */
 
     /* Exception for preloader only */
     [class*="preloader"],
@@ -753,6 +763,7 @@
 
   /* Tablet optimizations */
   @media (min-width: 769px) and (max-width: 1024px) {
+
     button,
     a,
     [role="button"] {
@@ -762,11 +773,12 @@
 
   /* Touch-friendly hover states */
   @media (hover: none) and (pointer: coarse) {
+
     /* Remove hover effects on touch devices */
     .hover\:scale-105:hover {
       transform: scale(1);
     }
-    
+
     .group:hover .group-hover\:opacity-100 {
       opacity: 1;
     }
@@ -774,6 +786,7 @@
 
   /* Performance optimizations for low-end devices */
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -782,5 +795,307 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  /* ========================================
+     SHIMMER ANIMATION FOR HERO TITLE
+     ======================================== */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .text-shimmer {
+    background: linear-gradient(90deg,
+        hsl(var(--primary)) 0%,
+        hsl(var(--primary) / 0.6) 25%,
+        hsl(38 85% 75%) 50%,
+        hsl(var(--primary) / 0.6) 75%,
+        hsl(var(--primary)) 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* ========================================
+     GLASSMORPHISM BUTTON UTILITIES
+     ======================================== */
+  .btn-glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 0 20px hsl(var(--primary) / 0.15),
+      0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .btn-glass:hover {
+    box-shadow:
+      0 0 30px hsl(var(--primary) / 0.3),
+      0 8px 40px rgba(0, 0, 0, 0.15);
+    border-color: hsl(var(--primary) / 0.4);
+  }
+
+  /* ========================================
+     LUXURY INDUSTRIAL TYPOGRAPHY
+     ======================================== */
+  .heading-display {
+    font-family: var(--font-oswald), Oswald, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .heading-display-bold {
+    font-family: var(--font-oswald), Oswald, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-weight: 700;
+  }
+
+  .body-text {
+    font-family: var(--font-manrope), Manrope, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  .body-text-light {
+    font-family: var(--font-manrope), Manrope, system-ui, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  /* ========================================
+     GLASSMORPHISM CARDS
+     ======================================== */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ========================================
+     NOISE TEXTURE OVERLAY
+     ======================================== */
+  .noise-overlay::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* ========================================
+     BENTO GRID UTILITIES
+     ======================================== */
+  .bento-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  .bento-item-wide {
+    grid-column: span 1;
+  }
+
+  @media (min-width: 768px) {
+    .bento-item-wide {
+      grid-column: span 2;
+    }
+  }
+
+  /* ========================================
+     ANTIGRAVITY IMAGE HOVER EFFECTS
+     ======================================== */
+  .img-hover-zoom {
+    overflow: hidden;
+  }
+
+  .img-hover-zoom img,
+  .img-hover-zoom>div {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+  }
+
+  .img-hover-zoom:hover img,
+  .img-hover-zoom:hover>div {
+    transform: scale(1.08);
+  }
+
+  /* Grayscale to Color on Hover */
+  .img-grayscale-hover img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .img-grayscale-hover:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  /* ========================================
+     ENHANCED GLASSMORPHISM (XL Blur)
+     ======================================== */
+  .glass-card-xl {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-xl:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  /* Frosted Glass for Mobile Nav */
+  .frosted-glass {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+
+  /* ========================================
+     MAGNETIC BUTTON CURSOR ATTRACTION
+     ======================================== */
+  .magnetic-btn {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .magnetic-btn:hover {
+    transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ========================================
+     CINEMATIC TEXT REVEAL
+     ======================================== */
+  .text-reveal-mask {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .text-reveal-inner {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: textRevealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes textRevealUp {
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered delay classes */
+  .reveal-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .reveal-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .reveal-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .reveal-delay-4 {
+    animation-delay: 0.4s;
+  }
+
+  .reveal-delay-5 {
+    animation-delay: 0.5s;
+  }
+
+  /* ========================================
+     GOLD ACCENT UTILITIES
+     ======================================== */
+  .text-gold {
+    color: #C5A059;
+  }
+
+  .bg-gold {
+    background-color: #C5A059;
+  }
+
+  .border-gold {
+    border-color: #C5A059;
+  }
+
+  /* Animated gradient for hero text */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, #C5A059 0%, #D4B86A 50%, #A88B45 100%);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C5A059 0%, #E8C97A 50%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ========================================
+     VIDEO BACKGROUND UTILITIES
+     ======================================== */
+  .video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(15, 23, 42, 0.4) 0%,
+        rgba(15, 23, 42, 0.7) 50%,
+        rgba(15, 23, 42, 0.95) 100%);
   }
 }

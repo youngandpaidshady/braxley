@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { LucideIcon, Quote } from "lucide-react";
+import { LucideIcon, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
@@ -35,43 +35,60 @@ export function ServiceCard({
     <motion.button
       type="button"
       className={cn(
-        "group relative w-full overflow-hidden rounded-lg bg-card shadow-sm block",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "group relative w-full overflow-hidden rounded-xl bg-white border border-border/40 block dark:shadow-md",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        "hover:border-primary/50 dark:hover:shadow-xl transition-all duration-300",
         className
       )}
       aria-label={`View ${title} details`}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       whileHover={{
-        scale: 1.02,
-        y: -5,
+        y: -4,
         transition: { type: "spring", stiffness: 300, damping: 15 },
       }}
+      whileTap={{ scale: 0.98 }}
     >
-      {/* Full Background Image - Matching Testimonials Style */}
-      <div className="relative aspect-[4/5] w-full">
+      {/* Image Section */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={imageUrl}
           alt={`${title} service`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-          sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {/* Gradient overlay for text readability - Matching Testimonials */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-        
-        {/* Content within the card - Bottom Overlay - Matching Testimonials */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-left text-white z-10">
-        <Quote
-          className="mb-4 h-8 w-8 text-white/40"
-          aria-hidden="true"
-        />
-          <h3 className="text-base font-semibold leading-tight mb-2">
-            {title}
-          </h3>
-          <p className="text-sm leading-relaxed text-white/90">
-            {description}
-          </p>
+
+        {/* Overlay on hover/tap */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+
+        {/* Icon Badge */}
+        <div className="absolute top-3 left-3 w-10 h-10 bg-background/90 backdrop-blur-sm rounded-lg flex items-center justify-center border border-border shadow-sm">
+          <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+        </div>
+
+        {/* Tap to view indicator - Mobile */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity">
+          <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg">
+            <span>View Details</span>
+            <ArrowUpRight className="w-3 h-3" />
+          </div>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="p-4 text-left">
+        <h3 className="text-base font-semibold text-foreground mb-1.5 group-hover:text-primary transition-colors">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+          {description}
+        </p>
+
+        {/* Tap hint for mobile */}
+        <div className="mt-3 flex items-center gap-1 text-primary font-mono text-[10px] uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
+          <span>Tap for details</span>
+          <ArrowUpRight className="w-3 h-3" />
         </div>
       </div>
     </motion.button>

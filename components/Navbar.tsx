@@ -85,7 +85,7 @@ export const Navbar: React.FC = () => {
     if (isOpen) {
       scrollYRef.current = window.scrollY;
       const scrollY = scrollYRef.current;
-      
+
       // Store original styles
       const originalBodyStyle = {
         position: document.body.style.position,
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
         overflow: document.body.style.overflow,
         touchAction: document.body.style.touchAction,
       };
-      
+
       // Lock scroll
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -105,11 +105,11 @@ export const Navbar: React.FC = () => {
       document.body.style.right = "0";
       document.body.style.overflow = "hidden";
       document.body.style.touchAction = "none";
-      
+
       // Prevent iOS bounce
       document.documentElement.style.overflow = "hidden";
       document.documentElement.style.position = "relative";
-      
+
       return () => {
         // Restore all styles
         document.body.style.position = originalBodyStyle.position || "";
@@ -121,7 +121,7 @@ export const Navbar: React.FC = () => {
         document.body.style.touchAction = originalBodyStyle.touchAction || "";
         document.documentElement.style.overflow = "";
         document.documentElement.style.position = "";
-        
+
         // Restore scroll position
         if (scrollY > 0) {
           // Use requestAnimationFrame for smoother restoration
@@ -156,12 +156,12 @@ export const Navbar: React.FC = () => {
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       // Close mobile menu
       setIsOpen(false);
-      
+
       // Only handle hash links specially, let Next.js handle regular navigation
       if (href.startsWith("/#")) {
         e.preventDefault();
         const targetId = href.slice(2);
-        
+
         // If we're on the home page, just scroll
         if (pathname === "/") {
           setTimeout(() => {
@@ -238,13 +238,15 @@ export const Navbar: React.FC = () => {
     <>
       {/* NAVBAR CONTAINER */}
       <nav className={cn(
-        "absolute top-0 left-0 w-full h-20 z-[300] transition-all duration-300",
+        "fixed top-0 left-0 w-full h-20 z-[300] transition-all duration-300 border-b border-primary/20",
         isProjectDetailPage
-          ? "bg-transparent hover:bg-background/40 backdrop-blur-xl border-b border-transparent hover:border-primary/10"
-          : "bg-background/80 backdrop-blur-xl border-b border-primary/10"
+          ? "bg-transparent hover:bg-background/80 backdrop-blur-xl"
+          : scrolled
+            ? "bg-background/95 backdrop-blur-xl shadow-sm"
+            : "bg-background/80 backdrop-blur-xl"
       )}>
         <div className="max-w-7xl mx-auto w-full h-full px-4 sm:px-6 flex justify-between items-center relative">
-          
+
           {/* Logo */}
           <Link
             href="/"
@@ -268,7 +270,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden lg:flex items-center gap-10">
             {NAV_LINKS.map((link) => {
               const hash = link.href.includes("#") ? link.href.split("#")[1] : null;
-              const isActive = 
+              const isActive =
                 (link.href === "/" && pathname === "/" && !activeHash) ||
                 (hash && pathname === "/" && activeHash === hash) ||
                 (!hash && link.href === pathname);
@@ -316,8 +318,8 @@ export const Navbar: React.FC = () => {
               <ModeToggle className="z-[350] pointer-events-auto [&>button]:text-primary [&>button]:hover:text-primary [&>button]:hover:bg-primary/10" />
             </div>
             {/* Hamburger/X Toggle Button - Prevent Collision */}
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
+            <button
+              onClick={() => setIsOpen(!isOpen)}
               className="relative z-[350] min-w-[44px] min-h-[44px] flex items-center justify-center text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm touch-manipulation bg-transparent pointer-events-auto"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
@@ -333,9 +335,9 @@ export const Navbar: React.FC = () => {
                     transition={{ duration: 0.2 }}
                     className="absolute inset-0 flex items-center justify-center z-[350] pointer-events-none"
                   >
-                    <X 
-                      className="w-6 h-6 text-primary" 
-                      strokeWidth={1.5} 
+                    <X
+                      className="w-6 h-6 text-primary"
+                      strokeWidth={1.5}
                     />
                   </motion.div>
                 ) : (
@@ -347,9 +349,9 @@ export const Navbar: React.FC = () => {
                     transition={{ duration: 0.2 }}
                     className="absolute inset-0 flex items-center justify-center z-[350] pointer-events-none"
                   >
-                    <Menu 
-                      className="w-6 h-6 text-primary" 
-                      strokeWidth={1.5} 
+                    <Menu
+                      className="w-6 h-6 text-primary"
+                      strokeWidth={1.5}
                     />
                   </motion.div>
                 )}
@@ -372,7 +374,7 @@ export const Navbar: React.FC = () => {
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 left-0 w-1/2 h-screen z-[250] bg-black/40 lg:hidden"
             />
-            
+
             {/* Slide-Out Drawer - Right 50% - Darker Background */}
             <motion.div
               initial={{ x: "100%" }}

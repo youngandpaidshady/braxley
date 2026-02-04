@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, Calendar, Clock, Eye, ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Image from "next/image";
 import { BlogSchema } from "@/components/seo/blog-schema";
+import { Button } from "@/components/ui/button";
 
 // Import blog posts data (in production, fetch from CMS)
 import { getAllPosts, getPostBySlug } from "@/lib/blog-data";
@@ -62,122 +63,123 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           slug: post.slug,
           author: "Braxley Nevim Elite Remodeling LLC",
         }}
-        siteUrl="https://braxleynevim.com"
+        siteUrl="https://www.braxleynevimllc.com"
       />
 
-      <main className="pt-32 pb-24 bg-background min-h-screen">
-        {/* Breadcrumbs */}
-        <nav className="container mb-8 px-4 sm:px-6 lg:px-8" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-            <li>
-              <Link href="/" className="hover:text-primary transition-colors">
-                Home
+      <article className="min-h-screen bg-background">
+        {/* Hero Section with Featured Image */}
+        <div className="relative">
+          {/* Featured Image */}
+          <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] bg-muted">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          </div>
+
+          {/* Back Button - Fixed */}
+          <div className="absolute top-20 sm:top-24 left-4 sm:left-6 lg:left-8 z-10">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="bg-background/80 backdrop-blur-sm hover:bg-background border border-border rounded-full px-4"
+            >
+              <Link href="/blog" className="flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
+                <span className="text-xs font-mono uppercase tracking-wider">Blog</span>
               </Link>
-            </li>
-            <li>
-              <ChevronRight className="w-3 h-3 text-primary" strokeWidth={1.5} aria-hidden="true" />
-            </li>
-            <li>
-              <Link href="/blog" className="hover:text-primary transition-colors">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="w-3 h-3 text-primary" strokeWidth={1.5} aria-hidden="true" />
-            </li>
-            <li className="text-foreground" aria-current="page">
-              {post.title}
-            </li>
-          </ol>
-        </nav>
+            </Button>
+          </div>
 
-        <article className="container px-4 sm:px-6 lg:px-8 max-w-4xl">
-          {/* Back Button */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
-            Back to Articles
-          </Link>
+          {/* Title Section - Overlapping image */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative -mt-32 sm:-mt-40 z-10">
+            <div className="bg-background rounded-xl p-6 sm:p-8 md:p-10 shadow-xl border border-border">
+              {/* Category Badge */}
+              <div className="mb-4">
+                <span className="inline-block px-3 py-1 bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] uppercase tracking-wider font-bold rounded-full">
+                  {post.category}
+                </span>
+              </div>
 
-          {/* Header */}
-          <header className="mb-12">
-            {/* Category & Meta */}
-            <div className="flex items-center flex-wrap gap-4 mb-6 text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              <span className="px-3 py-1.5 bg-primary/10 border border-primary/30 text-primary font-bold">
-                {post.category}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
-                {post.date}
-              </span>
-              <span className="text-primary/40">•</span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
-                {post.readTime}
-              </span>
-              {post.views && (
-                <>
-                  <span className="text-primary/40">•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Eye className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
-                    {post.views.toLocaleString()} views
-                  </span>
-                </>
-              )}
+              {/* Title */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground leading-tight mb-4">
+                {post.title}
+              </h1>
+
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                  {post.date}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                  {post.readTime}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <User className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                  Braxley Nevim
+                </span>
+              </div>
             </div>
+          </div>
+        </div>
 
-            {/* Title */}
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight mb-6">
-              {post.title}
-            </h1>
+        {/* Article Content */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 md:py-12">
+          {/* Excerpt */}
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 font-serif italic border-l-4 border-primary pl-4">
+            {post.excerpt}
+          </p>
 
-            {/* Featured Image */}
-            <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border/50 mb-8">
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 896px"
-                priority
-              />
-            </div>
-          </header>
-
-          {/* Article Content */}
+          {/* Main Content */}
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div className="text-lg text-muted-foreground leading-relaxed mb-8 font-serif italic">
-              {post.excerpt}
-            </div>
-
-            {/* Full Article Content */}
-            <div className="article-content text-foreground leading-relaxed space-y-6">
+            <div className="text-foreground leading-relaxed space-y-6">
               {post.content}
             </div>
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-primary/20">
-                <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-4">
-                  Tags
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 bg-primary/10 border border-primary/20 text-primary font-mono text-[10px] uppercase tracking-[0.15em] font-bold"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
-        </article>
-      </main>
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-border">
+              <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-4">
+                Related Topics
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1.5 bg-secondary text-foreground font-mono text-xs rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Back to Blog */}
+          <div className="mt-12 pt-8 border-t border-border">
+            <Button
+              asChild
+              variant="outline"
+              className="font-mono text-xs uppercase tracking-wider"
+            >
+              <Link href="/blog" className="flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
+                Back to All Articles
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </article>
     </>
   );
 }

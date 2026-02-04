@@ -82,7 +82,7 @@ export const FeaturedProjects: React.FC = () => {
     : projects.filter((project) => project.categoryFilter === activeCategory);
 
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section className="pt-24 pb-20 md:pt-32 md:pb-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -140,7 +140,7 @@ export const FeaturedProjects: React.FC = () => {
                   ease: [0.22, 1, 0.36, 1],
                   layout: { duration: 0.3 }
                 }}
-                className="group relative bg-background border border-border/60 rounded-lg overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-300"
+                className="group relative border border-border/40 rounded-lg overflow-hidden hover:border-primary/50 dark:hover:shadow-xl transition-all duration-300 dark:shadow-md bg-white dark:bg-[#1A1A1A]"
                 style={{ 
                   willChange: 'opacity, transform'
                 }}
@@ -169,19 +169,19 @@ export const FeaturedProjects: React.FC = () => {
                   </span>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-foreground dark:text-white mb-3 group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
 
                   {/* Location & Year */}
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground dark:text-[#E5E5E5] mb-4">
                     <span>{project.location}</span>
                     <span>•</span>
                     <span>{project.year}</span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-sm text-muted-foreground dark:text-[#E5E5E5] leading-relaxed mb-6 line-clamp-3">
                     {project.description}
                   </p>
 

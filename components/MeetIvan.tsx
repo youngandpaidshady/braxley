@@ -4,6 +4,49 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+// Person structured data for SEO - helps Braxley Nevim appear in Google search
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Braxley Nevim",
+  givenName: "Braxley",
+  familyName: "Nevim",
+  jobTitle: "Founder & CEO",
+  description:
+    "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Founder of Braxley Nevim Elite Remodeling LLC, specializing in high-end home transformations.",
+  image: {
+    "@type": "ImageObject",
+    url: "https://www.braxleynevimllc.com/img/ceo.png",
+    caption: "Braxley Nevim - Founder & CEO of Braxley Nevim Elite Remodeling LLC",
+  },
+  url: "https://www.braxleynevimllc.com",
+  // sameAs: Add social media profiles here when available
+  // Example: sameAs: ["https://www.linkedin.com/in/braxleynevim", "https://www.instagram.com/braxleynevim"],
+  worksFor: {
+    "@type": "Organization",
+    name: "Braxley Nevim Elite Remodeling LLC",
+    url: "https://www.braxleynevimllc.com",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.braxleynevimllc.com/icon.png",
+    },
+  },
+  knowsAbout: [
+    "Luxury Home Construction",
+    "Residential Remodeling",
+    "Kitchen Renovation",
+    "Bathroom Renovation",
+    "Custom Home Building",
+    "Architectural Design",
+    "General Contracting",
+    "Elite Remodeling",
+  ],
+  alumniOf: {
+    "@type": "Organization",
+    name: "Construction Industry",
+  },
+};
+
 export const MeetBraxley: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,6 +72,11 @@ export const MeetBraxley: React.FC = () => {
 
   return (
     <section id="ceo" className="py-12 md:py-20 lg:py-32 bg-secondary/30">
+      {/* Person Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
@@ -55,7 +103,7 @@ export const MeetBraxley: React.FC = () => {
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/img/ceo.jpg"
+                  src="/img/ceo.png"
                   alt="Braxley Nevim - Founder & CEO"
                   fill
                   className="object-cover"

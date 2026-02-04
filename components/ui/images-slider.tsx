@@ -40,7 +40,7 @@ export const ImagesSlider = ({
   useEffect(() => {
     const loadImages = async () => {
       const successfullyLoaded: string[] = [];
-      
+
       for (const imageUrl of images) {
         try {
           await new Promise<void>((resolve, reject) => {
@@ -60,7 +60,7 @@ export const ImagesSlider = ({
           console.warn(`Error loading image: ${imageUrl}`);
         }
       }
-      
+
       setLoadedImages(successfullyLoaded);
       setImagesReady(true);
     };
@@ -152,12 +152,13 @@ export const ImagesSlider = ({
           <motion.img
             key={currentIndex}
             src={loadedImages[currentIndex]}
-            alt=""
+            alt="Commercial Construction Site - Elite Enterprise Remodeling"
             initial="initial"
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
             className="image h-full w-full absolute inset-0 object-cover object-center"
+            fetchPriority="high"
           />
         </AnimatePresence>
       ) : (

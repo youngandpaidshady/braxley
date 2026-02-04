@@ -43,9 +43,11 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-manrope)", "var(--font-geist-sans)", "system-ui", "sans-serif"],
         serif: ["var(--font-playfair-display)", "Playfair Display", "Georgia", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
+        display: ["var(--font-oswald)", "Oswald", "system-ui", "sans-serif"],
+        body: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

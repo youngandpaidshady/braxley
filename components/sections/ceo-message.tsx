@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const TEAM = [
   { 
-    name: "Marcus Thorne", 
+    name: "Liora Willow", 
     role: "Operations Director", 
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3387&auto=format&fit=crop" 
+    img: "/img/liora-willow.png" 
   },
   { 
     name: "Sarah Jenkins", 
@@ -37,7 +37,7 @@ export function CeoMessage() {
               <div className="float-left w-[180px] mr-4 mb-2 sm:w-[360px] sm:mr-10 sm:mb-6 border border-border p-1 bg-background transition-all">
                 <div className="relative aspect-[3/4]">
                   <Image 
-                    src="/img/ceo.jpg" 
+                    src="/img/ceo.png" 
                     alt="Braxley Nevim" 
                     fill 
                     className="object-cover"

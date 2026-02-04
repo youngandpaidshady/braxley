@@ -1,14 +1,39 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Mail, Copy, Check, Facebook, Instagram, Linkedin } from "lucide-react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Copy,
+  Check,
+  Facebook,
+  Instagram,
+  Linkedin,
+  ArrowUpRight,
+} from "lucide-react";
 import { ModeToggle } from "./ui/mode-toggle";
 import { cn } from "@/lib/utils";
 
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/#services" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
+];
+
+const services = [
+  { label: "Kitchen Remodeling", href: "/#services" },
+  { label: "Bathroom Renovation", href: "/#services" },
+  { label: "Home Additions", href: "/#services" },
+  { label: "Commercial Build-Outs", href: "/#services" },
+];
+
 export const StickyFooter: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const emailRef = useRef<HTMLDivElement>(null);
 
   const handleCopyEmail = async () => {
     const email = "Braxleynevimllc@outlook.com";
@@ -22,178 +47,185 @@ export const StickyFooter: React.FC = () => {
   };
 
   return (
-    <footer className="relative z-20 bg-black dark:bg-black w-full">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 max-w-7xl relative z-10">
-        {/* Massive Typography */}
-        <div className="mb-8 md:mb-12">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold text-foreground leading-tight">
-            LET&apos;S BUILD.
-          </h2>
+    <footer className="relative z-20 bg-background w-full border-t border-border/50 overflow-hidden">
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 max-w-7xl">
+        {/* Top Section - CTA */}
+        <div className="mb-8 md:mb-12 pb-8 md:pb-12 border-b border-border/30">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6">
+            <div>
+              <p className="text-sm font-mono uppercase tracking-[0.2em] text-primary mb-3">
+                Ready to Transform Your Space?
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display heading-display-bold text-foreground leading-tight">
+                Let&apos;s Build
+                <br className="hidden sm:block" />
+                <span className="text-primary"> Together.</span>
+              </h2>
+            </div>
+            <motion.a
+              href="/#contact"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono text-sm uppercase tracking-wider rounded-none hover:bg-primary/90 transition-colors self-start md:self-auto"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Get a Free Quote
+              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.a>
+          </div>
         </div>
 
-        {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-          {/* Left: Email with Copy Animation */}
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">
-              Get in Touch
-            </p>
-            <div
-              ref={emailRef}
-              className="group relative inline-block touch-manipulation cursor-pointer"
-              onClick={handleCopyEmail}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleCopyEmail();
-                }
-              }}
-              aria-label="Copy email address"
-            >
-              <motion.div
-                className="flex items-center gap-3 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail className="h-5 w-5 text-primary" strokeWidth={1.5} />
-                <span className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                  Braxleynevimllc@outlook.com
-                </span>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    scale: copied ? [1, 1.2, 1] : 1,
-                    rotate: copied ? [0, 10, -10, 0] : 0,
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {copied ? (
-                    <Check className="h-5 w-5 text-primary" strokeWidth={1.5} />
-                  ) : (
-                    <Copy className="h-5 w-5 text-primary" strokeWidth={1.5} />
-                  )}
-                </motion.div>
-              </motion.div>
-              {copied && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute -top-8 left-0 text-sm text-primary font-medium"
-                >
-                  Copied!
-                </motion.div>
-              )}
-            </div>
+        {/* Middle Section - Links Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-8 md:mb-12">
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-sm font-mono uppercase tracking-[0.15em] text-foreground font-semibold mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Right: Social Links with Magnetic Effect */}
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">
+          {/* Services */}
+          <div>
+            <h3 className="text-sm font-mono uppercase tracking-[0.15em] text-foreground font-semibold mb-4">
+              Services
+            </h3>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.label}>
+                  <Link
+                    href={service.href}
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    {service.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="text-sm font-mono uppercase tracking-[0.15em] text-foreground font-semibold mb-4">
+              Contact
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <button
+                  onClick={handleCopyEmail}
+                  className="group flex items-start gap-3 text-left w-full"
+                  aria-label="Copy email address"
+                >
+                  <Mail className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                  <div>
+                    <span className="text-muted-foreground group-hover:text-primary transition-colors text-sm block">
+                      Braxleynevimllc@outlook.com
+                    </span>
+                    <span className="text-xs text-primary/70 flex items-center gap-1 mt-0.5">
+                      {copied ? (
+                        <>
+                          <Check className="h-3 w-3" /> Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3 w-3" /> Click to copy
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </button>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                <a
+                  href="tel:+17743475579"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  +1 (774) 347-5579
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                <span className="text-muted-foreground text-sm">
+                  Serving South Florida
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social & Theme */}
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="text-sm font-mono uppercase tracking-[0.15em] text-foreground font-semibold mb-4">
               Connect
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <MagneticButton
-                href="https://facebook.com/braxleynevim"
+            </h3>
+            <div className="flex flex-wrap gap-3 mb-6">
+              <SocialLink
+                href="https://www.facebook.com/share/1B42bSWnfK/?mibextid=wwXIfr"
                 icon={Facebook}
                 label="Facebook"
               />
-              <MagneticButton
+              <SocialLink
                 href="https://instagram.com/braxleynevim"
                 icon={Instagram}
                 label="Instagram"
               />
-              <MagneticButton
+              <SocialLink
                 href="https://linkedin.com/company/braxleynevim"
                 icon={Linkedin}
                 label="LinkedIn"
               />
             </div>
-          </div>
-        </div>
-
-        {/* Bottom: Copyright and Theme Toggle */}
-        <div className="mt-12 pt-8 border-t border-primary/20">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-            <p className="text-sm text-muted-foreground text-center sm:text-left flex-1">
-              © 2022 Braxley Nevim Elite Remodeling LLC. All rights reserved.
-            </p>
-            <div className="flex items-center gap-2 shrink-0 justify-center sm:justify-end">
-              <span className="text-xs text-muted-foreground whitespace-nowrap">Theme:</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Theme:</span>
               <ModeToggle />
             </div>
           </div>
+        </div>
+
+        {/* Bottom Section - Copyright */}
+        <div className="pt-6 md:pt-8 border-t border-border/30">
+          <p className="text-xs text-muted-foreground text-center sm:text-left">
+            © {new Date().getFullYear()} Braxley Nevim Elite Remodeling LLC. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-interface MagneticButtonProps {
+interface SocialLinkProps {
   href: string;
   icon: React.ComponentType<{ className?: string }>;
   label: string;
 }
 
-const MagneticButton: React.FC<MagneticButtonProps> = ({
-  href,
-  icon: Icon,
-  label,
-}) => {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const springConfig = { stiffness: 300, damping: 30 };
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [5, -5]), springConfig);
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-5, 5]), springConfig);
-  const scale = useSpring(useTransform(x, [-0.5, 0.5, 0.5], [1.1, 1.1, 1]), {
-    stiffness: 400,
-    damping: 30,
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!buttonRef.current) return;
-
-    const rect = buttonRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    x.set((e.clientX - centerX) / rect.width);
-    y.set((e.clientY - centerY) / rect.height);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
+const SocialLink: React.FC<SocialLinkProps> = ({ href, icon: Icon, label }) => {
   return (
     <motion.a
-      ref={buttonRef}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        scale,
-        transformStyle: "preserve-3d",
-      }}
       className={cn(
-        "relative inline-flex items-center justify-center w-12 h-12 rounded-full",
-        "bg-secondary hover:bg-primary/10 border border-border hover:border-primary/50",
-        "transition-colors duration-300 cursor-pointer"
+        "inline-flex items-center justify-center w-10 h-10 rounded-full",
+        "bg-background dark:bg-secondary border border-border hover:border-primary/50",
+        "hover:bg-primary/10 transition-all duration-300"
       )}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.1, y: -2 }}
       whileTap={{ scale: 0.95 }}
       aria-label={label}
     >
-      <Icon className="h-5 w-5 text-primary" />
+      <Icon className="h-4 w-4 text-primary" />
     </motion.a>
   );
 };

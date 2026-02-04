@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   ChefHat,
   BedDouble,
@@ -11,10 +11,9 @@ import {
   Trees,
   Building2,
   LucideIcon,
+  ArrowRight,
+  X,
 } from "lucide-react";
-import { TextReveal } from "./ui/TextReveal";
-import { ServiceModal } from "./ui/service-modal";
-import { ServiceCard } from "./ui/service-card";
 import { cn } from "@/lib/utils";
 
 interface Service {
@@ -22,7 +21,6 @@ interface Service {
   title: string;
   description: string;
   imageUrl: string;
-  span?: "col-span-1" | "col-span-2";
 }
 
 const services: Service[] = [
@@ -32,7 +30,7 @@ const services: Service[] = [
     description:
       "Beyond simple kitchens. We engineer chef-grade workspaces with integrated smart technology, custom walnut cabinetry, and quartzite surfacing.",
     imageUrl:
-      "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=3270&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=800&auto=format&fit=crop",
   },
   {
     icon: BedDouble,
@@ -40,7 +38,7 @@ const services: Service[] = [
     description:
       "Hotel-inspired living. Heated flooring, steam room integration, and acoustic isolation for the ultimate private retreat.",
     imageUrl:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&h=700&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=800&fit=crop&q=80",
   },
   {
     icon: Scaling,
@@ -48,7 +46,7 @@ const services: Service[] = [
     description:
       "Seamless expansion. We handle complex zoning, architectural matching, and structural reinforcement to add value without compromising integrity.",
     imageUrl:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&h=700&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=800&fit=crop&q=80",
   },
   {
     icon: Landmark,
@@ -56,7 +54,7 @@ const services: Service[] = [
     description:
       "Preservation meets performance. We restore period details while retrofitting modern electrical, HVAC, and insulation systems behind the walls.",
     imageUrl:
-      "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=700&h=700&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800&h=800&fit=crop&q=80",
   },
   {
     icon: Trees,
@@ -64,7 +62,7 @@ const services: Service[] = [
     description:
       "Curb appeal engineering. Hardscaping, sustainable decking, and impact-rated fenestration that redefines your home's facade.",
     imageUrl:
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=700&h=700&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=800&h=800&fit=crop&q=80",
   },
   {
     icon: Building2,
@@ -72,173 +70,224 @@ const services: Service[] = [
     description:
       "Brand-aligned construction. From boutique retail to executive offices, we deliver timelines that respect your business goals.",
     imageUrl:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700&h=700&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=800&fit=crop&q=80",
   },
 ];
 
+/* ========================================
+   SERVICE CARD
+   ======================================== */
+interface ServiceCardProps {
+  service: Service;
+  onClick: () => void;
+}
 
-export const ServicesGrid: React.FC = () => {
-  // Modal state
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-
-  // Embla Carousel for mobile - optimized to prevent glitches
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: "start",
-    containScroll: "trimSnaps",
-    watchDrag: true,
-    skipSnaps: false,
-    breakpoints: {
-      "(min-width: 768px)": { active: false }, // Disable on desktop
-    },
-  });
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
-  );
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    onSelect();
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const Icon = service.icon;
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-secondary/30">
+    <div
+      className="relative w-[280px] md:w-[300px] h-[320px] flex-shrink-0 rounded-xl overflow-hidden cursor-pointer bg-white dark:shadow-md"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={service.imageUrl}
+          alt={service.title}
+          fill
+          className={cn(
+            "object-cover transition-transform duration-300 ease-out",
+            isHovered ? "scale-105" : "scale-100"
+          )}
+          sizes="300px"
+          priority
+        />
+      </div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+      {/* Content */}
+      <div className="absolute inset-0 p-5 flex flex-col justify-end">
+        {/* Icon */}
+        <div className="w-12 h-12 rounded-lg bg-gold/20 backdrop-blur-sm flex items-center justify-center mb-4">
+          <Icon className="h-6 w-6 text-gold" />
+        </div>
+
+        {/* Title */}
+        <h3 className="font-display text-lg font-bold uppercase text-white mb-2">
+          {service.title}
+        </h3>
+
+        {/* Explore Link */}
+        <div
+          className={cn(
+            "flex items-center gap-2 text-sm font-semibold text-gold transition-transform duration-300",
+            isHovered ? "translate-x-2" : ""
+          )}
+        >
+          Explore
+          <ArrowRight className="h-4 w-4" />
+        </div>
+      </div>
+
+      {/* Hover Border */}
+      <div
+        className={cn(
+          "absolute inset-0 rounded-xl border pointer-events-none transition-colors duration-300",
+          isHovered ? "border-gold" : "border-white/10"
+        )}
+      />
+    </div>
+  );
+};
+
+/* ========================================
+   SERVICE MODAL
+   ======================================== */
+interface ServiceModalProps {
+  service: Service | null;
+  onClose: () => void;
+}
+
+const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) => {
+  if (!service) return null;
+  const Icon = service.icon;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-xl"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="relative w-full max-w-lg bg-muted rounded-2xl overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Image */}
+          <div className="relative h-48">
+            <Image
+              src={service.imageUrl}
+              alt={service.title}
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-800 to-transparent" />
+          </div>
+
+          {/* Content */}
+          <div className="p-6">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-lg bg-gold/20 flex items-center justify-center">
+                <Icon className="h-6 w-6 text-gold" />
+              </div>
+              <h3 className="font-display text-2xl font-bold uppercase text-foreground">
+                {service.title}
+              </h3>
+            </div>
+            <p className="text-muted-foreground body-text leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-foreground hover:text-gold transition-colors"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+/* ========================================
+   SERVICES SECTION - Smooth Native Scroll
+   ======================================== */
+export const ServicesGrid: React.FC = () => {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  return (
+    <section id="services" className="py-20 md:py-28 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3, margin: "0px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 md:mb-12"
         >
-          <TextReveal
-            text="Our Services"
-            as="h2"
-            className="text-4xl md:text-5xl font-serif font-extrabold text-foreground mb-4 tracking-tight"
-            splitBy="words"
-            stagger={0.1}
-          />
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive remodeling solutions tailored to your vision and
-            budget.
+          <span className="inline-block px-4 py-2 text-xs font-bold uppercase tracking-[0.3em] text-gold border border-gold/30 bg-gold/5 backdrop-blur-sm rounded-full mb-4">
+            Our Services
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase text-foreground">
+            What We Build
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mt-4 body-text">
+            Comprehensive remodeling solutions tailored to your vision and budget.
           </p>
         </motion.div>
+      </div>
 
-        {/* Mobile: Embla Carousel with "Peek-a-boo" Effect */}
-        <div className="md:hidden">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="flex-[0_0_85%] min-w-0 mr-4"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3, margin: "0px" }}
-                    transition={{
-                      duration: 0.4,
-                      delay: index * 0.05,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    onClick={() => setSelectedService(service)}
-                    className="cursor-pointer"
-                    style={{ 
-                      willChange: 'opacity, transform'
-                    }}
-                  >
-                    <ServiceCard
-                      title={service.title}
-                      description={service.description}
-                      icon={service.icon}
-                      imageUrl={service.imageUrl}
-                      onClick={() => setSelectedService(service)}
-                    />
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Smooth Scroll Container */}
+      <div className="relative">
+        {/* Gradient Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
-          {/* Pagination Dots (Mobile only) */}
-          <div className="mt-6 text-center">
-            <div className="flex items-center justify-center gap-2">
-              {scrollSnaps.map((_, index) => (
-                <button
-                  key={index}
-                  className={cn(
-                    "size-1.5 rounded-full transition-all",
-                    index === selectedIndex ? "bg-primary" : "bg-primary/35"
-                  )}
-                  onClick={() => scrollTo(index)}
-                  aria-label={`Go to service ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop: Grid Layout */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+        {/* Scrollable Track */}
+        <div
+          className="flex gap-5 px-4 sm:px-6 lg:px-8 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing scroll-smooth"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch',
+          }}
+        >
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3, margin: "0px" }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              onClick={() => setSelectedService(service)}
-              className="cursor-pointer"
-              style={{ 
-                willChange: 'opacity, transform'
-              }}
+              className="flex-shrink-0"
             >
               <ServiceCard
-                title={service.title}
-                description={service.description}
-                icon={service.icon}
-                imageUrl={service.imageUrl}
+                service={service}
                 onClick={() => setSelectedService(service)}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Service Modal */}
-      <ServiceModal
-        service={selectedService}
-        onClose={() => setSelectedService(null)}
-      />
+      {/* Modal */}
+      {selectedService && (
+        <ServiceModal
+          service={selectedService}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
+
+      {/* Hide scrollbar CSS */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };
 
-// Export ServicesGrid only (FAQ moved to page.tsx)
-export const ServicesSection: React.FC = () => {
-  return <ServicesGrid />;
-};
+export const ServicesSection = ServicesGrid;
+export default ServicesGrid;

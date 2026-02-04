@@ -10,9 +10,9 @@ import { ProjectSkeleton } from "@/components/ui/ProjectSkeleton";
 import { FaqGlow } from "@/components/sections/faq-glow";
 
 export const metadata: Metadata = {
-  title: "Elite Remodeling & Construction | Architectural Excellence",
+  title: "Braxley Nevim | Elite Remodeling & Construction | Architectural Excellence",
   description:
-    "Braxley Nevim Elite Remodeling LLC specializes in enterprise-grade general contracting, luxury residential construction, hospitality renovations, and healthcare facility development. OSHPD compliant, LEED certified excellence.",
+    "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
   keywords: [
     "Elite General Contractor",
     "Luxury Home Builder",
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com",
-    siteName: "Braxley Nevim Elite Remodeling LLC",
-    title: "Elite Remodeling & Construction | Architectural Excellence",
+    url: "https://www.braxleynevimllc.com",
+    siteName: "Braxley Nevim LLC",
+    title: "Braxley Nevim | Elite Remodeling & Construction | Architectural Excellence",
     description:
-      "Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
+      "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
     images: [
       {
-        url: "https://braxleynevim.com/og-image.jpg",
+        url: "https://www.braxleynevimllc.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Braxley Nevim Elite Remodeling LLC - Architectural Excellence",
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elite Remodeling & Construction | Architectural Excellence",
+    title: "Braxley Nevim | Elite Remodeling & Construction | Architectural Excellence",
     description:
-      "Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
+      "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Enterprise-grade general contracting specializing in healthcare, hospitality, and high-end residential construction.",
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://braxleynevim.com",
+    canonical: "https://www.braxleynevimllc.com",
   },
 };
 

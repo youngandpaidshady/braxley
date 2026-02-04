@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://braxleynevim.com/projects",
+    url: "https://www.braxleynevimllc.com/projects",
     siteName: "Braxley Nevim Elite Remodeling LLC",
     title: "Portfolio of Mandates | Elite Construction Projects",
     description:
       "Explore our portfolio of elite construction projects including luxury residential renovations, hospitality transformations, and infrastructure development.",
     images: [
       {
-        url: "https://braxleynevim.com/img/projects/portfolio-og.jpg",
+        url: "https://www.braxleynevimllc.com/img/projects/portfolio-og.jpg",
         width: 1200,
         height: 630,
         alt: "Braxley Nevim Portfolio - Elite Construction Projects",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     images: ["/img/projects/portfolio-og.jpg"],
   },
   alternates: {
-    canonical: "https://braxleynevim.com/projects",
+    canonical: "https://www.braxleynevimllc.com/projects",
   },
 };
 

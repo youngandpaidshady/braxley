@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, PanInfo } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,8 @@ const TEAM = [
   {
     name: "Liora Willow",
     role: "Operations Director",
-    img: "/img/liora-willow.png"
+    img: "/img/liora-willow.png",
+    link: "/team/liora-willow"
   },
   {
     name: "Sarah Jenkins",
@@ -43,14 +45,15 @@ interface TeamCardProps {
   name: string;
   role: string;
   imageUrl: string;
+  link?: string;
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({ name, role, imageUrl }) => {
+const TeamCard: React.FC<TeamCardProps> = ({ name, role, imageUrl, link }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  return (
+  const CardContent = (
     <div
-      className="relative w-[260px] md:w-[280px] overflow-hidden rounded-xl flex-shrink-0 aspect-[3/4] bg-muted"
+      className="relative w-[260px] md:w-[280px] overflow-hidden rounded-xl flex-shrink-0 aspect-[3/4] bg-muted group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -74,7 +77,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, imageUrl }) => {
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-5">
-        <h3 className="font-display text-xl font-bold uppercase text-white mb-1 tracking-wide">
+        <h3 className="font-display text-xl font-bold uppercase text-white mb-1 tracking-wide group-hover:text-gold transition-colors">
           {name}
         </h3>
         <p className="text-sm font-semibold text-gold tracking-wide">
@@ -91,6 +94,16 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, imageUrl }) => {
       />
     </div>
   );
+
+  if (link) {
+    return (
+      <Link href={link} className="block">
+        {CardContent}
+      </Link>
+    );
+  }
+
+  return CardContent;
 };
 
 /* ========================================
@@ -100,7 +113,7 @@ export function TeamSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative z-10 py-20 md:py-28 bg-background overflow-hidden">
+    <section className="relative z-10 py-20 md:py-28 bg-background overflow-hidden" id="team">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -144,6 +157,7 @@ export function TeamSection() {
                 name={member.name}
                 role={member.role}
                 imageUrl={member.img}
+                link={member.link}
               />
             </div>
           ))}

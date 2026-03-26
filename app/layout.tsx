@@ -102,7 +102,7 @@ export const metadata: Metadata = {
       "With over two decades of experience in luxury residential construction, Braxley Nevim has built a reputation for uncompromising quality and attention to detail. Premier commercial remodeling for stadiums, hospitals, and luxury resorts.",
     images: [
       {
-        url: "https://www.braxleynevimllc.com/og-image.jpg", // Use full URL for better social sharing
+        url: "https://www.braxleynevimllc.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Braxley Nevim Elite Remodeling LLC - Architectural Excellence | Elite Craftsmanship & Design",
@@ -137,15 +137,8 @@ export const metadata: Metadata = {
 // Update these values with your actual business information
 const businessData = {
   name: "Braxley Nevim Elite Remodeling LLC",
-  image: "https://www.braxleynevimllc.com/logo.jpg", // Update with actual logo URL
+  image: "https://www.braxleynevimllc.com/logo.jpg",
   telephone: "+17743475579",
-  address: {
-    streetAddress: "123 Main Street", // Update with actual address
-    addressLocality: "City Name", // Update with actual city
-    addressRegion: "State", // Update with actual state
-    postalCode: "12345", // Update with actual ZIP code
-    addressCountry: "US",
-  },
   priceRange: "$$$$", // Luxury pricing tier
   areaServed: [
     "City Name", // Update with actual service areas

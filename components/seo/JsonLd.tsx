@@ -17,7 +17,7 @@ interface LocalBusinessData {
   name: string;
   image: string;
   telephone: string;
-  address: {
+  address?: {
     streetAddress: string;
     addressLocality: string;
     addressRegion: string;
@@ -44,14 +44,16 @@ export const LocalBusinessJsonLd: React.FC<{ data: LocalBusinessData }> = ({
     name: data.name,
     image: data.image,
     telephone: data.telephone,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: data.address.streetAddress,
-      addressLocality: data.address.addressLocality,
-      addressRegion: data.address.addressRegion,
-      postalCode: data.address.postalCode,
-      addressCountry: data.address.addressCountry,
-    },
+    ...(data.address && {
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: data.address.streetAddress,
+        addressLocality: data.address.addressLocality,
+        addressRegion: data.address.addressRegion,
+        postalCode: data.address.postalCode,
+        addressCountry: data.address.addressCountry,
+      },
+    }),
     priceRange: data.priceRange,
     areaServed: data.areaServed.map((city) => ({
       "@type": "City",

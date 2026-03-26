@@ -155,12 +155,7 @@ export const StickyFooter: React.FC = () => {
                   +1 (774) 347-5579
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                <span className="text-muted-foreground text-sm">
-                  Serving South Florida
-                </span>
-              </li>
+
             </ul>
           </div>
 

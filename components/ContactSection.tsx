@@ -151,19 +151,6 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">Office</h4>
-                  <p className="text-muted-foreground">
-                    123 Luxury Lane
-                    <br />
-                    Beverly Hills, CA 90210
-                  </p>
-                </div>
-              </div>
             </div>
 
             <div className="pt-6 border-t border-border">
